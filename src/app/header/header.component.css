@@ -1,0 +1,14 @@
+.btn-bd-yellow {
+color: #4ECDC4;
+border-color: #4ECDC4;
+border-radius: 0.6rem;
+padding-left: 0.9rem;
+}
+.custom-header{
+    background: #336E7B;
+    height: 4.5rem;
+}
+.nav-link{
+    color: white;
+    margin-left: 1.5rem;
+}

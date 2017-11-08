@@ -1,0 +1,93 @@
+.app-content{
+    margin-top: 7%;
+  /*background: blue;*/
+}
+.section-title{
+    height:90px;
+    padding-left: 5%;
+}
+.section-button{
+    /*background: palegreen;*/
+    height: 7rem;
+    text-align: center;
+    align-content: center;
+    margin-top: 6%;
+}
+.section-content{
+    margin-top: 2%;
+}
+.section-data{
+
+    background:white;
+    margin-top: 10%;
+    height: 57rem;
+}
+#clickhere{
+    color:transparent;
+    border: transparent;
+    background: transparent;
+}
+#example-text-input{
+ width: 30vw;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #44b9cb;
+}
+/*.form-control{
+    width: 30vw;
+
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #44b9cb;
+}*/
+input {
+    width: 10vw;
+    padding: 0 20px;
+}
+
+input,
+input::-webkit-input-placeholder {
+    font-size: 1.8vw;
+    line-height: 1;
+}
+.dropdown{
+    
+}
+#dropdownMenuButton{
+    width: 38vw;
+    height: 3vw;
+    background:whitesmoke;
+    color: gray;
+    /*border: gray;*/
+}
+.dropdown-item{
+     width: 38vw;
+    height: 3vw;
+}
+#example-text-description{
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 2px solid #44b9cb;
+    width: 38vw;
+    height: 7vw;
+}
+#shift-logo{
+    padding-top: 2%;
+}
+.test{
+       width: 8vw;
+       height: 5.5vh;
+}
+#button-submit{
+ background: #44b9cb;
+    border: 2px solid #44b9cb;
+    border-radius: 2vw;
+    height: 3vw;
+    padding-top: 0.7vw;
+}
+a.anchor {
+ padding-top: 100px;
+}
+
+
+

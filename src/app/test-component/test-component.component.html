@@ -1,0 +1,92 @@
+<script>
+$(function() {
+  $('a[href*=#]').on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({ scrollTop: $($(this).attr('href')).offset().top}, 500, 'linear');
+  });
+}); 
+</script>
+<div class="container-fluid app-content">
+	<div class="section-title">
+		<div class="row">
+			<div class="col-xs-3">
+				<div class="circle">
+					<img src="./assets/img/telephone.png" class="rounded-circle img-responsive" width="50rem">
+				</div>
+			</div>
+
+			<div class="col-xs-3 push-xs-6">
+				<h3 class="lead">(SOS)</h3>
+				<div class="row">
+					<h1 class="lead">Single On-call Service</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="section-content">
+		<h1 class="text-center" id="content-shift-hello">Hello!</h1>
+		<p class="lead text-center" id="content-shift-welcome">Welcome to SOS service, you can submit a ticket with high prority here.</p>
+	</div>
+
+	<div class="container section-button">
+	</div>
+			<section id="section03" class="demo">
+				<a href="#New"><span></span>Scroll</a>
+			</section>
+
+			
+	
+	<div class="complete-info text-center" id="New">
+<!--<div class="container info">
+			<div class="row">
+				<h2 id="content-shift" style="font-size : 3rem;" id="shift">Complete your ticket</h2>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-sm-3"></div>
+				<div class="col-md-1 col-sm-1">
+					<img src="./assets/img/user.png" width="80rem" style="padding-top : 0.5rem;">
+				</div>
+				<div class="col-md-8 col-sm-8">
+					<div class="row">
+						<form>
+							<label for="fname">Customer</label>
+							<div class="row">
+							</div>
+							<input type="text" id="fname" name="fname" placeholder="Krichpas Khumthanom">
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="team">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-9">
+					<h1 style="font-size : 2rem;">Application</h1>
+					<div class="dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+							aria-expanded="false">
+    Choose team
+  </button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="#">Something else here</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <div class="description">
+			<div class="row">
+				<div class="col-md-3"></div>
+				<div class="col-md-9">
+					<h1 style="font-size : 2rem;">Description</h1>
+			
+				</div>
+			</div>
+		</div>-->
+	</div>
+</div>

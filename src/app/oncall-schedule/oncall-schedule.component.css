@@ -1,0 +1,78 @@
+.content-all{
+    padding-top: 3rem;
+}
+#team{
+    color:white;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+#sidebar{
+    margin-top: 1.5vw;
+   margin-left: 3vw;
+}
+#example-date-input{
+    margin-top: 1.5vw;
+    margin-left: 1vw;
+    width: 12vw;
+        height: 3vw;
+    font-size: 1vw;
+}
+#second{
+    margin-top: 1.5vw;
+    margin-left: 0.5vw;
+}
+#sizegroup{
+    width: 27vw;
+     margin-top: 1.5vw;
+    margin-left: 1vw;
+    height: 3vw;
+}
+#Selectgroup{
+      margin-top: 1.5vw;
+   margin-left: 5vw;
+}
+#example-time-input{
+ margin-top: 1.5vw;
+    margin-left: 1vw;
+    width: 12vw;
+        height: 3vw;
+    font-size: 1vw;
+}
+#SelectAnalyst{
+     margin-top: 1.5vw;
+   margin-left: 4.5vw;
+}
+#checkbox{
+    margin-left: 9.8vw;
+    margin-top: 1vw;
+  
+}
+#secondbox{
+    margin-top: 1vw;
+    margin-left: 4.7vw;
+}
+.card{
+        width: 33vw;
+      margin-left: 4.5vw;
+      margin-top: 1vw;
+}
+#Userimage{
+    width : 9vw;
+    border: 0.1rem solid #4ECDC4;
+    border-radius: 50%;
+    height: 9vw;
+    margin-left: 1.3vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+}
+#name{
+    color:  #4ECDC4;
+    margin-top:3.3vw;
+}
+#button-submit{
+    background: #44b9cb;
+    border: 2px solid #44b9cb;
+    border-radius: 1.5rem;
+    width: 6vw;
+    margin-left:15vw;
+}

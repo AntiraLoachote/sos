@@ -1,0 +1,47 @@
+.content{
+    padding-top: 10rem;
+}
+ html {
+            font-family: EMprint;
+        }
+
+        .material-icons.md-18 {
+            font-size: 18px;
+        }
+
+        .material-icons.md-24 {
+            font-size: 24px;
+        }
+
+        .material-icons.md-36 {
+            font-size: 36px;
+        }
+
+        .material-icons.md-48 {
+            font-size: 48px;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotateY(0deg);
+            }
+
+            to {
+                transform: rotateY(2880deg);
+            }
+        }
+
+
+        .blink:hover {
+            animation: blink 1s cubic-bezier(.67,0,.33,1) infinite;
+        }
+
+        .itsm {
+            animation: rotate 8s cubic-bezier(1,0,0,1) infinite;
+        }

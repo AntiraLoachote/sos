@@ -1,0 +1,88 @@
+<div class="content-all">
+	<nav class="navbar navbar-dark bg-dark">
+		<h6 style="font-size:1vw;" id="team">Oncall Schedule</h6>
+		<!--<li class="nav-item dropdown" id="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
+        </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+        </div>
+      </li>-->
+	</nav>
+	<div class="row">
+		<div class="col">
+			<div class="row">
+        <b style="font-size:1.1vw;" id="Selectgroup">Group:</b>
+				<select class="form-control" id= "sizegroup" style="font-size:1vw;">
+          <option style="font-size:1vw;">Choose team</option>
+          <option style="font-size:1vw;">Retail</option>
+          <option style="font-size:1vw;">OTC</option>
+<option style="font-size:1vw;">Siebel Technical Service</option>
+<option style="font-size:1vw;">GPM</option>
+<option style="font-size:1vw;">EDI CS and XCOM</option>
+<option style="font-size:1vw;">S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</option>
+<option style="font-size:1vw;">M&S Secondary Distributions</option>
+<option style="font-size:1vw;">Basis Output and Archiving</option>
+  
+</select>
+			</div>
+			<div class="row">
+				<label for="example-date-input" id="sidebar"> <b style="font-size:1.1vw;">Date from:</b></label>
+				<input class="form-control" type="date" value="2017-08-19" id="example-date-input">
+				<label for="example-date-input" id="second"> <b style="font-size:1.1vw;">To:</b></label>
+				<input class="form-control" type="date" value="2017-08-19" id="example-date-input">
+			</div>
+      <div class="row">
+  <label for="example-time-input" id="sidebar"><b style="font-size:1.1vw;">Time from:</b></label>
+    <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+    <label for="example-time-input" id="second"><b style="font-size:1.1vw;">To:</b></label>
+    <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+
+      </div>
+      			<div class="row">
+									<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id = "checkbox">
+    <input type="checkbox" class="custom-control-input" id = "checkbox" checked="true" title="Repeating">
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description"><b style="font-size:1vw;" title="Schedule this item to repeat regularly">Recurrence</b></span>
+  </label>
+<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"  id = "secondbox">
+    <input type="checkbox" class="custom-control-input" id = "secondbox" >
+    <span class="custom-control-indicator"></span>
+    <span class="custom-control-description"><b style="font-size:1vw;">All day</b></span>
+  </label>
+								</div>
+      <div class="row">
+   <b style="font-size:1.1vw;" id="SelectAnalyst">Analyst:</b>
+   	<select class="form-control" id= "sizegroup" style="font-size:1vw;">
+          <option style="font-size:1vw;">Choose Analyst</option>
+   	</select>
+
+      </div>
+      <div class="row">
+					<b style="font-size:1.1vw; margin-left: 4.5vw; margin-top:1.5vw;">More information:</b>
+	</div>
+  <div class="row">
+    <div class="card">
+  <div class="card-block">
+    <div class="row">
+      <div class="col-4">
+ <img [src]="getProfileImageURL()" id="Userimage">
+      </div>
+       <div class="col-7">
+	<h4 class="card-title" style="font-size:1.5vw;" id= "name">{{username}}</h4>
+      	<h4 class="card-title" style="font-size:1vw">krichpas.khuthanom@exxonmobil.com</h4>
+       </div>
+    </div>
+  
+  </div>
+</div>
+  </div>
+<button type="button" class="btn btn-primary test" style="margin-top:4%;" id="button-submit"><h2 style="font-size:1vw;">ADD</h2></button>
+		</div>
+		<div class="col-7" style="background: blue;">
+			Calenda
+
+		</div>
+	</div>
+</div>

@@ -1,0 +1,52 @@
+.content-all{
+    padding-top: 3rem;
+}
+#team{
+    color:white;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+#dropdown{
+    right:89%;
+}
+#list-team-member{
+    margin-top: 5vh;
+    width: 35vw;
+    height: 55vh;
+    overflow-y:scroll;
+}
+.btn-bd-yellow {
+color: #4ECDC4;
+border-color: #4ECDC4;
+border-radius: 0.6rem;
+padding-left: 0.7rem;
+}
+.btn-bd-blue {
+color: #4ECDC4;
+border-color: #4ECDC4;
+border-radius: 0.6rem;
+padding-left: 0.7rem;
+}
+.card-title{
+    /*background: chartreuse;*/
+}
+#Userimage{
+    width : 10vw;
+    border: 0.1rem solid #4ECDC4;
+    border-radius: 50%;
+    height: 10vw;
+    margin-left: 2vw;
+}
+.button2{
+    margin-left: 25vw;
+}
+#button2{
+    width: 2vw;
+    max-height: 0.1vw;
+}
+.detail{
+    padding-left: 2vw;
+}
+.col-4{
+    margin-left: 3.2vw;
+}

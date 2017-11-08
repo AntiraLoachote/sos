@@ -1,0 +1,80 @@
+<div class="container-fluid app-content">
+	<div class="section-title">
+		<div class="row">
+			<div class="col-xs-2">
+				<img src="./assets/img/sosphone.png" style="width:12vw">
+			</div>
+			<div class="col-xs-3 push-xs-6">
+				<h3 class="lead shift-title" style="padding-top:10%; font-size:1.5vw;">(SOS)</h3>
+				<h1 class="lead" style="font-size:1.5vw">Single On-call Service</h1>
+			</div>
+		</div>
+
+	</div>
+	<div class="section-content">
+		<h1 class="text-center" style="font-size:11vw; color: #336E7B;">Hello!</h1>
+		<p class="lead text-center" style="font-size:2vw">Welcome to SOS service, you can submit a ticket with <span style="color: red;">high priority</span> here.</p>
+	</div>
+
+	<div class="section-button">
+
+		<button id="clickhere" ><a class="anchor" href="/home#New"><img src="./assets/img/down.png" style="width:4vw;"></a></button>
+		<h1 class="lead" style="font-size:1.5vw; margin-top:1rem;">Click here</h1>
+
+	</div>
+
+	<div class="section-data" id="New">
+		<p class="lead text-center" style="font-size:2.8vw; padding-top:2%;" id="instruction"><b>Complete the ticket</b></p>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-1" id="shift-logo">
+				<img src="./assets/img/user.png" style="width:6vw;" id="shift-logo">
+			</div>
+			<div class="col-md-2" id="shift-logo">
+				<label for="example-text-input" class="col-2 col-form-label" style="font-size:1vw;"><b>Customer</b></label>
+				<input class="form-control" type="text" id="example-text-input" style="" [placeholder]="UsernameBadge">
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-1">
+				
+				<p style="font-size:1.5vw; padding-top:3rem;">Application</p>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"><span id="selected">Chose team</span><span class="caret"></span></button>
+						
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" >Retail</a>
+						<a class="dropdown-item" href="#">OTC</a>
+						<a class="dropdown-item" href="#">Siebel Technical Service</a>
+						<a class="dropdown-item" href="#">GPM</a>
+						<a class="dropdown-item" href="#">EDI CS and XCOM</a>
+						<a class="dropdown-item" href="#">S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</a>
+						<a class="dropdown-item" href="#">M&S Secondary Distributions</a>
+						<a class="dropdown-item" href="#">Basis Output and Archiving</a>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-1">
+				<label for="comment" style="font-size:1.5vw; padding-top:20%;">Description</label>
+				<textarea class="form-control" rows="4" id="comment" id="example-text-description" style=""></textarea>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4"></div>
+			<div class="col-md-1">
+				<button type="button" class="btn btn-primary test" style="margin-top:1vw;" id="button-submit" (click)="showText()"><h2 style="font-size:1vw;">SUBMIT</h2></button>
+			</div>
+		</div>
+	</div>
+
+	<div class="team-member" id="1team-members">	
+
+
+	</div>
+</div>

@@ -1,0 +1,27 @@
+.content-all{
+    padding-top: 3rem;
+}
+#team{
+    color:white;
+    margin-left: 2%;
+    margin-top: 1%;
+}
+.col-4-data{
+    margin-top: 1.5vw;
+    margin-left: 5vw;
+    /*background: green;*/
+}
+#example-date-input{
+     margin-top: 1.5vw;
+    width: 13vw;
+    font-size: 1vw;
+}
+.card{
+        width: 21vw;
+      margin-left: 4.5vw;
+      margin-top: 1vw;
+}
+.checkteam{
+    margin-left: 2vw;
+    margin-top: 0.4vw;
+}
