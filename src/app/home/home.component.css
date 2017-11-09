@@ -1,7 +1,7 @@
 .app-content{
-    margin-top: 7%;
-  /*background: blue;*/
+    margin-top: 7rem;
 }
+
 .section-title{
     height:90px;
     padding-left: 5%;
@@ -12,15 +12,17 @@
     text-align: center;
     align-content: center;
     margin-top: 6%;
+    margin-bottom: 8%;
 }
 .section-content{
     margin-top: 2%;
 }
 .section-data{
-
     background:white;
     margin-top: 10%;
     height: 57rem;
+    width: 70%;
+    margin: auto;
 }
 #clickhere{
     color:transparent;
