@@ -20,7 +20,7 @@
 .section-data{
     background:white;
     margin-top: 10%;
-    height: 57rem;
+    /* height: 57rem; */
     width: 70%;
     margin: auto;
 }
@@ -30,7 +30,7 @@
     background: transparent;
 }
 #example-text-input{
- width: 30vw;
+ width: 100%;
     box-sizing: border-box;
     border: none;
     border-bottom: 2px solid #44b9cb;
@@ -56,15 +56,17 @@ input::-webkit-input-placeholder {
     
 }
 #dropdownMenuButton{
-    width: 38vw;
-    height: 3vw;
+    width: 100%;
+    /* height: 3vw; */
     background:whitesmoke;
     color: gray;
+    padding: 12px 0;
     /*border: gray;*/
 }
 .dropdown-item{
-     width: 38vw;
-    height: 3vw;
+     /* width: 38vw;
+    height: 3vw; */
+    padding: 10px 15px;
 }
 #example-text-description{
     box-sizing: border-box;
@@ -81,11 +83,10 @@ input::-webkit-input-placeholder {
        height: 5.5vh;
 }
 #button-submit{
- background: #44b9cb;
+    background: #44b9cb;
     border: 2px solid #44b9cb;
     border-radius: 2vw;
-    height: 3vw;
-    padding-top: 0.7vw;
+    padding: 11px 30px;
 }
 a.anchor {
  padding-top: 100px;
