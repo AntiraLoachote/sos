@@ -1,10 +1,13 @@
 .content-all{
-    padding-top: 3rem;
+    /* padding: 0; */
+    margin-top: 2rem;
 }
 #team{
     color:white;
     margin-left: 2%;
-    margin-top: 1%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
 }
 .col-4-data{
     margin-top: 1.5vw;
@@ -12,8 +15,8 @@
     /*background: green;*/
 }
 #example-date-input{
-     margin-top: 1.5vw;
-    width: 13vw;
+     /* margin-top: 1.5vw;
+    width: 13vw; */
     font-size: 1vw;
 }
 .card{
@@ -24,4 +27,9 @@
 .checkteam{
     margin-left: 2vw;
     margin-top: 0.4vw;
+}
+
+.text-label {
+    margin-left: 3.5vw;
+    margin-top: 1vw;
 }
