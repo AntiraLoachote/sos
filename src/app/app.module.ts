@@ -1,9 +1,22 @@
 
 import { NgModule } from '@angular/core';
 import { BrowserModule, Title } from '@angular/platform-browser';
+
+
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule} from  '@angular/router';
+
+import { ChartModule } from 'angular2-highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+
+export function highchartsFactory() {
+const hc = require('highcharts/highstock');
+const dd = require('highcharts/modules/exporting');
+dd(hc);
+return hc;
+}
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { TestComponentComponent } from './test-component/test-component.component';
@@ -32,6 +45,7 @@ import { OncallScheduleComponent } from './oncall-schedule/oncall-schedule.compo
   ],
   imports: [
     BrowserModule,
+    ChartModule,
     FormsModule,
     HttpModule,
     RouterModule.forRoot([
@@ -60,8 +74,12 @@ import { OncallScheduleComponent } from './oncall-schedule/oncall-schedule.compo
           component: OncallScheduleComponent
         }
     ])
+  
   ],
-  providers: [Title, InfoService],
+  providers: [{
+    provide: HighchartsStatic,
+    useFactory: highchartsFactory
+    }, Title, InfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
