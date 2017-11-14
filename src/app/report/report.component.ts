@@ -30,13 +30,14 @@ export class ReportComponent implements OnInit {
         '#EA675A','#F6DC71','#62D894'
         ],
       xAxis: {
-          categories: ['17-23 Sep 2017', '24-30 Sep 2017']
+          categories: ['8-14 Oct 2017', '15-21 Oct 2017', '22-28 Oct 2017', '29 Oct - 04 Nov 2017']
       },
       yAxis: {
           min: 0,
           title: {
               text: null
-          }
+          },
+          tickInterval: 20,
       },
       legend: {
           reversed: true
@@ -48,22 +49,22 @@ export class ReportComponent implements OnInit {
                   enabled: true,
                   align: 'center',
                   color: 'black',
-                  y: -80
+                  y: -50
 
               },
-              pointWidth: 130,
+              pointWidth: 80,
               marginLeft: 0,
           }
       },
       series: [{
           name: 'Escalateed',
-          data: [7, 2]
+          data: [1, 8 ,32,4]
       }, {
           name: 'Normal acknowledge',
-          data: [5, 1]
+          data: [5, 20,10,null]
       }, {
           name: 'Within 5 minutes',
-          data: [2, 1]
+          data: [13, 36,13,null]
       }]
       
     };
