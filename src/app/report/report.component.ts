@@ -40,7 +40,16 @@ export class ReportComponent implements OnInit {
           tickInterval: 20,
       },
       legend: {
-          reversed: true
+          reversed: true,
+          align: 'left',
+          verticalAlign: 'top',
+          itemMarginBottom: 10,
+          symbolHeight: 20,
+          symbolWidth: 20,
+          symbolRadius: 0,
+          symbolPadding: 10,
+          x: 125,
+          y: 0
       },
       plotOptions: {
           series: {

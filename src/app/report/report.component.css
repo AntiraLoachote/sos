@@ -25,8 +25,8 @@
       margin-top: 1vw;
 }
 .checkteam{
-    margin-left: 2vw;
-    margin-top: 0.4vw;
+    margin-left: 1vw;
+    margin-top: 0.6vw;
 }
 
 .text-label {
@@ -81,4 +81,27 @@
 
 .text-green {
     color: #EA675A !important;
+}
+
+.custom-control-input:checked~.custom-control-indicator {
+    color: #fff;
+    background-color: #6EC8D6;
+}
+
+.custom-control-description {
+    padding-left: 10px;
+}
+
+.custom-checkbox .custom-control-indicator {
+    border-radius: 1rem;
+    width: 22px;
+    height: 22px;
+}
+
+.bg-dark {
+    background-color: #627485 !important;
+}
+
+.content-all label {
+    color: #868686;
 }
