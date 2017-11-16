@@ -33,3 +33,52 @@
     margin-left: 3.5vw;
     margin-top: 1vw;
 }
+
+/*new*/
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color : #FAFCFB;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color : #FAFCFB;
+}
+
+.table {
+    background-color:#FFFFFF;
+}
+.table-detail {
+    padding: 0;
+    margin: 100px auto;
+}
+
+.table-detail .table {
+    border: 1px solid #B1B3B2;
+}
+
+.table thead th {
+    color: #B0B0B0;
+    padding: .5rem;
+    padding-bottom: .3rem;
+    font-size: 0.9rem; 
+    border-bottom: 2px solid #B1B3B2;
+    border-top: 1px solid #B1B3B2;
+}
+
+.table td {
+    color: #B0B0B0;
+    font-size: 0.85rem;
+    padding: 2rem .75rem;
+    border-bottom: 2px solid #B1B3B2;
+}
+
+.text-red {
+    color: #62D894 !important;
+}
+
+.text-yellow {
+ color: #F6DC71 !important;
+}
+
+.text-green {
+    color: #EA675A !important;
+}
