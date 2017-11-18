@@ -47,7 +47,8 @@ body .team-member ::-webkit-scrollbar-track {
 }
  
 body .team-member ::-webkit-scrollbar-thumb {
-  background-color: #559ccaa6;
+    border-radius: 200px;
+    background-color: #cccccc;
   outline: 1px solid slategrey;
 }
 
@@ -55,3 +56,4 @@ body .team-member ::-webkit-scrollbar-thumb {
     background-color: #559CCA;
     border: 0;
 }
+
