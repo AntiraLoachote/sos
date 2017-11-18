@@ -24,8 +24,8 @@ const memberRoutes: Routes = [
         {
         path : 'member/detail/:id',
         component: MemberDetailComponent
-      }
-     
+      },
+      { path: '', component: MemberIndexComponent }
     ]
   },
 ];
