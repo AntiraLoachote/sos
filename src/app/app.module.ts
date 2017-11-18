@@ -29,6 +29,8 @@ import { InfoService} from './card/info.service';
 import { ProtocolComponent } from './protocol/protocol.component';
 import { OncallScheduleComponent } from './oncall-schedule/oncall-schedule.component';
 
+import { MemberModule } from 'app/member/member.module';
+
 
 @NgModule({
   declarations: [
@@ -42,12 +44,14 @@ import { OncallScheduleComponent } from './oncall-schedule/oncall-schedule.compo
     ReportComponent,
     ProtocolComponent,
     OncallScheduleComponent
+
   ],
   imports: [
     BrowserModule,
     ChartModule,
     FormsModule,
     HttpModule,
+    MemberModule,
     RouterModule.forRoot([
         {
           path : 'team-member',
@@ -72,7 +76,11 @@ import { OncallScheduleComponent } from './oncall-schedule/oncall-schedule.compo
         {
           path: 'Oncall-shedule',
           component: OncallScheduleComponent
-        }
+        },
+        {
+          path: 'member',  
+          loadChildren: 'app/member/member.module#MemberModule'
+      },
     ])
   
   ],
