@@ -25,6 +25,7 @@
     border-radius: 0.6rem;
     padding-left: 0.7rem;
     position: absolute;
+    z-index: 10;
 }
 
 .btn-add-member img {

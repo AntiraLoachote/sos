@@ -8,7 +8,7 @@
         <div class="col-5">
             <div class="team-member">
                 <div class="row">
-                    <a class="btn btn-add-member" >
+                    <a class="btn btn-add-member" routerLink="/member/create" >
                         <img src="./assets/img/user2.png" />
                     </a>
  
@@ -25,11 +25,11 @@
                     <div class="list-group"   id="list-team-member" (click)="showCard()">
                         <!--*ngFor = "let item of info"-->
                         <!--<h1 style="font-size:20vw;"> {{item.GroupUserID}}</h1>-->
-                        <a href="#" class="list-group-item list-group-item-action active">
+                        <a href="#"  routerLink="/member/detail/1" class="list-group-item list-group-item-action active">
                           Cras justo odio
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                        <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
+                        <a href="#" routerLink="/member/detail/2"  class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
+                        <a href="#" routerLink="/member/detail/3" class="list-group-item list-group-item-action">Morbi leo risus</a>
                         <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
                         <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
                         <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
