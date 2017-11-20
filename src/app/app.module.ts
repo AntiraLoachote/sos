@@ -30,7 +30,7 @@ import { ProtocolComponent } from './protocol/protocol.component';
 import { OncallScheduleComponent } from './oncall-schedule/oncall-schedule.component';
 
 import { MemberModule } from 'app/member/member.module';
-
+import {CalendarComponent} from 'angular2-fullcalendar/src/calendar/calendar';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,8 @@ import { MemberModule } from 'app/member/member.module';
     ContactusComponent,
     ReportComponent,
     ProtocolComponent,
-    OncallScheduleComponent
+    OncallScheduleComponent,
+    CalendarComponent
 
   ],
   imports: [

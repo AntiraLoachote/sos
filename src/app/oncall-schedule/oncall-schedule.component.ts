@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewChild } from '@angular/core';
+import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
 
 @Component({
   selector: 'app-oncall-schedule',
@@ -8,6 +10,9 @@ import { Component, OnInit } from '@angular/core';
 export class OncallScheduleComponent implements OnInit {
   username :string
   constructor() { }
+
+ @ViewChild(CalendarComponent) myCalendar: CalendarComponent;
+ 
 
   ngOnInit() {
     this.username="Krichpas Khumthanom";
@@ -23,6 +28,81 @@ export class OncallScheduleComponent implements OnInit {
     imageURL = "https://vignette.wikia.nocookie.net/doraemon/images/c/c0/Doraemon_%282002%29.png/revision/latest/scale-to-width-down/350?cb=20170327161129&path-prefix=en"
       }
     return imageURL
+  }
+
+  calendarOptions:Object = {
+    height: 'parent',
+    fixedWeekCount : false,
+    defaultDate: '2016-09-12',
+    editable: false,
+    eventLimit: true, // allow "more" link when too many events
+    eventColor: '#2EC7C1',
+    eventTextColor : 'white',
+    events: [
+      {
+        title: 'All Day Event',
+        start: '2016-09-01',
+        color  : '#2EC7C1'
+     
+      },
+      {
+        title: 'Long Event',
+        start: '2016-09-07',
+        end: '2016-09-10',
+        color  : '#F8F138'
+
+      },
+      {
+        id: 999,
+        title: 'Repeating Event',
+        start: '2016-09-09T16:00:00',
+        color  : '#49CC75'
+      },
+      {
+        id: 999,
+        title: 'Repeating Event',
+        start: '2016-09-16T16:00:00'
+      },
+      {
+        title: 'Conference',
+        start: '2016-09-11',
+        end: '2016-09-13'
+      },
+      {
+        title: 'Meeting',
+        start: '2016-09-12T10:30:00',
+        end: '2016-09-12T12:30:00'
+      },
+      {
+        title: 'Lunch',
+        start: '2016-09-12T12:00:00'
+      },
+      {
+        title: 'Meeting',
+        start: '2016-09-12T14:30:00'
+      },
+      {
+        title: 'Happy Hour',
+        start: '2016-09-12T17:30:00'
+      },
+      {
+        title: 'Dinner',
+        start: '2016-09-12T20:00:00'
+      },
+      {
+        title: 'Birthday Party',
+        start: '2016-09-13T07:00:00'
+      },
+      {
+        title: 'Click for Google',
+        url: 'http://google.com/',
+        start: '2016-09-28'
+      }
+    ]
+  };
+
+  changeCalendarView(view) {
+    this.myCalendar.fullCalendar('changeView', view);
   }
 
 }

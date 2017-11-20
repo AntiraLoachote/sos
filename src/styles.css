@@ -4,3 +4,5 @@ body{
     background-repeat: repeat;
     background-color: black;
 }
+
+@import "../node_modules/fullcalendar/dist/fullcalendar.min.css";
