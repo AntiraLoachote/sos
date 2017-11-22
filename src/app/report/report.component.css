@@ -106,3 +106,22 @@
 .content-all label {
     color: #868686;
 }
+
+.sub-header {
+    margin-top: 48px;
+    padding: 0;
+}
+
+.sub-header .navbar  {
+    background-color: #627485 !important;
+    margin-bottom: 25px;
+}
+
+.sub-header .navbar .text  {
+    font-size: 1.1rem;
+    color: white;
+    margin-left: 2%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
