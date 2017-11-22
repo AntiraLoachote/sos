@@ -82,10 +82,6 @@ import {CalendarComponent} from 'angular2-fullcalendar/src/calendar/calendar';
           path: 'member',  
           loadChildren: 'app/member/member.module#MemberModule'
       },
-      {
-        path: '',
-        component: HomeComponent,
-      },
     ])
   
   ],

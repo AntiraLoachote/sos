@@ -10,7 +10,7 @@ import { MemberIndexComponent } from 'app/member/member-index/member-index.compo
 const memberRoutes: Routes = [
 
   {
-    path: 'member',
+    path: '',
     component: MemberComponent,
     children: [
       {
