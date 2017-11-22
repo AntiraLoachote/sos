@@ -10,70 +10,178 @@
     margin-top: 1.5vw;
    margin-left: 3vw;
 }
-#example-date-input{
+/* #example-date-input{
     margin-top: 1.5vw;
     margin-left: 1vw;
     width: 12vw;
-        height: 3vw;
-    font-size: 1vw;
-}
+    font-size: 1rem;
+    padding: 0px 8px;
+    border-radius: 0;
+} */
 #second{
     margin-top: 1.5vw;
     margin-left: 0.5vw;
 }
-#sizegroup{
+/* #sizegroup{
     width: 27vw;
      margin-top: 1.5vw;
     margin-left: 1vw;
-    height: 3vw;
-}
+    padding: 0px 8px;
+    border-radius: 0;
+} */
 #Selectgroup{
       margin-top: 1.5vw;
    margin-left: 5vw;
 }
-#example-time-input{
+/* #example-time-input{
  margin-top: 1.5vw;
     margin-left: 1vw;
     width: 12vw;
-        height: 3vw;
-    font-size: 1vw;
-}
+    font-size: 1rem;
+    padding: 0px 8px;
+    border-radius: 0;
+} */
 #SelectAnalyst{
      margin-top: 1.5vw;
    margin-left: 4.5vw;
 }
 #checkbox{
     margin-left: 9.8vw;
-    margin-top: 1vw;
+    /* margin-top: 1vw; */
   
 }
 #secondbox{
-    margin-top: 1vw;
+    /* margin-top: 1vw; */
     margin-left: 4.7vw;
 }
-.card{
+/* .card{
         width: 33vw;
       margin-left: 4.5vw;
       margin-top: 1vw;
-}
-#Userimage{
-    width : 9vw;
+} */
+.user-image {
+    width: 7.5vw;
     border: 0.1rem solid #4ECDC4;
     border-radius: 50%;
-    height: 9vw;
+    height: 7.5vw;
     margin-left: 1.3vw;
-    margin-top: 1vw;
-    margin-bottom: 1vw;
+    margin: 1vw auto;
+    margin-left: 1.3vw;
 }
-#name{
+.user-name {
     color:  #4ECDC4;
-    margin-top:3.3vw;
+    margin-top:3vw;
 }
-#button-submit{
+
+/* #button-submit{
     background: #44b9cb;
     border: 2px solid #44b9cb;
     border-radius: 1.5rem;
     width: 6vw;
     margin-left:15vw;
+} */
+
+
+.input-oncall {
+    font-size: 1rem;
+    border-radius: 0;
+    padding: 5px;
 }
 
+.form-group {
+    margin-bottom: 3.2vh;
+}
+
+.box-info {
+    margin-left: 3.26vw;
+    flex: 0 0 89.666667%;
+    max-width: 89.666667%;
+}
+
+.btn-submit {
+    background: #44b9cb;
+    border: 2px solid #44b9cb;
+    border-radius: 1.5rem;
+    width: 8vw;
+    padding: 6px;
+    margin-top: 20px;
+}
+
+
+.label-topic {
+    font-size: 1rem;
+    color: #868686;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+}
+
+
+.sub-header {
+    margin-top: 48px;
+    padding: 0;
+}
+
+.sub-header .navbar  {
+    background-color: #627485 !important;
+    margin-bottom: 25px;
+}
+
+.sub-header .navbar .text  {
+    font-size: 1.1rem;
+    color: white;
+    margin-left: 2%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 0;
+}
+
+/* //// calendar */
+:host /deep/ .fc-left h2 {
+    font-size: 1.6rem;
+    color: #868686;
+    font-weight: bold;
+}
+
+:host /deep/ .fc-view-container {
+    background: #fdfdfd;
+}
+
+:host /deep/ .fc-unthemed .fc-content,
+:host /deep/ .fc-unthemed .fc-divider,
+:host /deep/ .fc-unthemed .fc-list-heading td,
+:host /deep/ .fc-unthemed .fc-list-view,
+:host /deep/ .fc-unthemed .fc-popover,
+:host /deep/ .fc-unthemed .fc-row,
+:host /deep/ .fc-unthemed tbody,
+:host /deep/ .fc-unthemed td,
+:host /deep/ .fc-unthemed th,
+:host /deep/ .fc-unthemed thead {
+    border-color: #d4d4d4;
+    border-width: .1px;
+}
+
+:host /deep/ .fc-unthemed th {
+    border-left: 0;
+    border-right: 0;
+    text-align: right;
+    color: #868686;
+    font-weight: 400;
+}
+
+:host /deep/ .fc-prev-button {
+    background: #4ebbcd;
+    color: white;
+    margin-right: 5px;
+}
+
+:host /deep/ .fc-next-button {
+    background: #4ebbcd;
+    color: white;
+}
+
+:host /deep/ .fc-today-button  {
+    color: #44b9cb;
+    background: white;
+    border: 1px solid #44b9cb;
+}

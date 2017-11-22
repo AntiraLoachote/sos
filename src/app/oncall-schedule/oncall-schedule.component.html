@@ -1,88 +1,146 @@
-<div class="content-all">
-	<nav class="navbar navbar-dark bg-dark">
-		<h6 style="font-size:1vw;" id="team">Oncall Schedule</h6>
-		<!--<li class="nav-item dropdown" id="dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
-        </a>
-        <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
+<div class="col sub-header">
+    <nav class="navbar " >
+        <h5 class="text">Oncall Schedule</h5>
+    </nav>
+    
+  <div class="row no-gutters" style="margin-top: 4vh;">
+    <div class="col">
+      <div class="col-12 row no-gutters" >
+        <div class="col-12">
+          <div class="form-group row no-gutters">
+            <label for="example-text-input" class="col-2 col-form-label label-topic" style="
+            flex: 0 0 19.333333%;
+            max-width: 19.333333%;
+        ">Group</label>
+            <div class="col">
+              <select class="form-control input-oncall">
+                <option>Choose team</option>
+                <option>Retail</option>
+                <option>OTC</option>
+                <option>Siebel Technical Service</option>
+                <option>GPM</option>
+                <option>EDI CS and XCOM</option>
+                <option>S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</option>
+                <option>M&S Secondary Distributions</option>
+                <option>Basis Output and Archiving</option>
+              </select>
+            </div>
+          </div>
         </div>
-      </li>-->
-	</nav>
-	<div class="row">
-		<div class="col">
-			<div class="row">
-        <b style="font-size:1.1vw;" id="Selectgroup">Group:</b>
-				<select class="form-control" id= "sizegroup" style="font-size:1vw;">
-          <option style="font-size:1vw;">Choose team</option>
-          <option style="font-size:1vw;">Retail</option>
-          <option style="font-size:1vw;">OTC</option>
-<option style="font-size:1vw;">Siebel Technical Service</option>
-<option style="font-size:1vw;">GPM</option>
-<option style="font-size:1vw;">EDI CS and XCOM</option>
-<option style="font-size:1vw;">S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</option>
-<option style="font-size:1vw;">M&S Secondary Distributions</option>
-<option style="font-size:1vw;">Basis Output and Archiving</option>
-  
-</select>
-			</div>
-			<div class="row">
-				<label for="example-date-input" id="sidebar"> <b style="font-size:1.1vw;">Date from:</b></label>
-				<input class="form-control" type="date" value="2017-08-19" id="example-date-input">
-				<label for="example-date-input" id="second"> <b style="font-size:1.1vw;">To:</b></label>
-				<input class="form-control" type="date" value="2017-08-19" id="example-date-input">
-			</div>
-      <div class="row">
-  <label for="example-time-input" id="sidebar"><b style="font-size:1.1vw;">Time from:</b></label>
-    <input class="form-control" type="time" value="13:45:00" id="example-time-input">
-    <label for="example-time-input" id="second"><b style="font-size:1.1vw;">To:</b></label>
-    <input class="form-control" type="time" value="13:45:00" id="example-time-input">
+      </div>
 
+      <div class="col-md-12 col-xs-12 row no-gutters">
+        <div class="col-md-7 col-xs-12">
+          <div class="form-group row no-gutters">
+            <label for="example-text-input" class="col-4 col-form-label label-topic">Date from:</label>
+            <div class="col-7">
+              <input class="form-control input-oncall" type="date" value="2017-08-19" id="example-date-input">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 col-xs-12">
+          <div class="form-group row no-gutters">
+            <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
+            <div class="col-10">
+              <input class="form-control input-oncall" type="date" value="2017-08-19" id="example-date-input">
+            </div>
+          </div>
+        </div>
       </div>
-      			<div class="row">
-									<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id = "checkbox">
-    <input type="checkbox" class="custom-control-input" id = "checkbox" checked="true" title="Repeating">
-    <span class="custom-control-indicator"></span>
-    <span class="custom-control-description"><b style="font-size:1vw;" title="Schedule this item to repeat regularly">Recurrence</b></span>
-  </label>
-<label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0"  id = "secondbox">
-    <input type="checkbox" class="custom-control-input" id = "secondbox" >
-    <span class="custom-control-indicator"></span>
-    <span class="custom-control-description"><b style="font-size:1vw;">All day</b></span>
-  </label>
-								</div>
-      <div class="row">
-   <b style="font-size:1.1vw;" id="SelectAnalyst">Analyst:</b>
-   	<select class="form-control" id= "sizegroup" style="font-size:1vw;">
-          <option style="font-size:1vw;">Choose Analyst</option>
-   	</select>
 
+      <div class="col-md-12 col-xs-12 row no-gutters">
+        <div class="col-md-7 col-xs-12">
+          <div class="form-group row no-gutters">
+            <label for="example-text-input" class="col-4 col-form-label label-topic" >Time from:</label>
+            <div class="col-7">
+              <input class="form-control input-oncall" type="time" value="13:45:00" id="example-time-input">
+            </div>
+          </div>
+        </div>
+        <div class="col-md-5 col-xs-12">
+          <div class="form-group row no-gutters">
+            <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
+            <div class="col-10">
+              <input class="form-control input-oncall" type="time" value="13:45:00" id="example-time-input">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row form-group">
+        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkbox" checked="true" title="Repeating">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description label-topic" title="Schedule this item to repeat regularly">
+            Recurrence
+          </span>
+        </label>
+        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="secondbox">
+          <input type="checkbox" class="custom-control-input" id="secondbox">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description label-topic">
+            All day
+          </span>
+        </label>
+      </div>
+
+      <div class="col-12 row no-gutters">
+        <div class="col-12">
+          <div class="form-group row no-gutters">
+            <label for="example-text-input" class="col-2 col-form-label label-topic" style="
+              flex: 0 0 19.333333%;
+              max-width: 19.333333%;
+          ">Analyst:</label>
+            <div class="col">
+              <select class="form-control input-oncall">
+                <option>Choose Analyst</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- <div class="row">
+        <b style="font-size:1.1vw;" id="SelectAnalyst">Analyst:</b>
+        <select class="form-control" id="sizegroup" >
+          <option >Choose Analyst</option>
+        </select>
+
+      </div> -->
+      <div class="row">
+        <b class="label-topic" style="margin-left: 4.5vw;
+        margin-bottom: 15px;">More information:</b>
       </div>
       <div class="row">
-					<b style="font-size:1.1vw; margin-left: 4.5vw; margin-top:1.5vw;">More information:</b>
-	</div>
-  <div class="row">
-    <div class="card">
-  <div class="card-block">
-    <div class="row">
-      <div class="col-4">
- <img [src]="getProfileImageURL()" id="Userimage">
+        <div class="col-11 box-info">
+          <div class="card">
+            <div class="card-block">
+              <div class="row">
+                <div class="col-4">
+                  <img [src]="getProfileImageURL()" class="user-image">
+                </div>
+                <div class="col-7">
+                  <h4 class="card-title user-name" style="font-size:1.2vw;" >{{username}}</h4>
+                  <h4 class="card-title" style="font-size:1vw">krichpas.khuthanom@exxonmobil.com</h4>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
-       <div class="col-7">
-	<h4 class="card-title" style="font-size:1.5vw;" id= "name">{{username}}</h4>
-      	<h4 class="card-title" style="font-size:1vw">krichpas.khuthanom@exxonmobil.com</h4>
-       </div>
+
+      <div class="row">
+        <div class="col-11" style=" text-align: center;">
+          <button type="button" class="btn btn-primary btn-submit"> ADD </button>
+        </div>
+      </div>
     </div>
-  
-  </div>
-</div>
-  </div>
-<button type="button" class="btn btn-primary test" style="margin-top:4%;" id="button-submit"><h2 style="font-size:1vw;">ADD</h2></button>
-		</div>
-		<div class="col-7" style="background : #fdfdfd" >
-			<angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
 
-		</div>
-	</div>
+    <div class="col-7" style="padding: 5vh; padding-top: 0;">
+      <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
+
+    </div>
+  </div>
 </div>
