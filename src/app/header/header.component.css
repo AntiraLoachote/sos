@@ -12,3 +12,18 @@ padding-left: 0.9rem;
     color: white;
     margin-left: 1.5rem;
 }
+
+#navbarResponsive {
+    z-index: 1037;
+    position: absolute;
+    width: 100%;
+    top: 72px;
+    background: #4d8692fc;
+    margin: 0;
+}
+
+@media (min-width: 992px){
+    #navbarResponsive {
+        display: none;
+    }
+}
