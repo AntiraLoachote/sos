@@ -1,6 +1,20 @@
 <div class="col sub-header">
-    <nav class="navbar " >
-        <h5 class="text">OTC Team</h5>
+    <nav class="navbar ">
+        <div class="btn-group">
+            <button class="btn btn-team btn-sm dropdown-toggle text" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  {{showTeam}}
+                </button>
+                <!-- <select class="form-control"  [(ngModel)]="teamSelected"  (ngModelChange)="selectTeam(teamSelected)" required >
+                        <option *ngFor="let team of teamList" [ngValue]="team"  [disabled]="team.id == 0">{{team.name}}</option>
+                    </select> -->
+            <div class="dropdown-menu">
+                <a class="dropdown-item" *ngFor="let team of teamList" 
+                 (click)="changeTeam(team)" >{{team.name}}</a>
+
+            </div>
+        </div>
+        <!-- <h5 class="text">OTC Team</h5> -->
+
     </nav>
 
 
@@ -8,39 +22,33 @@
         <div class="col-5">
             <div class="team-member">
                 <div class="row">
-                    <a class="btn btn-add-member" routerLink="/member/create" >
+                    <a class="btn btn-add-member" routerLink="/member/create">
                         <img src="./assets/img/user2.png" />
                     </a>
- 
-                  <div class="col text-center">
-                    <h1 style="font-size: 2.5rem;
+
+                    <div class="col text-center">
+                        <h1 style="font-size: 2.5rem;
                     color: #47bdcd;
                     text-decoration: underline;
                     text-transform: uppercase;
                     margin-bottom: 30px;">Members</h1>
-                  </div>
+                    </div>
                 </div>
-        
+
                 <div class="col-xs-11 col-md-11 col-lg-8" style="margin: auto; overflow: auto;">
-                    <div class="list-group"   id="list-team-member" (click)="showCard()">
+                    <div class="list-group" id="list-team-member" >
                         <!--*ngFor = "let item of info"-->
                         <!--<h1 style="font-size:20vw;"> {{item.GroupUserID}}</h1>-->
-                        <a href="#"  routerLink="/member/detail/1" class="list-group-item list-group-item-action active">
-                          Cras justo odio
+                        <a class="list-group-item list-group-item-action " 
+                        *ngFor = "let i of Members; let inx = index" [ngClass]="{'active': selectedIdx == inx}"
+                         routerLink = "/member/detail/{{groupId}}/{{i.UserID}}" (click)="selectMember(inx)"  >
+                         {{i.User.FirstName}}  {{i.User.LastName}}
                         </a>
-                        <a href="#" routerLink="/member/detail/2"  class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                        <a href="#" routerLink="/member/detail/3" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                        <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-                        <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
-                      </div>
+                       
+                    </div>
                 </div>
-           
-              </div>
+
+            </div>
         </div>
         <div class="col-7">
             <router-outlet></router-outlet>
@@ -48,4 +56,3 @@
     </div>
 
 </div>
-

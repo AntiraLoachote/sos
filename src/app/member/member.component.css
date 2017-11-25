@@ -59,3 +59,18 @@ body .team-member ::-webkit-scrollbar-thumb {
     border: 0;
 }
 
+
+.btn-team {
+    background: transparent;
+    border: 0 !important;
+    outline: 0;
+
+}
+
+.btn-team:focus{
+    box-shadow:none;
+}
+
+.dropdown-item {
+    cursor: pointer;
+}

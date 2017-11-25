@@ -8,13 +8,16 @@ import { MemberComponent } from './member.component';
 import { MemberRoutingModule } from 'app/member/member-routing.module';
 import { FormsModule } from '@angular/forms';
 import { MemberIndexComponent } from './member-index/member-index.component';
+import { MemberService } from "app/member/member.service";
 
 @NgModule({
   imports: [
+    MemberRoutingModule,
     CommonModule,
     FormsModule,
-    MemberRoutingModule
+    
   ],
-  declarations: [MemberCreateComponent, MemberEditComponent, MemberDetailComponent, MemberComponent, MemberIndexComponent]
+  declarations: [MemberCreateComponent, MemberEditComponent, MemberDetailComponent, MemberComponent, MemberIndexComponent],
+  providers: [MemberService]
 })
 export class MemberModule { }

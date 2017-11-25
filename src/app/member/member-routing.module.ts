@@ -8,26 +8,36 @@ import { MemberDetailComponent } from 'app/member/member-detail/member-detail.co
 import { MemberIndexComponent } from 'app/member/member-index/member-index.component';
  
 const memberRoutes: Routes = [
-
   {
-    path: '',
-    component: MemberComponent,
+    path: '', component: MemberComponent,
     children: [
-      {
+       {
         path : 'member/create',
         component: MemberCreateComponent
       },
         {
         path : 'member/edit/:id',
         component: MemberEditComponent
-      },
-        {
-        path : 'member/detail/:id',
-        component: MemberDetailComponent
-      },
-      { path: '', component: MemberIndexComponent }
+      }
     ]
   },
+
+    {
+    path: 'member/detail/:groupId', component: MemberComponent,
+      children: [
+        {
+          path: ':userId',
+          component: MemberDetailComponent
+      },
+      {
+        path: '',
+        component: MemberDetailComponent
+      }
+    ]  
+  }
+
+
+
 ];
  
 @NgModule({
