@@ -10,6 +10,7 @@ import { RouterModule} from  '@angular/router';
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
+
 export function highchartsFactory() {
 const hc = require('highcharts/highstock');
 const dd = require('highcharts/modules/exporting');
@@ -32,6 +33,11 @@ import { OncallScheduleComponent } from './oncall-schedule/oncall-schedule.compo
 import { MemberModule } from 'app/member/member.module';
 import {CalendarComponent} from 'angular2-fullcalendar/src/calendar/calendar';
 
+import { HomeService } from 'app/home/home.service';
+
+//App Configuration
+import { Configuration } from './app.constants';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,6 +53,7 @@ import {CalendarComponent} from 'angular2-fullcalendar/src/calendar/calendar';
     CalendarComponent
 
   ],
+
   imports: [
     BrowserModule,
     ChartModule,
@@ -85,10 +92,18 @@ import {CalendarComponent} from 'angular2-fullcalendar/src/calendar/calendar';
     ])
   
   ],
-  providers: [{
-    provide: HighchartsStatic,
-    useFactory: highchartsFactory
-    }, Title, InfoService],
+
+  providers: [
+    HomeService,
+      {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+      }, 
+      Title, 
+      InfoService,
+      Configuration
+    ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
