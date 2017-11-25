@@ -1,22 +1,27 @@
 <p class="round3" style="font-size:1vw;">Oncall-option\Team member</p>
 <div class="text-title">
-			<h1 class="text-center" style="font-size:3vw; color: #44b9cb;">Which team are you?</h1>
+	<h1 class="text-center" style="font-size:3vw; color: #44b9cb;">Which team are you?</h1>
 </div>
 <div class="dropteam">
-  <div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false">Choose team</button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<a class="dropdown-item" >Retail</a>
-						<a class="dropdown-item" href="#">OTC</a>
-						<a class="dropdown-item" href="#">Siebel Technical Service</a>
-						<a class="dropdown-item" href="#">GPM</a>
-						<a class="dropdown-item" href="#">EDI CS and XCOM</a>
-						<a class="dropdown-item" href="#">S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</a>
-						<a class="dropdown-item" href="#">M&S Secondary Distributions</a>
-						<a class="dropdown-item" href="#">Basis Output and Archiving</a>
-					</div>
-				</div>
+	<div class="dropdown">
+		<select class="form-control" [(ngModel)]="teamSelected" required  style="margin: auto; width: 38vw; height: 3vw;">
+			<option *ngFor="let team of teamList" [ngValue]="team"  [disabled]="team.groupID == 0">{{team.name}}</option>
+		</select>
 
-        	<button type="button" class="btn btn-primary test" style="margin-top:4%;" id="button-submit" routerLink="/member"><h2 style="font-size:1vw;">GO</h2></button>
+		<!-- <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+		 aria-expanded="false">Choose team</button>
+		<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+			<a class="dropdown-item">Retail</a>
+			<a class="dropdown-item" href="#">OTC</a>
+			<a class="dropdown-item" href="#">Siebel Technical Service</a>
+			<a class="dropdown-item" href="#">GPM</a>
+			<a class="dropdown-item" href="#">EDI CS and XCOM</a>
+			<a class="dropdown-item" href="#">S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</a>
+			<a class="dropdown-item" href="#">M&S Secondary Distributions</a>
+			<a class="dropdown-item" href="#">Basis Output and Archiving</a>
+		</div> -->
+	</div>
+
+	<button type="button" class="btn btn-primary test" style="margin-top:4%;" id="button-submit" 
+	(click)="submitTeam()"><h2 style="font-size:1vw;">GO</h2></button>
 </div>
