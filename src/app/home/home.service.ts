@@ -3,9 +3,6 @@ import { Configuration } from "app/app.constants";
 import { Response, Headers, RequestOptions, Http } from '@angular/http';
 import { Observable } from "rxjs/Observable";
 import { TicketsModel } from "app/models/home/create-ticket-.model";
-// import { Observable } from 'rxjs/Observable';
-// import 'rxjs/add/operator/catch';
-// import 'rxjs/add/operator/map';
 
 @Injectable()
 export class HomeService {
