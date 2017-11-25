@@ -94,3 +94,6 @@ a.anchor {
 
 
 
+.form-control:disabled {
+    background: transparent;
+}

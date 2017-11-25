@@ -61,37 +61,27 @@
 				<div class="col-md-2 push-md-2" style="max-width:8vw;"><img src="./assets/img/user.png" style="width:6vw;" id="shift-logo"></div>
 				<div class="col-md-6 pull-md-6">
 						<label for="example-text-input" class="col-2 col-form-label" style="font-size:1vw; color: #95989A;">Customer</label>
-						<input class="form-control" type="text" id="example-text-input"  [placeholder]="UsernameBadge">
+						<input class="form-control" type="text" id="example-text-input"  [value]="UsernameBadge" disabled>
 				</div>
 			</div>
 			<div class="row justify-content-md-center">
 				<div  class="col-md-8" style="padding: 0 35px;">
 						<p style="font-size:1.5vw; padding-top:2rem;  color: #95989A;">Application</p>
+
 						<div class="dropdown">
-							<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-								aria-expanded="false"><span id="selected">Chose team</span><span class="caret"></span></button>
-								
-							<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-								<a class="dropdown-item" >Retail</a>
-								<a class="dropdown-item" href="#">OTC</a>
-								<a class="dropdown-item" href="#">Siebel Technical Service</a>
-								<a class="dropdown-item" href="#">GPM</a>
-								<a class="dropdown-item" href="#">EDI CS and XCOM</a>
-								<a class="dropdown-item" href="#">S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</a>
-								<a class="dropdown-item" href="#">M&S Secondary Distributions</a>
-								<a class="dropdown-item" href="#">Basis Output and Archiving</a>
-								
-							</div>
+							<select class="form-control"  [(ngModel)]="teamSelected"  (ngModelChange)="selectTeam(teamSelected)" required >
+								<option *ngFor="let team of teamList" [ngValue]="team"  [disabled]="team.id == 0">{{team.name}}</option>
+							</select>
 						</div>
 				</div>
 			</div>
 			<div class="row justify-content-md-center">
 					<div  class="col-md-8" style="padding: 0 35px; margin-bottom: 7rem;">
 						<label for="comment" style="font-size:1.5vw; padding-top: 2rem;     color: #95989A;">Description</label>
-						<textarea class="form-control" rows="4" id="comment" id="example-text-description" ></textarea>
+						<textarea class="form-control" rows="4" id="comment" id="example-text-description"  [(ngModel)]="description"  ></textarea>
 
 						<div style="text-align: center;">
-							<button type="button" class="btn btn-primary" style="margin-top:2vw;" id="button-submit" (click)="showText()">
+							<button type="button" class="btn btn-primary" style="margin-top:2vw;" id="button-submit" (click)="postTickets()">
 								<h2 style="font-size:1.4vw;   margin-bottom: 0;">SUBMIT</h2>
 						</button>						
 						</div>
@@ -100,52 +90,6 @@
 
 		</div>
 
-		<!-- <div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-1" id="shift-logo">
-				<img src="./assets/img/user.png" style="width:6vw;" id="shift-logo">
-			</div>
-			<div class="col-md-2" id="shift-logo">
-				<label for="example-text-input" class="col-2 col-form-label" style="font-size:1vw;"><b>Customer</b></label>
-				<input class="form-control" type="text" id="example-text-input" style="" [placeholder]="UsernameBadge">
-			</div>
-		</div> -->
-		<!-- <div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-1">
-				
-				<p style="font-size:1.5vw; padding-top:3rem;">Application</p>
-				<div class="dropdown">
-					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"><span id="selected">Chose team</span><span class="caret"></span></button>
-						
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<a class="dropdown-item" >Retail</a>
-						<a class="dropdown-item" href="#">OTC</a>
-						<a class="dropdown-item" href="#">Siebel Technical Service</a>
-						<a class="dropdown-item" href="#">GPM</a>
-						<a class="dropdown-item" href="#">EDI CS and XCOM</a>
-						<a class="dropdown-item" href="#">S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</a>
-						<a class="dropdown-item" href="#">M&S Secondary Distributions</a>
-						<a class="dropdown-item" href="#">Basis Output and Archiving</a>
-						
-					</div>
-				</div>
-			</div>
-		</div> -->
-		<!-- <div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-1">
-				<label for="comment" style="font-size:1.5vw; padding-top:20%;">Description</label>
-				<textarea class="form-control" rows="4" id="comment" id="example-text-description" style=""></textarea>
-			</div>
-		</div> -->
-		<!-- <div class="row">
-			<div class="col-md-4"></div>
-			<div class="col-md-1">
-				<button type="button" class="btn btn-primary test" style="margin-top:1vw;" id="button-submit" (click)="showText()"><h2 style="font-size:1vw;">SUBMIT</h2></button>
-			</div>
-		</div> -->
 	</div>
 
 	<div class="team-member" id="1team-members">	
