@@ -21,11 +21,11 @@ export class MemberDetailComponent implements OnInit {
 
 
   ngOnInit() {
-    console.log("22222222222");
+    // console.log("22222222222");
     // subscribe to router event
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['userId'];
-      console.log(this.userId);
+      // console.log(this.userId);
       this.memberData = this._memberService.MemberList[0];
       if (this.userId != undefined && this.userId != 0) {
         //select data 
@@ -39,15 +39,12 @@ export class MemberDetailComponent implements OnInit {
         });
       }
 
-      console.log('Select member!!')
+      // console.log('Select member!!')
       // console.log(JSON.stringify(this.memberData));
       this.profilePicture = this.getUserPic(this.memberData.User.LanID);
     });
   }
 
-  showMemberDetail(data: any) {
-    console.log();
-  }
 
   getUserPic(lanId: string) {
     return 'https://mysite.na.xom.com/User%20Photos/Profile%20Pictures/' 
@@ -57,6 +54,15 @@ export class MemberDetailComponent implements OnInit {
   updateUrl(){
     this.profilePicture = './../assets/img/user1.png';
   }
+
+  getDomain(){
+    return this.memberData.User.LanID.split('\\')[0];
+  }
+
+  getLanId(){
+    return this.memberData.User.LanID.split('\\')[1];
+  }
+
 
 
 }
