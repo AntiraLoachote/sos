@@ -37,6 +37,8 @@ import { HomeService } from 'app/home/home.service';
 
 //App Configuration
 import { Configuration } from './app.constants';
+import { TeamService } from "app/team/team.service";
+import { AppRoutingModule } from "app/app-routing.module";
 
 @NgModule({
   declarations: [
@@ -59,49 +61,56 @@ import { Configuration } from './app.constants';
     ChartModule,
     FormsModule,
     HttpModule,
+    AppRoutingModule,
     MemberModule,
-    RouterModule.forRoot([
-        {
-          path : 'team-member',
-          component: TeamComponent
-        },
-          {
-          path : 'card member',
-          component: CardComponent
-        },
-          {
-          path : 'home',
-          component: HomeComponent
-        },
-         {
-          path : 'report',
-          component: ReportComponent
-        },
-        {
-          path: 'protocol',
-          component: ProtocolComponent
-        },
-        {
-          path: 'Oncall-shedule',
-          component: OncallScheduleComponent
-        },
-        {
-          path: 'member',  
-          loadChildren: 'app/member/member.module#MemberModule'
-      },
-    ])
+
+    // RouterModule.forRoot([
+    //     { path: '', redirectTo: '/home', pathMatch: 'full' },
+    //     {
+    //       path : 'team-member',
+    //       component: TeamComponent
+    //     },
+    //       {
+    //       path : 'card member',
+    //       component: CardComponent
+    //     },
+    //       {
+    //       path : 'home',
+    //       component: HomeComponent
+    //     },
+    //      {
+    //       path : 'report',
+    //       component: ReportComponent
+    //     },
+    //     {
+    //       path: 'protocol',
+    //       component: ProtocolComponent
+    //     },
+    //     {
+    //       path: 'Oncall-shedule',
+    //       component: OncallScheduleComponent
+    //     },
+    //     {
+    //       path: 'member',  
+    //       loadChildren: 'app/member/member.module#MemberModule'
+    //   },
+      
+    //   { path: '**', component: HomeComponent } 
+    // ]),
+    
   
   ],
 
   providers: [
-    HomeService,
       {
       provide: HighchartsStatic,
       useFactory: highchartsFactory
       }, 
       Title, 
       InfoService,
-      Configuration
+      Configuration,
+      HomeService,
+      TeamService
     ],
   
   bootstrap: [AppComponent]
