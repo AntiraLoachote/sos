@@ -9,6 +9,7 @@ export class MemberService {
 
   public GroupId: number;
   public MemberList : any;
+  public TeamDataList: any;
 
   constructor(
     private http: Http,

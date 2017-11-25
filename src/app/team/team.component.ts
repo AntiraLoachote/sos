@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TeamService } from "app/team/team.service";
 import { TeamsModel } from "app/models/team/team-list.model";
 import { Router } from "@angular/router";
+import { MemberService } from "app/member/member.service";
 
 @Component({
   selector: 'app-team',
@@ -15,7 +16,8 @@ export class TeamComponent implements OnInit {
 
   constructor(
     private _teamService: TeamService,
-    private router: Router
+    private router: Router,
+    private _memberService : MemberService
   ) { }
 
   ngOnInit() {
@@ -41,6 +43,7 @@ export class TeamComponent implements OnInit {
 
     });
 
+    this._memberService.TeamDataList = this.teamList.slice(1);
     console.log("Teams = " + JSON.stringify(this.teamList));
 
     //GET Team List
@@ -71,7 +74,7 @@ export class TeamComponent implements OnInit {
 
         console.log("Teams = " + JSON.stringify(this.teamList));
 
-
+        this._memberService.TeamDataList = this.teamList.slice(1);
 
       },
       err => {
