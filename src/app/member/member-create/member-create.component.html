@@ -1,40 +1,11 @@
 <div class="container  border-info" style="margin-top: 10px;">
   <div class="row" style="min-height: 550px;">
     <div class="col-11 align-items-center">
-      <!-- <div class="row">
-        <div class="col navbar-header">
-          <h2>Information detail</h2>
-        </div>
-      </div> -->
-      <!-- <div class="row">
-        <div class="col" style="    position: absolute;
-        text-align: right;
-        top: 50px;">
-          <button>Delete</button>
-          <button>Edit</button>
-        </div>
-      </div> -->
       <div class="row align-items-center no-gutters" style="margin-top: 25px; margin-bottom: 20px;">
         <div class="col-4">
-          <img class="img-display" src="./../assets/img/user1.png" />
-        </div>
-        <div class="col form-info">
-            <div class="form-group">
-                <label >Surname</label>
-                <input type="text" class="form-control input-underline" value="">
-            </div>
-            <div class="form-group">
-                <label >Lastname</label>
-                <input type="text" class="form-control input-underline" value="">
-            </div>
-            <div class="form-group">
-                <label >Email</label>
-                <input type="email" class="form-control input-underline" value="">
-            </div>
-
-          <!-- <h3 class="color-info" style="margin-bottom: 0;">Surname</h3>
-          <h3 class="color-info">Lastname</h3>
-          <p class="color-info">email@email.com</p> -->
+          <div class="thumbnail">
+            <img src="./../assets/img/user1.png"  alt="Image" />
+          </div>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -45,14 +16,14 @@
             <div class="display-group">
               <label class="mt-0">Domain</label>
               <!-- <p class="color-info">AP</p> -->
-              <input type="text" class="form-control input-underline" value="">
+              <input type="text" class="form-control input-underline" [(ngModel)]="userDomain">
             </div>
           </div>
           <div class="col">
             <div class="display-group">
               <label class="mt-0">LAN ID</label>
               <!-- <p class="color-info">KKHUMTH</p> -->
-              <input type="text" class="form-control input-underline" value="">
+              <input type="text" class="form-control input-underline" [(ngModel)]="userLanId">
             </div>
           </div>
         </div>
@@ -61,14 +32,14 @@
             <div class="display-group">
               <label>Shared mailbox</label>
               <!-- <p class="color-default">-</p> -->
-              <input type="text" class="form-control input-underline" value="">
+              <input type="text" class="form-control input-underline" [(ngModel)]="userSharedMail">
             </div>
           </div>
           <div class="col">
             <div class="display-group">
               <label>Alternative email</label>
               <!-- <p class="color-default">KKHUMTH@gmail.com</p> -->
-              <input type="email" class="form-control input-underline" value="">
+              <input type="email" class="form-control input-underline" [(ngModel)]="userAlternativeMail">
             </div>
           </div>
         </div>
@@ -76,7 +47,8 @@
         <div class="row">
           <div class="col-3">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input">
+              <input type="checkbox" class="custom-control-input" [checked]="IsGroupAdministrator" 
+              (change)="IsGroupAdministrator = !IsGroupAdministrator">
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Admin
@@ -86,7 +58,8 @@
 
           <div class="col-7">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input">
+              <input type="checkbox" class="custom-control-input" [checked]="IsWorkHourReceiver" 
+              (change)="IsWorkHourReceiver = !IsWorkHourReceiver">
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Work Hour Receiver
@@ -95,7 +68,8 @@
           </div>
           <div class="col-3">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input">
+              <input type="checkbox" class="custom-control-input" [checked]="IsEscalationReceiver" 
+              (change)="IsEscalationReceiver = !IsEscalationReceiver">
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Level2
@@ -104,7 +78,8 @@
           </div>
           <div class="col">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input">
+              <input type="checkbox" class="custom-control-input" [checked]="IsAcknowledgeResultReceiver" 
+              (change)="IsAcknowledgeResultReceiver = !IsAcknowledgeResultReceiver">
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Acknowledgement
@@ -114,8 +89,8 @@
 
         </div>
         <div class="row" style="float: right;  margin: 25px auto; margin-top: 50px;">
-          <button type="button" class="btn btn-info btn-save">Save</button>
-          <button type="button" class="btn btn-danger btn-cancel">Cancel</button>
+          <button type="button" class="btn btn-info btn-save" (click)="addUserOnGroup()">Save</button>
+          <button type="button" class="btn btn-danger btn-cancel" (click)="back()" routerLink="/member/detail/{{groupId}}">Cancel</button>
         </div>
       </div>
 
