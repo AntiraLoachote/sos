@@ -1,4 +1,4 @@
-export class EditUserModel {
+export class OnCallUserModel {
     public Domain : string;
     public Username : string;
     public PersonalEmail : string;
