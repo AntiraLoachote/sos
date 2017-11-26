@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { MemberService } from "app/member/member.service";
-import { EditUserModel } from "app/models/member/member.model";
+import { OnCallUserModel } from "app/models/member/member.model";
 
 
 @Component({
@@ -126,7 +126,7 @@ export class MemberEditComponent implements OnInit {
     // "IsGroupAdministrator":true,"IsEscalationReceiver":true,
     // "IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true}: 
     
-    let data = new EditUserModel();
+    let data = new OnCallUserModel();
     data.Domain =    this.getDomain();
     data.Username = this.getLanId();
     data.PersonalEmail = this.alternativeMail;

@@ -12,7 +12,9 @@
       </div>
       <div class="row align-items-center no-gutters" style="margin-top: 25px; margin-bottom: 20px;">
         <div class="col-4">
-          <img class="img-display" (error)="updateUrl($event)" [src]="profilePicture" />
+            <div class="thumbnail">
+                <img (error)="updateUrl($event)" [src]="profilePicture"  alt="Image" />
+            </div>
         </div>
         <div class="col">
           <h3 class="color-info" style="margin-bottom: 0;">{{memberData.User.FirstName}}</h3>
