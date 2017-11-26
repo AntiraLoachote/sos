@@ -111,3 +111,7 @@
 .custom-control {
     margin: 10px auto; 
 }
+
+.custom-control-input:disabled~.custom-control-indicator {
+    background-color: #b5b5b5;
+}
