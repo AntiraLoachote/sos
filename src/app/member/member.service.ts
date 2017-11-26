@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Response, Headers, RequestOptions, Http } from "@angular/http";
 import { Configuration } from "app/app.constants";
 import { Observable } from "rxjs/Observable";
-import { EditUserModel } from "app/models/member/member.model";
+import { OnCallUserModel } from "app/models/member/member.model";
 
 @Injectable()
 export class MemberService {
@@ -36,7 +36,7 @@ export class MemberService {
 
 
   //API POST EDIT USER
-  postEditUser(dataModel: EditUserModel): Observable<string> {
+  postEditUser(dataModel: OnCallUserModel): Observable<string> {
     const url = this.Config.apiSosUrl + 'api/groups/' + this.GroupId + '/users';
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
@@ -52,6 +52,14 @@ export class MemberService {
     return body || {};
   }
 
+    //API POST ADD USER
+    postAddUser(dataModel: OnCallUserModel): Observable<string> {
+      const url = this.Config.apiSosUrl + 'api/groups/' + this.GroupId + '/users';
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      this.sub = this.http.post(url, dataModel, options).map(this.extractStringData);
+      return this.sub;
+    }
 
 
 }

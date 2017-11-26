@@ -81,6 +81,7 @@ export class MemberComponent implements OnInit {
     this.showTeam = team.name;
     this.groupId = team.groupID;
     this._memberService.GroupId = this.groupId;
+    this._memberService.SelectedIndexMember = 0;
     console.log('GroupId: ', team.groupID);
     this.router.navigate(['/member/detail/' + team.groupID]);
   }
