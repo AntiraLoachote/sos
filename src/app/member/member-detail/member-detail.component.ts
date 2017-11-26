@@ -13,6 +13,16 @@ export class MemberDetailComponent implements OnInit {
   userId: any;
   groupId: any;
   memberData: any;
+  sharedMail: string = "";
+  alternativeMail: string = "";
+  companyMail: string = "";
+
+  //ENUMs Global Variables
+  EmailTypeID: any = {
+    Company: 1,
+    Personal: 2, //alternative
+    Shared: 3,
+  };
 
   constructor(
     public activatedRoute: ActivatedRoute,
@@ -42,24 +52,63 @@ export class MemberDetailComponent implements OnInit {
       // console.log('Select member!!')
       // console.log(JSON.stringify(this.memberData));
       this.profilePicture = this.getUserPic(this.memberData.User.LanID);
+
+      //reset value
+      this.companyMail = "";
+      this.alternativeMail = "";
+      this.sharedMail = "";
+
+      this.memberData.Emails.forEach(email => {
+
+        switch (email.EmailTypeID) {
+          case this.EmailTypeID.Company: {
+            console.log("Company");
+            if (this.companyMail == "")
+              this.companyMail = email.Address;
+            break;
+          }
+
+          case this.EmailTypeID.Personal: {
+            console.log("Personal");
+            if (this.alternativeMail == "")
+              this.alternativeMail = email.Address;
+            break;
+          }
+
+          case this.EmailTypeID.Shared: {
+            console.log("Shared");
+            if (this.sharedMail == "")
+              this.sharedMail = email.Address;
+            break;
+          }
+
+          default: {
+            console.log("default");
+            break;
+          }
+        }
+
+      });
+
     });
   }
 
 
+
   getUserPic(lanId: string) {
-    return 'https://mysite.na.xom.com/User%20Photos/Profile%20Pictures/' 
-    + (lanId.replace('\\', '_')) + '_LThumb.jpg';
+    return 'https://mysite.na.xom.com/User%20Photos/Profile%20Pictures/'
+      + (lanId.replace('\\', '_')) + '_LThumb.jpg';
   }
 
-  updateUrl(){
+  updateUrl() {
     this.profilePicture = './../assets/img/user1.png';
   }
 
-  getDomain(){
+  getDomain() {
     return this.memberData.User.LanID.split('\\')[0];
   }
 
-  getLanId(){
+  getLanId() {
     return this.memberData.User.LanID.split('\\')[1];
   }
 

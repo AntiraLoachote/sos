@@ -29,8 +29,8 @@
         <div class="col">
           <h3 class="color-info" style="margin-bottom: 0;">{{memberData.User.FirstName}}</h3>
           <h3 class="color-info">{{memberData.User.LastName}}</h3>
-          <p class="color-info" *ngIf="memberData.User.Emails[0]">{{memberData.User.Emails[0].Address}}</p>
-          <p class="color-default" *ngIf="!memberData.User.Emails[0]">-</p>
+          <p class="color-info" *ngIf="companyMail">{{companyMail}}</p>
+          <p class="color-default" *ngIf="!companyMail">-</p>
         </div>
       </div>
       <div class="clearfix"></div>
@@ -54,16 +54,16 @@
           <div class="col">
             <div class="display-group">
               <label>Shared mailbox</label>
-              <p class="color-default" *ngIf="memberData.User.Emails[3]">{{memberData.User.Emails[3].Address}}</p>
-              <p class="color-default" *ngIf="!memberData.User.Emails[3]">-</p>
+              <p class="color-default" *ngIf="sharedMail">{{sharedMail}}</p>
+              <p class="color-default" *ngIf="!sharedMail">-</p>
 
             </div>
           </div>
           <div class="col">
             <div class="display-group">
               <label>Alternative email</label>
-              <p class="color-default" *ngIf="memberData.User.Emails[2]">{{memberData.User.Emails[2].Address}}</p>
-              <p class="color-default" *ngIf="!memberData.User.Emails[2]">-</p>
+              <p class="color-default" *ngIf="alternativeMail">{{alternativeMail}}</p>
+              <p class="color-default" *ngIf="!alternativeMail">-</p>
             </div>
           </div>
         </div>
