@@ -2,14 +2,16 @@ import { Injectable } from '@angular/core';
 import { Response, Headers, RequestOptions, Http } from "@angular/http";
 import { Configuration } from "app/app.constants";
 import { Observable } from "rxjs/Observable";
+import { EditUserModel } from "app/models/member/member.model";
 
 @Injectable()
 export class MemberService {
   sub: any;
 
   public GroupId: number;
-  public MemberList : any;
+  public MemberList: any;
   public TeamDataList: any;
+  public SelectedIndexMember: number = 0;
 
   constructor(
     private http: Http,
@@ -31,6 +33,25 @@ export class MemberService {
     let body = response.json();
     return body || {};
   }
+
+
+  //API POST EDIT USER
+  postEditUser(dataModel: EditUserModel): Observable<string> {
+    const url = this.Config.apiSosUrl + 'api/groups/' + this.GroupId + '/users';
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    this.sub = this.http.post(url, dataModel, options).map(this.extractStringData);
+    return this.sub;
+  }
+
+  private extractStringData(response: Response) {
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error('Bad response status: ' + response.status);
+    }
+    let body = response.text();
+    return body || {};
+  }
+
 
 
 }

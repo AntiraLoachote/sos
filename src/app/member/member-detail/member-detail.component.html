@@ -16,7 +16,8 @@
           <br>
           <div class="btn-group box-two-line">
             <span class="circle circle-edit"></span>
-            <button type="button" [routerLink]=" ['./../../../member/edit/1'] " class="btn btn-info">Edit</button>
+            <button type="button" 
+            routerLink="/member/edit/{{memberData.GroupID}}/{{memberData.UserID}}" class="btn btn-info">Edit</button>
           </div>
 
 
@@ -71,7 +72,7 @@
         <div class="row">
           <div class="col-3">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsGroupAdministrator" >
+              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsGroupAdministrator" disabled>
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Admin
@@ -81,7 +82,7 @@
 
           <div class="col-7">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsWorkHourReceiver">
+              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsWorkHourReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Work Hour Receiver
@@ -90,7 +91,7 @@
           </div>
           <div class="col-3">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsEscalationReceiver">
+              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsEscalationReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Level2
@@ -99,7 +100,7 @@
           </div>
           <div class="col">
             <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input"  [checked]="memberData.IsAcknowledgeResultReceiver" >
+              <input type="checkbox" class="custom-control-input"  [checked]="memberData.IsAcknowledgeResultReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Acknowledgement

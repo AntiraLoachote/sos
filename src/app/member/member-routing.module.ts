@@ -16,7 +16,7 @@ const memberRoutes: Routes = [
         component: MemberCreateComponent
       },
         {
-        path : 'member/edit/:id',
+        path : 'member/edit/:groupId/:userId',
         component: MemberEditComponent
       }
     ]

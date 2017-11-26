@@ -28,7 +28,13 @@ export class MemberComponent implements OnInit {
 
     // subscribe to router event
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.groupId = params['groupId'];
+    
+      if(params['groupId'] != undefined){
+        this.groupId = params['groupId'];
+        this._memberService.GroupId = this.groupId;
+      }else{
+        this.groupId = this._memberService.GroupId;
+      }
 
       console.log("Member Com Start!! : groupId " + this.groupId)
 
@@ -74,6 +80,7 @@ export class MemberComponent implements OnInit {
   changeTeam(team: any): void {
     this.showTeam = team.name;
     this.groupId = team.groupID;
+    this._memberService.GroupId = this.groupId;
     console.log('GroupId: ', team.groupID);
     this.router.navigate(['/member/detail/' + team.groupID]);
   }
@@ -93,6 +100,7 @@ export class MemberComponent implements OnInit {
 
   selectMember(index: any){
    this.selectedIdx = index;
+   this._memberService.SelectedIndexMember = this.selectedIdx;
   }
 
   // onActivate(componentRef){

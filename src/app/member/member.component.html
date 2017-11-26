@@ -40,7 +40,7 @@
                         <!--*ngFor = "let item of info"-->
                         <!--<h1 style="font-size:20vw;"> {{item.GroupUserID}}</h1>-->
                         <a class="list-group-item list-group-item-action " 
-                        *ngFor = "let i of Members; let inx = index" [ngClass]="{'active': selectedIdx == inx}"
+                        *ngFor = "let i of Members; let inx = index" [ngClass]="{'active': _memberService.SelectedIndexMember == inx}"
                          routerLink = "/member/detail/{{groupId}}/{{i.UserID}}" (click)="selectMember(inx)"  >
                          {{i.User.FirstName}}  {{i.User.LastName}}
                         </a>
