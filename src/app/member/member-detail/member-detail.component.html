@@ -1,123 +1,122 @@
 <div class="container  border-info" style="margin-top: 10px;">
-  <div class="row" style="min-height: 550px;">
-    <div class="col-11 align-items-center">
-      <!-- <div class="row">
+    <div class="row" style="min-height: 550px;">
+        <div class="col-11 align-items-center">
+            <!-- <div class="row">
         <div class="col navbar-header">
           <h2>Information detail</h2>
         </div>
       </div> -->
-      <div class="row">
-        <div class="col action-group">
-          <div class="btn-group">
-            <span class="circle circle-del"></span>
-            <button type="button" class="btn btn-danger">Delete</button>
+            <div class="row">
+                <div class="col action-group">
+                    <div class="btn-group">
+                        <span class="circle circle-del"></span>
+                        <button type="button" class="btn btn-danger" (click)="removeUser()">Delete</button>
 
-          </div>
-          <br>
-          <div class="btn-group box-two-line">
-            <span class="circle circle-edit"></span>
-            <button type="button" 
-            routerLink="/member/edit/{{memberData.GroupID}}/{{memberData.UserID}}" class="btn btn-info">Edit</button>
-          </div>
+                    </div>
+                    <br>
+                    <div class="btn-group box-two-line">
+                        <span class="circle circle-edit"></span>
+                        <button type="button" routerLink="/member/edit/{{memberData.GroupID}}/{{memberData.UserID}}" class="btn btn-info">Edit</button>
+                    </div>
 
 
-        </div>
-      </div>
-      <div class="row align-items-center no-gutters" style="margin-top: 25px; margin-bottom: 20px;">
-        <div class="col-4">
-            <div class="thumbnail">
-                <img (error)="updateUrl($event)" [src]="profilePicture"  alt="Image" />
+                </div>
             </div>
-        </div>
-        <div class="col">
-          <h3 class="color-info" style="margin-bottom: 0;">{{memberData.User.FirstName}}</h3>
-          <h3 class="color-info">{{memberData.User.LastName}}</h3>
-          <p class="color-info" *ngIf="companyMail">{{companyMail}}</p>
-          <p class="color-default" *ngIf="!companyMail">-</p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col">
-        <hr>
-        <div class="row">
-          <div class="col">
-            <div class="display-group">
-              <label>Domain</label>
-              <p class="color-info">{{getDomain()}}</p>
+            <div class="row align-items-center no-gutters" style="margin-top: 25px; margin-bottom: 20px;">
+                <div class="col-4">
+                    <div class="thumbnail">
+                        <img (error)="updateUrl($event)" [src]="profilePicture" alt="Image" />
+                    </div>
+                </div>
+                <div class="col">
+                    <h3 class="color-info" style="margin-bottom: 0;">{{memberData.User.FirstName}}</h3>
+                    <h3 class="color-info">{{memberData.User.LastName}}</h3>
+                    <p class="color-info" *ngIf="companyMail">{{companyMail}}</p>
+                    <p class="color-default" *ngIf="!companyMail">-</p>
+                </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="display-group">
-              <label>LAN ID</label>
-              <p class="color-info">{{getLanId()}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="display-group">
-              <label>Shared mailbox</label>
-              <p class="color-default" *ngIf="sharedMail">{{sharedMail}}</p>
-              <p class="color-default" *ngIf="!sharedMail">-</p>
+            <div class="clearfix"></div>
+            <div class="col">
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="display-group">
+                            <label>Domain</label>
+                            <p class="color-info">{{getDomain()}}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="display-group">
+                            <label>LAN ID</label>
+                            <p class="color-info">{{getLanId()}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="display-group">
+                            <label>Shared mailbox</label>
+                            <p class="color-default" *ngIf="sharedMail">{{sharedMail}}</p>
+                            <p class="color-default" *ngIf="!sharedMail">-</p>
 
-            </div>
-          </div>
-          <div class="col">
-            <div class="display-group">
-              <label>Alternative email</label>
-              <p class="color-default" *ngIf="alternativeMail">{{alternativeMail}}</p>
-              <p class="color-default" *ngIf="!alternativeMail">-</p>
-            </div>
-          </div>
-        </div>
-        <hr/>
-        <div class="row">
-          <div class="col-3">
-            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="display-group">
+                            <label>Alternative email</label>
+                            <p class="color-default" *ngIf="alternativeMail">{{alternativeMail}}</p>
+                            <p class="color-default" *ngIf="!alternativeMail">-</p>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-3">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
               <input type="checkbox" class="custom-control-input" [checked]="memberData.IsGroupAdministrator" disabled>
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Admin
               </span>
             </label>
-          </div>
+                    </div>
 
-          <div class="col-7">
-            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                    <div class="col-7">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
               <input type="checkbox" class="custom-control-input" [checked]="memberData.IsWorkHourReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Work Hour Receiver
               </span>
             </label>
-          </div>
-          <div class="col-3">
-            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                    </div>
+                    <div class="col-3">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
               <input type="checkbox" class="custom-control-input" [checked]="memberData.IsEscalationReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Level2
               </span>
             </label>
-          </div>
-          <div class="col">
-            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+                    </div>
+                    <div class="col">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
               <input type="checkbox" class="custom-control-input"  [checked]="memberData.IsAcknowledgeResultReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="text-selector">
                 Acknowledgement
               </span>
             </label>
-          </div>
+                    </div>
+
+                </div>
+
+            </div>
 
         </div>
+        <div class="col-1" style="background-color: #559CCA;">
 
-      </div>
-
+        </div>
     </div>
-    <div class="col-1" style="background-color: #559CCA;">
-
-    </div>
-  </div>
 
 </div>

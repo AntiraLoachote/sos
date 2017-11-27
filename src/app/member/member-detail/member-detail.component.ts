@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
 import { ActivatedRoute, Params } from "@angular/router";
 import { MemberService } from './../member.service'
+import { OnCallUserModel } from "app/models/member/member.model";
 
 @Component({
   selector: 'app-member-detail',
@@ -9,6 +10,7 @@ import { MemberService } from './../member.service'
   encapsulation: ViewEncapsulation.None
 })
 export class MemberDetailComponent implements OnInit {
+  textRemoveStatus: string;
   profilePicture: string;
   userId: any;
   groupId: any;
@@ -116,6 +118,29 @@ export class MemberDetailComponent implements OnInit {
     return this.memberData.User.LanID.split('\\')[1];
   }
 
+  removeUser() {
+
+    let data = new OnCallUserModel();
+    data.Domain =    this.getDomain();
+    data.Username =  this.getLanId();
+    
+    console.log("data remove!!");
+    console.log(JSON.stringify(data));
+
+    this._memberService.postRemoveUser(data).subscribe(
+      Response => {
+        this.textRemoveStatus = Response;
+        alert(this.textRemoveStatus);
+        console.log("Remove User Data success!" + Response)
+
+      },
+      err => {
+        console.log("Can't Remove User")
+      }
+    );
+
+
+  }
 
 
 }

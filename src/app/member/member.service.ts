@@ -61,5 +61,13 @@ export class MemberService {
       return this.sub;
     }
 
+    //API POST RemoveUser
+    postRemoveUser(dataModel: OnCallUserModel): Observable<string> {
+      const url = this.Config.apiSosUrl + 'api/groups/' + this.GroupId + '/removeuser';
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      this.sub = this.http.post(url, dataModel, options).map(this.extractStringData);
+      return this.sub;
+    }
 
 }
