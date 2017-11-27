@@ -1,0 +1,35 @@
+.btn-save {
+    text-align: center;
+    margin-right: 10px;
+    width: 13vh;
+    border-radius: 20px;
+}
+
+.btn-cancel {
+    text-align: center;
+    width: 13vh;
+    border-radius: 20px;
+}
+
+
+/* del modal */
+
+@media (min-width: 576px) {
+    .del-dialog {
+        max-width: 700px;
+    }
+}
+
+.del-dialog .modal-content {
+    border-radius: 0;
+}
+
+.modal-footer {
+    background: #F2F2F2;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.del-dialog {
+    margin-top: 155px;
+}
