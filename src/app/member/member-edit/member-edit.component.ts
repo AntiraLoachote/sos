@@ -120,11 +120,6 @@ export class MemberEditComponent implements OnInit {
 
   //send update
   updateProfile() {
-    // //{"Domain":"ap","Username":"tpatana",
-    // "PersonalEmail":"wetstocksystem@gmail.com",
-    // "SharedEmail":"KRICHPAS@GMAIL.COM",
-    // "IsGroupAdministrator":true,"IsEscalationReceiver":true,
-    // "IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true}: 
     
     let data = new OnCallUserModel();
     data.Domain =    this.getDomain();
@@ -142,18 +137,14 @@ export class MemberEditComponent implements OnInit {
     this._memberService.postEditUser(data).subscribe(
       Response => {
         this.textStatus = Response;
-        alert(this.textStatus);
         console.log("Post Update User Data success!" + Response)
-
+        this.router.navigate(['/member/detail/' + this.groupId + '/' + this.userId]);  
       },
       err => {
-        console.log("Can't Post Update User")
+        alert("Can't Post Update User")
       }
     );
 
-    //  alert("User ap\\tpatana information has been updated.");
-    // this.router.navigate['/member/detail/' + this.memberData.GroupID + '/' + 
-    // this.memberData.UserID];
     
   }
 
