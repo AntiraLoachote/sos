@@ -2,6 +2,9 @@ import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@ang
 import { ActivatedRoute, Params } from "@angular/router";
 import { MemberService } from './../member.service'
 import { OnCallUserModel } from "app/models/member/member.model";
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
+import { MemberModalComponent } from "app/member/member-modal/member-modal.component";
 
 @Component({
   selector: 'app-member-detail',
@@ -26,9 +29,20 @@ export class MemberDetailComponent implements OnInit {
     Shared: 3,
   };
 
+  bsModalRef: BsModalRef;
+  public configModal = {
+    animated: true,
+    keyboard: true,
+    backdrop: true,
+    ignoreBackdropClick: true,
+    class: "del-dialog modal-md mt-5"
+  };
+
+
   constructor(
     public activatedRoute: ActivatedRoute,
-    private _memberService: MemberService
+    private _memberService: MemberService,
+    private modalService: BsModalService
   ) { }
 
 
@@ -119,27 +133,11 @@ export class MemberDetailComponent implements OnInit {
   }
 
   removeUser() {
-
-    let data = new OnCallUserModel();
-    data.Domain =    this.getDomain();
-    data.Username =  this.getLanId();
-    
-    console.log("data remove!!");
-    console.log(JSON.stringify(data));
-
-    this._memberService.postRemoveUser(data).subscribe(
-      Response => {
-        this.textRemoveStatus = Response;
-        alert(this.textRemoveStatus);
-        console.log("Remove User Data success!" + Response)
-
-      },
-      err => {
-        console.log("Can't Remove User")
-      }
-    );
-
-
+    //show modal component
+    this.bsModalRef = this.modalService.show(MemberModalComponent , this.configModal);
+    this.bsModalRef.content.Domain = this.getDomain();
+    this.bsModalRef.content.Username = this.getLanId();
+    this.bsModalRef.content.GroupId = this._memberService.GroupId || 1;
   }
 
 

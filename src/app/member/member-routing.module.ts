@@ -5,7 +5,7 @@ import { MemberComponent } from 'app/member/member.component';
 import { MemberCreateComponent } from 'app/member/member-create/member-create.component';
 import { MemberEditComponent } from 'app/member/member-edit/member-edit.component';
 import { MemberDetailComponent } from 'app/member/member-detail/member-detail.component';
-import { MemberIndexComponent } from 'app/member/member-index/member-index.component';
+import { MemberModalComponent } from 'app/member/member-modal/member-modal.component';
  
 const memberRoutes: Routes = [
   {

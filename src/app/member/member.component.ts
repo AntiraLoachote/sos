@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from "@angular/router";
 import { MemberDetailComponent } from "app/member/member-detail/member-detail.component";
 import { MemberService } from "app/member/member.service";
 import { TeamsModel } from "app/models/team/team-list.model";
+import { MemberModalComponent } from "app/member/member-modal/member-modal.component";
 
 @Component({
   selector: 'app-member',
@@ -17,11 +18,12 @@ export class MemberComponent implements OnInit {
   showTeam: string;
   Members: any;
 
-  
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private _memberService: MemberService,
     private router: Router
+
   ) { }
 
   ngOnInit() {
@@ -108,7 +110,5 @@ export class MemberComponent implements OnInit {
   //   componentRef.works(this.Members[0]);
   // }
 
-
-
-
 }
+

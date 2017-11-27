@@ -4,12 +4,11 @@
             <button class="btn btn-team btn-sm dropdown-toggle text" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{showTeam}}
                 </button>
-                <!-- <select class="form-control"  [(ngModel)]="teamSelected"  (ngModelChange)="selectTeam(teamSelected)" required >
+            <!-- <select class="form-control"  [(ngModel)]="teamSelected"  (ngModelChange)="selectTeam(teamSelected)" required >
                         <option *ngFor="let team of teamList" [ngValue]="team"  [disabled]="team.id == 0">{{team.name}}</option>
                     </select> -->
             <div class="dropdown-menu">
-                <a class="dropdown-item" *ngFor="let team of teamList" 
-                 (click)="changeTeam(team)" >{{team.name}}</a>
+                <a class="dropdown-item" *ngFor="let team of teamList" (click)="changeTeam(team)">{{team.name}}</a>
 
             </div>
         </div>
@@ -36,15 +35,13 @@
                 </div>
 
                 <div class="col-xs-11 col-md-11 col-lg-8" style="margin: auto; overflow: auto;">
-                    <div class="list-group" id="list-team-member" >
+                    <div class="list-group" id="list-team-member">
                         <!--*ngFor = "let item of info"-->
                         <!--<h1 style="font-size:20vw;"> {{item.GroupUserID}}</h1>-->
-                        <a class="list-group-item list-group-item-action " 
-                        *ngFor = "let i of Members; let inx = index" [ngClass]="{'active': _memberService.SelectedIndexMember == inx}"
-                         routerLink = "/member/detail/{{groupId}}/{{i.UserID}}" (click)="selectMember(inx)"  >
+                        <a class="list-group-item list-group-item-action " *ngFor="let i of Members; let inx = index" [ngClass]="{'active': _memberService.SelectedIndexMember == inx}" routerLink="/member/detail/{{groupId}}/{{i.UserID}}" (click)="selectMember(inx)">
                          {{i.User.FirstName}}  {{i.User.LastName}}
                         </a>
-                       
+
                     </div>
                 </div>
 
