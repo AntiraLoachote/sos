@@ -70,6 +70,10 @@ export class MemberDetailComponent implements OnInit {
         }
 
       });
+    }else if(this.userId == 0 || this.userId == '0' ){
+      //after create user success
+      this.memberData = this._memberService.MemberList[this._memberService.MemberList.length - 1];
+      this._memberService.SelectedIndexMember = this._memberService.MemberList.length - 1;
     }
 
     // console.log('Select member!!')

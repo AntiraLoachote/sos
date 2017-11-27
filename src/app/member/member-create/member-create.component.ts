@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { OnCallUserModel } from "app/models/member/member.model";
 import { MemberService } from "app/member/member.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-member-create',
@@ -23,6 +24,7 @@ export class MemberCreateComponent implements OnInit {
 
   constructor(
     private _memberService: MemberService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -54,16 +56,18 @@ export class MemberCreateComponent implements OnInit {
     
     console.log("Create User!!");
     console.log(JSON.stringify(data));
+    
 
     this._memberService.postAddUser(data).subscribe(
       Response => {
         this.textStatus = Response;
-        alert(this.textStatus);
+        // alert(this.textStatus);
         console.log("Add User success!" + Response)
+        this.router.navigate(['/member/detail/' + this.groupId + '/' + '0']);
 
       },
       err => {
-        console.log("Can't Add User" + err)
+        alert("Can't Add User" + err);
       }
     );
 
