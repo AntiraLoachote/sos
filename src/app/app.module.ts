@@ -20,13 +20,10 @@ return hc;
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { TestComponentComponent } from './test-component/test-component.component';
 import { TeamComponent } from './team/team.component';
 import { HomeComponent } from './home/home.component';
-import { CardComponent } from './card/card.component';
 import { ContactusComponent } from './contactus/contactus.component';
 import { ReportComponent } from './report/report.component';
-import { InfoService} from './card/info.service';
 import { ProtocolComponent } from './protocol/protocol.component';
 import { OncallScheduleComponent } from './oncall-schedule/oncall-schedule.component';
 
@@ -44,10 +41,8 @@ import { AppRoutingModule } from "app/app-routing.module";
   declarations: [
     AppComponent,
     HeaderComponent,
-    TestComponentComponent,
     TeamComponent,
     HomeComponent,
-    CardComponent,
     ContactusComponent,
     ReportComponent,
     ProtocolComponent,
@@ -107,7 +102,6 @@ import { AppRoutingModule } from "app/app-routing.module";
       useFactory: highchartsFactory
       }, 
       Title, 
-      InfoService,
       Configuration,
       HomeService,
       TeamService
