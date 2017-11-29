@@ -45,6 +45,7 @@ export class ReportComponent implements OnInit {
         this.groupIDs = [1,2,3,5,6,7,8,9];
 
         this.getTicketsInPeriod();
+        this.callTicketsApi(this.defaultStartSQLFormat, this.defaultEndSQLFormat, this.groupIDs);
 
         //mock test
         // this.testData();
@@ -84,7 +85,7 @@ export class ReportComponent implements OnInit {
         //Set Text Week
         console.log(JSON.stringify(this.ticketRecords));
 
-        this.callTicketsApi(this.defaultStartSQLFormat, this.defaultEndSQLFormat, this.groupIDs);
+       
 
     }
 
