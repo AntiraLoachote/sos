@@ -1,7 +1,7 @@
 <div class="col sub-header">
-    <nav class="navbar ">
-        <h5 class="text">Report - Weekly oncall report</h5>
-    </nav>
+  <nav class="navbar ">
+    <h5 class="text">Report - Weekly oncall report</h5>
+  </nav>
   <!--<li class="nav-item dropdown" id="dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
         </a>
@@ -162,7 +162,7 @@
 
   <div class="row" id="tableDetail">
     <div class="col-11 table-detail">
-      <table class="table table-striped">
+      <table class="table table-striped" >
         <thead>
           <tr>
             <th style="min-width: 130px;">Incident number</th>
@@ -176,7 +176,21 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
+          <tr *ngFor="let item of AllTicketsData">
+            <td  [ngClass]="{'text-green': item.TimeUsed < 300000,
+             'text-red' : item.TimeUsed < 1800000 }" style="color: #F6DC71;">{{item.IncidentNumber}}</td>
+            <td >{{item.SubmittedName }} </td>
+            <td>{{item.OncallFName}} </td>
+            <td>{{item.ProductName}}</td>
+            <td>{{item.GroupName }}</td>
+            <td>{{item.SubmittedAt}}</td>
+            <td><span *ngIf="item.ResponseTime != 'Infinity'">{{item.ResponseTime}}</span>
+              <p *ngIf="item.ResponseTime == 'Infinity'">&#8734;</p></td>
+            <td>{{item.Description }}</td>
+          </tr>
+
+          <!-- mock -->
+          <!-- <tr>
             <td class="text-red">S0S0000002566</td>
             <td>Charida, Pethyothin
             </td>
@@ -253,7 +267,7 @@
             <td>0 hrs 5 mins 42 secs
             </td>
             <td>UC4MON-GBP J3-202 - JSF- 230747 - idenifier - ROIKPIPR Host name: AMPB</td>
-          </tr>
+          </tr> -->
         </tbody>
       </table>
     </div>

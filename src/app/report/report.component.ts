@@ -10,6 +10,7 @@ import { ReportService } from 'app/report/report.service';
     styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
+    AllTicketsData: any;
     groupIDs: any[];
     defaultEndSQLFormat: string;
     defaultStartSQLFormat: string;
@@ -25,7 +26,7 @@ export class ReportComponent implements OnInit {
     ticketRecords: any[];
 
     constructor(
-        private _reportService: ReportService
+        private _reportService: ReportService,
     ) {
     }
 
@@ -45,10 +46,10 @@ export class ReportComponent implements OnInit {
         this.groupIDs = [1,2,3,5,6,7,8,9];
 
         this.getTicketsInPeriod();
-        this.callTicketsApi(this.defaultStartSQLFormat, this.defaultEndSQLFormat, this.groupIDs);
+        this.callTicketsApi(this.defaultStartSQLFormat,this.defaultEndSQLFormat, this.groupIDs);
 
         //mock test
-        // this.testData();
+        //this.testData();
     }
 
     getTicketsInPeriod() {
@@ -101,7 +102,7 @@ export class ReportComponent implements OnInit {
             //[character, characterHomeworld]
             // results[0] is our character
             // results[1] is our character homeworld
-
+            this.AllTicketsData = [];
             //add results length == groupIdList
             for (var i = 0; i < groupIdList.length; i++) {
                 //Set Total of Week : return ticketRecords
@@ -159,6 +160,29 @@ export class ReportComponent implements OnInit {
             } else {
                 this.ticketRecords[relativeWeekNumber][3] = this.ticketRecords[relativeWeekNumber][3] + 1;
             }
+
+             //filter text on table
+             let temp = data[j];
+             temp.SubmittedAt =  moment(temp.SubmittedAt).format('MMMM Do YYYY, h:mm:ss a');
+
+              //change millisec into various unit
+              var time = data[j].TimeUsed;
+              var x = time / 1000;
+              var seconds = x % 60;
+              x /= 60;
+              var minutes = x % 60;
+              x /= 60;
+              var hours = x % 24;
+              x /= 24;
+              var days = x;
+
+              if (time != Infinity) {
+                 temp.ResponseTime =  Math.floor(hours) + " Hrs " + Math.floor(minutes) + " Min " + Math.floor(seconds) + " Sec";
+              } else {
+                 temp.ResponseTime = 'Infinity';
+              }
+
+             this.AllTicketsData.push(temp);
         }
     }
 
@@ -218,13 +242,13 @@ export class ReportComponent implements OnInit {
                 },
                 series: [{
                     name: 'Escalateed',
-                    data: sourceCol3
+                    data: sourceCol2 //red
                 }, {
                     name: 'Normal acknowledge',
-                    data: sourceCol2
+                    data: sourceCol3 //yellow
                 }, {
                     name: 'Within 5 minutes',
-                    data: sourceCol1
+                    data: sourceCol1 //green
                 }]
 
             };
@@ -248,8 +272,12 @@ export class ReportComponent implements OnInit {
         LoopData.push(b);
         LoopData.push(c);
 
+        this.AllTicketsData = [];
+
         for (var i = 0; i < LoopData.length; i++) {
             var data = LoopData[i];
+          
+
             for (var j = 0; j < data.length; j++) {
                 //['Week1', 60, 24, '']
                 //var weekNumber = moment(data[j].SubmittedAt).week();
@@ -268,11 +296,35 @@ export class ReportComponent implements OnInit {
                 } else {
                     this.ticketRecords[relativeWeekNumber][3] = this.ticketRecords[relativeWeekNumber][3] + 1;
                 }
+
+                //filter text on table
+                let temp = data[j];
+                temp.SubmittedAt =  moment(temp.SubmittedAt).format('MMMM Do YYYY, h:mm:ss a');
+
+                 //change millisec into various unit
+                 var time = data[j].TimeUsed;
+                 var x = time / 1000;
+                 var seconds = x % 60;
+                 x /= 60;
+                 var minutes = x % 60;
+                 x /= 60;
+                 var hours = x % 24;
+                 x /= 24;
+                 var days = x;
+
+                 if (time != Infinity) {
+                    temp.ResponseTime =  Math.floor(hours) + " Hrs " + Math.floor(minutes) + " Min " + Math.floor(seconds) + " Sec";
+                 } else {
+                    temp.ResponseTime = 'Infinity';
+                 }
+
+                this.AllTicketsData.push(temp);
             }
 
         }
 
         console.log(this.ticketRecords);
+        console.log(this.AllTicketsData);
 
         this.rangeData = [];
         this.sourceCol1 = [];
@@ -313,6 +365,8 @@ export class ReportComponent implements OnInit {
             this.getTicketsInPeriod();
         }
     }
+
+
 
 
 }
