@@ -36,6 +36,7 @@ import { HomeService } from 'app/home/home.service';
 import { Configuration } from './app.constants';
 import { TeamService } from "app/team/team.service";
 import { AppRoutingModule } from "app/app-routing.module";
+import { ReportService } from 'app/report/report.service';
 
 @NgModule({
   declarations: [
@@ -104,7 +105,8 @@ import { AppRoutingModule } from "app/app-routing.module";
       Title, 
       Configuration,
       HomeService,
-      TeamService
+      TeamService,
+      ReportService
     ],
   
   bootstrap: [AppComponent]
