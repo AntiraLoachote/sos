@@ -151,7 +151,7 @@ export class ReportComponent implements OnInit {
             var lengthOfWeek = Math.floor(diffinMS.asMilliseconds() / 604800000);
             var endWeek = this.startWeek + lengthOfWeek;
 
-            var relativeWeekNumber = (endWeek - this.startWeek) + 1;
+            var relativeWeekNumber = (endWeek - this.startWeek);
             if (data[j].TimeUsed < 300000) {
                 this.ticketRecords[relativeWeekNumber][1] = this.ticketRecords[relativeWeekNumber][1] + 1;
             }
@@ -242,10 +242,10 @@ export class ReportComponent implements OnInit {
                 },
                 series: [{
                     name: 'Escalateed',
-                    data: sourceCol2 //red
+                    data: sourceCol3 //red
                 }, {
                     name: 'Normal acknowledge',
-                    data: sourceCol3 //yellow
+                    data: sourceCol2 //yellow
                 }, {
                     name: 'Within 5 minutes',
                     data: sourceCol1 //green
@@ -287,7 +287,8 @@ export class ReportComponent implements OnInit {
                 var lengthOfWeek = Math.floor(diffinMS.asMilliseconds() / 604800000);
                 var endWeek = this.startWeek + lengthOfWeek;
 
-                var relativeWeekNumber = (endWeek - this.startWeek) + 1;
+                var relativeWeekNumber = (endWeek - this.startWeek);
+                console.log(relativeWeekNumber);
                 if (data[j].TimeUsed < 300000) {
                     this.ticketRecords[relativeWeekNumber][1] = this.ticketRecords[relativeWeekNumber][1] + 1;
                 }
