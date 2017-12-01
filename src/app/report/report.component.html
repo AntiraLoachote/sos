@@ -77,7 +77,8 @@
             <div class="col-checkbox">
               <div class="checkteam" style="margin-top:1.2vw;">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
+                  <input type="checkbox" class="custom-control-input" 
+                  [checked]="group1"  (change)="group1 = !group1; changeGroupSelected()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">
                     OTC
@@ -86,7 +87,8 @@
               </div>
               <div class="checkteam">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
+                  <input type="checkbox" class="custom-control-input" 
+                  [checked]="group2"  (change)="group2 = !group2; changeGroupSelected()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">
                     Retail
@@ -95,7 +97,8 @@
               </div>
               <div class="checkteam">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
+                  <input type="checkbox" class="custom-control-input"    
+                  [checked]="group3"  (change)="group3 = !group3; changeGroupSelected()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">
                     Siebel Technical Service
@@ -104,7 +107,8 @@
               </div>
               <div class="checkteam">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
+                  <input type="checkbox" class="custom-control-input"    
+                  [checked]="group5"  (change)="group5 = !group5; changeGroupSelected()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">
                     GPM
@@ -114,7 +118,8 @@
 
               <div class="checkteam">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
+                  <input type="checkbox" class="custom-control-input" 
+                  [checked]="group6"  (change)="group6 = !group6; changeGroupSelected()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">
                     EDI CS and XCOM
@@ -123,7 +128,7 @@
               </div>
               <div class="checkteam">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
+                  <input type="checkbox" class="custom-control-input"  [checked]="group7"  (change)="group7 = !group7; changeGroupSelected()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">
                     M&S Secondary Distributions
@@ -132,7 +137,7 @@
               </div>
               <div class="checkteam">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
+                  <input type="checkbox" class="custom-control-input" [checked]="group8" (change)="group8 = !group8; changeGroupSelected()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">
                     Basis Output and Archiving
@@ -141,24 +146,14 @@
               </div>
               <div class="checkteam">
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
+                  <input type="checkbox" class="custom-control-input" [checked]="group9" (change)="group9 = !group9; changeGroupSelected()">
                   <span class="custom-control-indicator"></span>
                   <span class="custom-control-description">
-                    Basis Output and Archiving
+                      S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication
                   </span>
                 </label>
               </div>
-              <div class="checkteam">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" checked="true">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                    S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication
-                  </span>
-                </label>
-                <br>
-                <br>
-              </div>
+
             </div>
 
           </div>

@@ -11,7 +11,7 @@ import { ReportService } from 'app/report/report.service';
 })
 export class ReportComponent implements OnInit {
     AllTicketsData: any;
-    groupIDs: any[];
+    groupIDs: any[] = [];
     defaultEndSQLFormat: string;
     defaultStartSQLFormat: string;
     defaultEnd: any;
@@ -30,7 +30,14 @@ export class ReportComponent implements OnInit {
     DateTo: any = null;
     DateFrom: any = null;
 
-
+    group1: boolean = true;
+    group2: boolean = true;
+    group3: boolean = true;
+    group5: boolean = true;
+    group6: boolean = true;
+    group7: boolean = true;
+    group8: boolean = true;
+    group9: boolean = true;
 
     constructor(
         private _reportService: ReportService,
@@ -50,10 +57,46 @@ export class ReportComponent implements OnInit {
         this.defaultEndSQLFormat = moment(this.defaultEnd).format("YYYY-MM-DD");
 
         this.ticketRecords = [];
-        this.groupIDs = [1, 2, 3, 5, 6, 7, 8, 9];
-
+        // this.groupIDs = [1, 2, 3, 5, 6, 7, 8, 9];
+        this.prepareGroupSelected();
         this.getTicketsInPeriod();
 
+    }
+
+    prepareGroupSelected(){
+        this.groupIDs = [];
+
+        if(this.group1){
+            this.groupIDs.push(1);
+        }
+        if(this.group2){
+            this.groupIDs.push(2);
+        }
+        if(this.group3){
+            this.groupIDs.push(3);
+        }
+        if(this.group5){
+            this.groupIDs.push(5);
+        }
+        if(this.group6){
+            this.groupIDs.push(6);
+        }
+        if(this.group7){
+            this.groupIDs.push(7);
+        }
+        if(this.group8){
+            this.groupIDs.push(8);
+        }
+        if(this.group9){
+            this.groupIDs.push(9);
+        }
+
+        console.log('groupIDs : ' + this.groupIDs);
+    }
+
+    changeGroupSelected(){
+       this.prepareGroupSelected();
+       this.getTicketsInPeriod();
     }
 
     getTicketsInPeriod() {
