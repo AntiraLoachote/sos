@@ -38,6 +38,8 @@ import { TeamService } from "app/team/team.service";
 import { AppRoutingModule } from "app/app-routing.module";
 import { ReportService } from 'app/report/report.service';
 
+import { BsDatepickerModule } from 'ngx-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,41 +61,7 @@ import { ReportService } from 'app/report/report.service';
     HttpModule,
     AppRoutingModule,
     MemberModule,
-
-    // RouterModule.forRoot([
-    //     { path: '', redirectTo: '/home', pathMatch: 'full' },
-    //     {
-    //       path : 'team-member',
-    //       component: TeamComponent
-    //     },
-    //       {
-    //       path : 'card member',
-    //       component: CardComponent
-    //     },
-    //       {
-    //       path : 'home',
-    //       component: HomeComponent
-    //     },
-    //      {
-    //       path : 'report',
-    //       component: ReportComponent
-    //     },
-    //     {
-    //       path: 'protocol',
-    //       component: ProtocolComponent
-    //     },
-    //     {
-    //       path: 'Oncall-shedule',
-    //       component: OncallScheduleComponent
-    //     },
-    //     {
-    //       path: 'member',  
-    //       loadChildren: 'app/member/member.module#MemberModule'
-    //   },
-      
-    //   { path: '**', component: HomeComponent } 
-    // ]),
-    
+    BsDatepickerModule.forRoot()
   
   ],
 

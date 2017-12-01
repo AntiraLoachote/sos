@@ -205,3 +205,15 @@
   .old_ie_wrapper tbody {
     height: auto;
   }
+  
+/* datepicker */
+:host /deep/ .bs-datepicker-head {
+    height: 50px;
+    padding: 8px;
+
+  }
+
+  :host /deep/  .bs-datepicker-container {
+      padding: 0;
+  }
+  

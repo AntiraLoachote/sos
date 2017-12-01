@@ -21,9 +21,16 @@ export class ReportComponent implements OnInit {
     sourceCol2: any[];
     sourceCol1: any[];
     startWeek: number;
-    endDate: moment.Moment;
-    startDate: moment.Moment;
+    endDate: any;
+    startDate: any;
     ticketRecords: any[];
+    FilterDateTo: Date = null;
+    FilterDateFrom: Date = null;
+
+    DateTo: any = null;
+    DateFrom: any = null;
+
+
 
     constructor(
         private _reportService: ReportService,
@@ -43,13 +50,10 @@ export class ReportComponent implements OnInit {
         this.defaultEndSQLFormat = moment(this.defaultEnd).format("YYYY-MM-DD");
 
         this.ticketRecords = [];
-        this.groupIDs = [1,2,3,5,6,7,8,9];
+        this.groupIDs = [1, 2, 3, 5, 6, 7, 8, 9];
 
         this.getTicketsInPeriod();
-        this.callTicketsApi(this.defaultStartSQLFormat,this.defaultEndSQLFormat, this.groupIDs);
 
-        //mock test
-        //this.testData();
     }
 
     getTicketsInPeriod() {
@@ -61,6 +65,7 @@ export class ReportComponent implements OnInit {
         var lengthOfWeek = Math.floor(moment.duration(ms).asMilliseconds() / 604800000);
         var endWeek = this.startWeek + lengthOfWeek;
 
+        this.ticketRecords = [];
 
         //Looping for writing the annotation(label) for each week in the report
         for (var j = 0; j <= (endWeek - this.startWeek); j++) {
@@ -86,7 +91,11 @@ export class ReportComponent implements OnInit {
         //Set Text Week
         console.log(JSON.stringify(this.ticketRecords));
 
-       
+        //mock test
+        // this.testData();
+
+        this.callTicketsApi(this.defaultStartSQLFormat,this.defaultEndSQLFormat, this.groupIDs);
+
 
     }
 
@@ -94,7 +103,7 @@ export class ReportComponent implements OnInit {
         //Loop Get Api
         let observables = new Array();
         for (let groupId of groupIdList) {
-            console.log('call' + groupId);
+            // console.log('call' + groupId);
             observables.push(this._reportService.getTicketGroup(dataFrom, dataTo, groupId));
         }
 
@@ -161,28 +170,28 @@ export class ReportComponent implements OnInit {
                 this.ticketRecords[relativeWeekNumber][3] = this.ticketRecords[relativeWeekNumber][3] + 1;
             }
 
-             //filter text on table
-             let temp = data[j];
-             temp.SubmittedAt =  moment(temp.SubmittedAt).format('MMMM Do YYYY, h:mm:ss a');
+            //filter text on table
+            let temp = data[j];
+            temp.SubmittedAt = moment(temp.SubmittedAt).format('MMMM Do YYYY, h:mm:ss a');
 
-              //change millisec into various unit
-              var time = data[j].TimeUsed;
-              var x = time / 1000;
-              var seconds = x % 60;
-              x /= 60;
-              var minutes = x % 60;
-              x /= 60;
-              var hours = x % 24;
-              x /= 24;
-              var days = x;
+            //change millisec into various unit
+            var time = data[j].TimeUsed;
+            var x = time / 1000;
+            var seconds = x % 60;
+            x /= 60;
+            var minutes = x % 60;
+            x /= 60;
+            var hours = x % 24;
+            x /= 24;
+            var days = x;
 
-              if (time != Infinity) {
-                 temp.ResponseTime =  Math.floor(hours) + " Hrs " + Math.floor(minutes) + " Min " + Math.floor(seconds) + " Sec";
-              } else {
-                 temp.ResponseTime = 'Infinity';
-              }
+            if (time != Infinity) {
+                temp.ResponseTime = Math.floor(hours) + " Hrs " + Math.floor(minutes) + " Min " + Math.floor(seconds) + " Sec";
+            } else {
+                temp.ResponseTime = 'Infinity';
+            }
 
-             this.AllTicketsData.push(temp);
+            this.AllTicketsData.push(temp);
         }
     }
 
@@ -276,7 +285,7 @@ export class ReportComponent implements OnInit {
 
         for (var i = 0; i < LoopData.length; i++) {
             var data = LoopData[i];
-          
+
 
             for (var j = 0; j < data.length; j++) {
                 //['Week1', 60, 24, '']
@@ -287,7 +296,7 @@ export class ReportComponent implements OnInit {
                 var lengthOfWeek = Math.floor(diffinMS.asMilliseconds() / 604800000);
                 var endWeek = this.startWeek + lengthOfWeek;
 
-                var relativeWeekNumber = (endWeek - this.startWeek);
+                var relativeWeekNumber = (endWeek - this.startWeek) + 1;
                 console.log(relativeWeekNumber);
                 if (data[j].TimeUsed < 300000) {
                     this.ticketRecords[relativeWeekNumber][1] = this.ticketRecords[relativeWeekNumber][1] + 1;
@@ -300,24 +309,24 @@ export class ReportComponent implements OnInit {
 
                 //filter text on table
                 let temp = data[j];
-                temp.SubmittedAt =  moment(temp.SubmittedAt).format('MMMM Do YYYY, h:mm:ss a');
+                temp.SubmittedAt = moment(temp.SubmittedAt).format('MMMM Do YYYY, h:mm:ss a');
 
-                 //change millisec into various unit
-                 var time = data[j].TimeUsed;
-                 var x = time / 1000;
-                 var seconds = x % 60;
-                 x /= 60;
-                 var minutes = x % 60;
-                 x /= 60;
-                 var hours = x % 24;
-                 x /= 24;
-                 var days = x;
+                //change millisec into various unit
+                var time = data[j].TimeUsed;
+                var x = time / 1000;
+                var seconds = x % 60;
+                x /= 60;
+                var minutes = x % 60;
+                x /= 60;
+                var hours = x % 24;
+                x /= 24;
+                var days = x;
 
-                 if (time != Infinity) {
-                    temp.ResponseTime =  Math.floor(hours) + " Hrs " + Math.floor(minutes) + " Min " + Math.floor(seconds) + " Sec";
-                 } else {
+                if (time != Infinity) {
+                    temp.ResponseTime = Math.floor(hours) + " Hrs " + Math.floor(minutes) + " Min " + Math.floor(seconds) + " Sec";
+                } else {
                     temp.ResponseTime = 'Infinity';
-                 }
+                }
 
                 this.AllTicketsData.push(temp);
             }
@@ -356,15 +365,25 @@ export class ReportComponent implements OnInit {
 
     selectedStartDate() {
         //seleect StartDate
-        var startDate = moment($("#datepickerfrom").val()).format('YYYY-MM-DD');
-        var endDate = moment($("#datepickerto").val()).format('YYYY-MM-DD');
+        if (this.FilterDateFrom != null && this.FilterDateTo != null) {
+            this.DateFrom = moment(this.FilterDateFrom).format("YYYY-MM-DD");
+            this.DateTo = moment(this.FilterDateTo).format("YYYY-MM-DD");
 
-        if (moment(endDate).isValid() && moment(startDate).isValid() && endDate >= startDate) {
-            //alert(endDate);
-            this.defaultStartSQLFormat = startDate;
-            this.defaultEndSQLFormat = endDate;
-            this.getTicketsInPeriod();
+            if (moment(this.DateFrom).isValid() && moment(this.DateFrom).isValid() && this.DateTo >= this.DateFrom) {
+                //alert(endDate);
+
+                this.defaultStartSQLFormat = this.DateFrom;
+                this.defaultEndSQLFormat = this.DateTo;
+
+                // console.log(this.defaultStartSQLFormat + ':' + this.defaultEndSQLFormat);
+                this.getTicketsInPeriod();
+            }
+
+
         }
+
+
+
     }
 
 
