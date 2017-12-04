@@ -31,7 +31,7 @@
 
 .btn-add-member img {
     width: 2vw;
-    margin-left: 2vw;
+    margin-left: 1vw;
 }
 
 .list-group {
@@ -73,4 +73,37 @@ body .team-member ::-webkit-scrollbar-thumb {
 
 .dropdown-item {
     cursor: pointer;
+}
+
+.list-group-item {
+    text-transform: uppercase;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-top: 10px;
+    padding-left: 2vh;
+}
+
+.overflow-list {
+    padding-bottom: 33px;
+}
+.btn-add-member:hover .text-add { 
+    margin-left: 15px;
+    font-size: 17px;
+    display: inline-block; 
+    color: #4ECDC4;
+}
+
+.text-add {
+    display: none;
+}
+
+.text-add:hover {
+    display: none;
+}
+
+
+.btn-add-member:hover  img {
+    margin-left: 5px;
+    display: inline-block;
 }

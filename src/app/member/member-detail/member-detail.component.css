@@ -64,15 +64,16 @@
     color: #dc3545;
 }
 
-.btn-group .btn-info {
+.btn-group .btn-info-edit {
     background: transparent;
     color: #358CC2;
     padding: 2px 10px;
     cursor: pointer;
     font-size: 0.9rem;
     width: 10vh;
+    border: 1px solid;
 }
-.btn-group .btn-info:hover {
+.btn-group .btn-info-edit:hover {
     background: transparent;
     color: #358CC2;
 }

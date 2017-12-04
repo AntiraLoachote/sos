@@ -22,7 +22,7 @@
             <div class="team-member">
                 <div class="row">
                     <a class="btn btn-add-member" routerLink="/member/create">
-                        <img src="./assets/img/user2.png" />
+                       <span class="text-add">Add People</span> <img src="./assets/img/user2.png" />
                     </a>
 
                     <div class="col text-center">
@@ -38,7 +38,8 @@
                     <div class="list-group" id="list-team-member">
                         <!--*ngFor = "let item of info"-->
                         <!--<h1 style="font-size:20vw;"> {{item.GroupUserID}}</h1>-->
-                        <a class="list-group-item list-group-item-action " *ngFor="let i of Members; let inx = index" [ngClass]="{'active': _memberService.SelectedIndexMember == inx}" routerLink="/member/detail/{{groupId}}/{{i.UserID}}" (click)="selectMember(inx)">
+                        <a class="list-group-item list-group-item-action " *ngFor="let i of Members; let inx = index" 
+                        [ngClass]="{'active': _memberService.SelectedIndexMember == inx,'overflow-list' : Members.length > 9}" routerLink="/member/detail/{{groupId}}/{{i.UserID}}" (click)="selectMember(inx)">
                          {{i.User.FirstName}}  {{i.User.LastName}}
                         </a>
 

@@ -16,7 +16,7 @@ export class MemberComponent implements OnInit {
   selectedIdx: any = 0;
   groupId: any;
   teamList: TeamsModel[] = [];
-  showTeam: string;
+  showTeam: string = "Select Team";
   Members: any;
 
 
