@@ -57,19 +57,26 @@ export class MemberCreateComponent implements OnInit {
     console.log("Create User!!");
     console.log(JSON.stringify(data));
     
+    if(this._memberService.GroupId == undefined){
+      alert("กรุณาเลือก Team ก่อน");
+    }else{
+      let groupId = this._memberService.GroupId;
 
-    this._memberService.postAddUser(data).subscribe(
-      Response => {
-        this.textStatus = Response;
-        // alert(this.textStatus);
-        console.log("Add User success!" + Response)
-        this.router.navigate(['/member/detail/' + this.groupId + '/' + '0']);
+      this._memberService.postAddUser(data,groupId).subscribe(
+        Response => {
+          this.textStatus = Response;
+          // alert(this.textStatus);
+          console.log("Add User success!" + Response)
+          this.router.navigate(['/member/detail/' + this.groupId + '/' + '0']);
+  
+        },
+        err => {
+          alert("Can't Add User" + err);
+        }
+      );
 
-      },
-      err => {
-        alert("Can't Add User" + err);
-      }
-    );
+    }
+
 
   }
 
