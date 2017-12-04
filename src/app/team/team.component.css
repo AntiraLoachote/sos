@@ -1,39 +1,35 @@
-.text-title{
-    margin-top: 3%;
-  /*background: blue;*/
-}
+
 .dropteam{
-    margin-top: 3%;
+    /* margin-top: 3%; */
     justify-content: center;
     text-align: center;
 }
-#dropdownMenuButton{
-    width: 38vw;
-    height: 3vw;
-     background:whitesmoke;
-    color: gray;
+
+.dropdown {
+    margin-top: 7vh;
+    margin-bottom: 7vh;
 }
+
+select {
+    margin: auto;
+    width: 38vw;
+    height: 45px !important;
+    text-transform: uppercase;
+    border-radius: 0;
+
+}
+
+
 .dropdown-item{
      width: 38vw;
     height: 3vw;
 }
-.test{
-       width: 8vw;
-       height: 5.5vh;
-}
-#button-submit{
+
+.button-submit{
     background: #44b9cb;
     border: 2px solid #44b9cb;
     border-radius: 2rem;
-}
-p.round3 {
-    border: 2px solid lightgray;
-    color: darkgray;
-    border-radius: 2rem;
-    width: 17vw;
-    height: 3vw;
-    margin-top: 5%;
-    text-align: center;
-    padding-top: 1vh;
-    
+    padding: 1.2vh;
+    width: 8vw;
+    max-width: 120px;
 }

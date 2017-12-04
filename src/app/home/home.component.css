@@ -1,5 +1,5 @@
 .app-content{
-    margin-top: 7rem;
+    margin-top: 15vh;
 }
 
 .section-title{
@@ -23,6 +23,7 @@
     /* height: 57rem; */
     width: 70%;
     margin: auto;
+    margin-bottom: 75px;
 }
 #clickhere{
     color:transparent;
