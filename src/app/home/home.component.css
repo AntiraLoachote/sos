@@ -98,3 +98,62 @@ a.anchor {
 .form-control:disabled {
     background: transparent;
 }
+
+
+/* Make it looks good on CodePen */
+html {
+    background-color: #cef;
+  }
+  html, body, .sonar-wrapper {
+    height: 100%;
+  }
+  
+  /* Prevent scrollbars to appear when waves go out of bound */
+  .sonar-wrapper {
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+  }
+  
+  /* The circle */
+  .sonar-emitter {
+    position: relative;
+    margin: 18px auto;
+    width: 4vw;
+    height: 4vw;
+    border-radius: 9999px;
+    background-color: transparent;
+  }
+  
+  /* the 'wave', same shape and size as its parent */
+  .sonar-wave {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 9999px;
+    background-color: #6bf8decb;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+  
+  /*
+    Animate!
+    NOTE: add browser prefixes where needed.
+  */
+  .sonar-wave {
+    animation: sonarWave 2s linear infinite;
+  }
+  
+  @keyframes sonarWave {
+    from {
+      opacity: 0.4;
+    }
+    to {
+      transform: scale(3);
+      opacity: 0;
+    }
+  }
+  

@@ -25,6 +25,11 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+    $(".sonar-wave").on("webkitAnimationIteration oanimationiteration animationiteration", function(){
+      $(this).css("background-color", this.colorize());
+    })
+  
+
     this.UsernameBadge = "Krichpas Khumthanom";
 
     this.teamList = [
@@ -68,6 +73,11 @@ export class HomeComponent implements OnInit {
     this.teamSelected = this.teamList[0];
 
     this.getUsername();
+  }
+
+  colorize() {
+    var hue = Math.random() * 360;
+    return "HSL(" + hue + ",100%,50%)";
   }
 
   showText() {
