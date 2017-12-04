@@ -49,8 +49,8 @@ export class MemberComponent implements OnInit {
       this.teamList = [];
 
       //Get TeamList
-      this.getTeams();
-      // this.mockTeams();
+      // this.getTeams();
+      this.mockTeams();
 
 
       //select team data 
@@ -64,8 +64,8 @@ export class MemberComponent implements OnInit {
       });
 
       //GET Members
-      this.getMemberList(this.groupId, false);
-      // this.mockMemberList(this.groupId, false);
+      // this.getMemberList(this.groupId, false);
+      this.mockMemberList(this.groupId, false);
 
 
     });
@@ -131,8 +131,8 @@ export class MemberComponent implements OnInit {
     this._memberService.SelectedIndexMember = 0;
     console.log('GroupId: ', team.groupID);
 
-    this.getMemberList(this.groupId, false);
-    // this.mockMemberList(this.groupId, true);
+    // this.getMemberList(this.groupId, false);
+    this.mockMemberList(this.groupId, true);
 
   }
 
