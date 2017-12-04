@@ -99,6 +99,10 @@
     height: 22px;
 }
 
+.custom-control-input:focus~.custom-control-indicator {
+    box-shadow: none;
+}
+
 .bg-dark {
     background-color: #627485 !important;
 }

@@ -101,3 +101,24 @@
     width: 100%;
     height: auto;
   }
+
+  .custom-control-input:checked~.custom-control-indicator {
+    color: #fff;
+    background-color: #6EC8D6;;
+}
+
+.custom-control-description {
+    padding-left: 10px;
+    font-size: 1rem;
+}
+
+.custom-checkbox .custom-control-indicator {
+    border-radius: 1rem;
+    width: 22px;
+    height: 22px;
+    margin-top: -2.5px;
+}
+
+.custom-control-input:focus~.custom-control-indicator {
+    box-shadow: none;
+}
