@@ -53,8 +53,8 @@ export class MemberService {
   }
 
     //API POST ADD USER
-    postAddUser(dataModel: OnCallUserModel): Observable<string> {
-      const url = this.Config.apiSosUrl + 'api/groups/' + this.GroupId + '/users';
+    postAddUser(dataModel: OnCallUserModel,groupId : number): Observable<string> {
+      const url = this.Config.apiSosUrl + 'api/groups/' + groupId + '/users';
       let headers = new Headers({ 'Content-Type': 'application/json' });
       let options = new RequestOptions({ headers: headers });
       this.sub = this.http.post(url, dataModel, options).map(this.extractStringData);
