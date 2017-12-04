@@ -62,18 +62,22 @@ export class MemberDetailComponent implements OnInit {
     this.memberData = this._memberService.MemberList[0];
     if (this.userId != undefined && this.userId != 0) {
       //select data 
-      this._memberService.MemberList.forEach(i => {
-
-        if (i.UserID == this.userId) {
-          this.memberData = i;
+      for(var i = 0; i < this._memberService.MemberList.length-1; ++i)
+      {
+        if (this._memberService.MemberList[i].UserID == this.userId) {
+          this.memberData = this._memberService.MemberList[i];
+          this._memberService.SelectedIndexMember = i;
           return;
         }
-
-      });
+      }
+     
     }else if(this.userId == 0 || this.userId == '0' ){
       //after create user success
       this.memberData = this._memberService.MemberList[this._memberService.MemberList.length - 1];
       this._memberService.SelectedIndexMember = this._memberService.MemberList.length - 1;
+    }else{
+      this.memberData = this._memberService.MemberList[0];
+      this._memberService.SelectedIndexMember = 0;
     }
 
     // console.log('Select member!!')
