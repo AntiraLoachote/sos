@@ -24,8 +24,8 @@
             </div>
             <div class="row align-items-center no-gutters" style="margin-top: 25px; margin-bottom: 20px;">
                 <div class="col-4">
-                    <div class="thumbnail">
-                        <img (error)="updateUrl($event)" [src]="profilePicture" alt="Image" />
+                    <div class="thumbnail" *ngIf="profilePicture != ''">
+                        <img (error)="updateUrl($event)" [src]="profilePicture"  />
                     </div>
                 </div>
                 <div class="col">

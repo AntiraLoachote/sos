@@ -13,8 +13,9 @@ import { MemberModalComponent } from "app/member/member-modal/member-modal.compo
   encapsulation: ViewEncapsulation.None
 })
 export class MemberDetailComponent implements OnInit {
+  isLoadPic: boolean = false;
   textRemoveStatus: string;
-  profilePicture: string;
+  profilePicture: string = "";
   userId: any;
   groupId: any;
   memberData: any;
@@ -52,6 +53,8 @@ export class MemberDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['userId'];
       // console.log(this.userId);
+      this.profilePicture = './../assets/img/user1.png';   
+      
       this.prepareData();
 
     });
@@ -59,6 +62,7 @@ export class MemberDetailComponent implements OnInit {
 
 
   prepareData(){
+    
     this.memberData = this._memberService.MemberList[0];
     if (this.userId != undefined && this.userId != 0) {
       //select data 
@@ -67,7 +71,7 @@ export class MemberDetailComponent implements OnInit {
         if (this._memberService.MemberList[i].UserID == this.userId) {
           this.memberData = this._memberService.MemberList[i];
           this._memberService.SelectedIndexMember = i;
-          return;
+          break;
         }
       }
      
@@ -82,6 +86,7 @@ export class MemberDetailComponent implements OnInit {
 
     // console.log('Select member!!')
     // console.log(JSON.stringify(this.memberData));
+    
     this.profilePicture = this.getUserPic(this.memberData.User.LanID);
 
     //reset value
@@ -124,6 +129,7 @@ export class MemberDetailComponent implements OnInit {
 
 
   getUserPic(lanId: string) {
+    this.isLoadPic = true;
     return 'https://mysite.na.xom.com/User%20Photos/Profile%20Pictures/'
       + (lanId.replace('\\', '_')) + '_LThumb.jpg';
   }
