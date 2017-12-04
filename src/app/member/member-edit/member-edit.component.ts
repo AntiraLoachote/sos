@@ -41,22 +41,25 @@ export class MemberEditComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.groupId = params['groupId'];
       this.userId = params['userId'];
+      
+      this.profilePicture = './../assets/img/user1.png';
       this.prepareData();
     });
   }
 
   prepareData() {
     this.memberData = this._memberService.MemberList[0];
+    this._memberService.SelectedIndexMember = 0;
+
     if (this.userId != undefined && this.userId != 0) {
       //select data 
-      this._memberService.MemberList.forEach(i => {
-
-        if (i.UserID == this.userId) {
-          this.memberData = i;
-          return;
+      for (var i = 0; i < this._memberService.MemberList.length - 1; ++i) {
+        if (this._memberService.MemberList[i].UserID == this.userId) {
+          this.memberData = this._memberService.MemberList[i];
+          this._memberService.SelectedIndexMember = i;
+          break;
         }
-
-      });
+      }
     }
 
     // console.log('Select member!!')
