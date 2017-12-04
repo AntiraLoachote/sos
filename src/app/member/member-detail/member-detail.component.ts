@@ -53,40 +53,39 @@ export class MemberDetailComponent implements OnInit {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.userId = params['userId'];
       // console.log(this.userId);
-      this.profilePicture = './../assets/img/user1.png';   
-      
+      this.profilePicture = './../assets/img/user1.png';
+
       this.prepareData();
 
     });
   }
 
 
-  prepareData(){
-    
+  prepareData() {
+
     this.memberData = this._memberService.MemberList[0];
     if (this.userId != undefined && this.userId != 0) {
       //select data 
-      for(var i = 0; i < this._memberService.MemberList.length-1; ++i)
-      {
+      for (var i = 0; i < this._memberService.MemberList.length - 1; ++i) {
         if (this._memberService.MemberList[i].UserID == this.userId) {
           this.memberData = this._memberService.MemberList[i];
           this._memberService.SelectedIndexMember = i;
           break;
         }
       }
-     
-    }else if(this.userId == 0 || this.userId == '0' ){
+
+    } else if (this.userId == 0 || this.userId == '0') {
       //after create user success
       this.memberData = this._memberService.MemberList[this._memberService.MemberList.length - 1];
       this._memberService.SelectedIndexMember = this._memberService.MemberList.length - 1;
-    }else{
+    } else {
       this.memberData = this._memberService.MemberList[0];
       this._memberService.SelectedIndexMember = 0;
     }
 
     // console.log('Select member!!')
     // console.log(JSON.stringify(this.memberData));
-    
+
     this.profilePicture = this.getUserPic(this.memberData.User.LanID);
 
     //reset value
@@ -96,32 +95,35 @@ export class MemberDetailComponent implements OnInit {
 
     this.memberData.Emails.forEach(email => {
 
-      switch (email.EmailTypeID) {
-        case this.EmailTypeID.Company: {
-          console.log("Company");
-          if (this.companyMail == "")
+      if (email.Disabled == false) {
+        switch (email.EmailTypeID) {
+          case this.EmailTypeID.Company: {
+            console.log("Company");
+            // if (this.companyMail == "")
             this.companyMail = email.Address;
-          break;
-        }
+            break;
+          }
 
-        case this.EmailTypeID.Personal: {
-          console.log("Personal");
-          if (this.alternativeMail == "")
+          case this.EmailTypeID.Personal: {
+            console.log("Personal");
+            // if (this.alternativeMail == "")
             this.alternativeMail = email.Address;
-          break;
-        }
+            break;
+          }
 
-        case this.EmailTypeID.Shared: {
-          console.log("Shared");
-          if (this.sharedMail == "")
+          case this.EmailTypeID.Shared: {
+            console.log("Shared");
+            // if (this.sharedMail == "")
             this.sharedMail = email.Address;
-          break;
+            break;
+          }
+
+          default: {
+            console.log("default");
+            break;
+          }
         }
 
-        default: {
-          console.log("default");
-          break;
-        }
       }
 
     });

@@ -70,32 +70,35 @@ export class MemberEditComponent implements OnInit {
 
     this.memberData.Emails.forEach(email => {
 
-      switch (email.EmailTypeID) {
-        case this.EmailTypeID.Company: {
-          console.log("Company");
-          if (this.companyMail == "")
+      if (email.Disabled == false) {
+        switch (email.EmailTypeID) {
+          case this.EmailTypeID.Company: {
+            console.log("Company");
+            // if (this.companyMail == "")
             this.companyMail = email.Address;
-          break;
-        }
+            break;
+          }
 
-        case this.EmailTypeID.Personal: {
-          console.log("Personal");
-          if (this.alternativeMail == "")
+          case this.EmailTypeID.Personal: {
+            console.log("Personal");
+            // if (this.alternativeMail == "")
             this.alternativeMail = email.Address;
-          break;
-        }
+            break;
+          }
 
-        case this.EmailTypeID.Shared: {
-          console.log("Shared");
-          if (this.sharedMail == "")
+          case this.EmailTypeID.Shared: {
+            console.log("Shared");
+            // if (this.sharedMail == "")
             this.sharedMail = email.Address;
-          break;
+            break;
+          }
+
+          default: {
+            console.log("default");
+            break;
+          }
         }
 
-        default: {
-          console.log("default");
-          break;
-        }
       }
 
     });
@@ -120,9 +123,9 @@ export class MemberEditComponent implements OnInit {
 
   //send update
   updateProfile() {
-    
+
     let data = new OnCallUserModel();
-    data.Domain =    this.getDomain();
+    data.Domain = this.getDomain();
     data.Username = this.getLanId();
     data.PersonalEmail = this.alternativeMail;
     data.SharedEmail = this.sharedMail;
