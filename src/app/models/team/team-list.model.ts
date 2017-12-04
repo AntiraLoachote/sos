@@ -5,3 +5,8 @@ export class TeamsModel {
 }
 
 
+export class UserModel {
+    public groupId : number;
+    public userId : number;
+    public name : string;
+}

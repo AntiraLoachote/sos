@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MemberModalComponent } from './member-modal/member-modal.component';
 import { MemberService } from "app/member/member.service";
 import { ModalModule } from 'ngx-bootstrap';
+import { SearchFilterPipe } from 'app/pipe/search-filter-pipe';
 
 @NgModule({
   imports: [
@@ -19,9 +20,13 @@ import { ModalModule } from 'ngx-bootstrap';
     ModalModule.forRoot()
     
   ],
-  declarations: [MemberCreateComponent, 
-    MemberEditComponent, MemberDetailComponent, 
-    MemberComponent, MemberModalComponent
+  declarations: [
+    MemberCreateComponent, 
+    MemberEditComponent, 
+    MemberDetailComponent, 
+    MemberComponent, 
+    MemberModalComponent,
+    SearchFilterPipe
   ],
   providers: [MemberService],
   entryComponents: [MemberModalComponent]

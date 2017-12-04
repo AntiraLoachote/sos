@@ -107,3 +107,7 @@ body .team-member ::-webkit-scrollbar-thumb {
     margin-left: 5px;
     display: inline-block;
 }
+
+.padding-r {
+    padding-right: 15px !important;
+}
