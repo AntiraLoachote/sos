@@ -57,7 +57,6 @@ export class ReportComponent implements OnInit {
         this.defaultEndSQLFormat = moment(this.defaultEnd).format("YYYY-MM-DD");
 
         this.ticketRecords = [];
-        // this.groupIDs = [1, 2, 3, 5, 6, 7, 8, 9];
         this.prepareGroupSelected();
         this.getTicketsInPeriod();
 
@@ -92,6 +91,7 @@ export class ReportComponent implements OnInit {
         }
 
         console.log('groupIDs : ' + this.groupIDs);
+        
     }
 
     changeGroupSelected(){
@@ -135,9 +135,9 @@ export class ReportComponent implements OnInit {
         console.log(JSON.stringify(this.ticketRecords));
 
         //mock test
-        // this.testData();
+        this.testData();
 
-        this.callTicketsApi(this.defaultStartSQLFormat,this.defaultEndSQLFormat, this.groupIDs);
+        // this.callTicketsApi(this.defaultStartSQLFormat,this.defaultEndSQLFormat, this.groupIDs);
 
 
     }
@@ -265,6 +265,7 @@ export class ReportComponent implements OnInit {
                         text: null
                     },
                     tickInterval: 20,
+                    
                 },
                 legend: {
                     reversed: true,
@@ -274,7 +275,7 @@ export class ReportComponent implements OnInit {
                     symbolHeight: 20,
                     symbolWidth: 20,
                     symbolRadius: 0,
-                    symbolPadding: 10,
+                    symbolPadding: 20,
                     x: 125,
                     y: 0
                 },
@@ -334,21 +335,22 @@ export class ReportComponent implements OnInit {
                 //['Week1', 60, 24, '']
                 //var weekNumber = moment(data[j].SubmittedAt).week();
                 //startDate =  moment(this.defaultStartSQLFormat).day(0)
-                var diff = moment(moment(data[j].SubmittedAt).day(6), "DD/MM/YYYY HH:mm:ss").diff(moment(this.startDate, "DD/MM/YYYY HH:mm:ss"));
-                var diffinMS = moment.duration(diff);
-                var lengthOfWeek = Math.floor(diffinMS.asMilliseconds() / 604800000);
-                var endWeek = this.startWeek + lengthOfWeek;
 
-                var relativeWeekNumber = (endWeek - this.startWeek) + 1;
-                console.log(relativeWeekNumber);
-                if (data[j].TimeUsed < 300000) {
-                    this.ticketRecords[relativeWeekNumber][1] = this.ticketRecords[relativeWeekNumber][1] + 1;
-                }
-                else if (data[j].TimeUsed < 1800000) {
-                    this.ticketRecords[relativeWeekNumber][2] = this.ticketRecords[relativeWeekNumber][2] + 1;
-                } else {
-                    this.ticketRecords[relativeWeekNumber][3] = this.ticketRecords[relativeWeekNumber][3] + 1;
-                }
+                // var diff = moment(moment(data[j].SubmittedAt).day(6), "DD/MM/YYYY HH:mm:ss").diff(moment(this.startDate, "DD/MM/YYYY HH:mm:ss"));
+                // var diffinMS = moment.duration(diff);
+                // var lengthOfWeek = Math.floor(diffinMS.asMilliseconds() / 604800000);
+                // var endWeek = this.startWeek + lengthOfWeek;
+
+                // var relativeWeekNumber = (endWeek - this.startWeek) + 1;
+                // console.log(relativeWeekNumber);
+                // if (data[j].TimeUsed < 300000) {
+                //     this.ticketRecords[relativeWeekNumber][1] = this.ticketRecords[relativeWeekNumber][1] + 1;
+                // }
+                // else if (data[j].TimeUsed < 1800000) {
+                //     this.ticketRecords[relativeWeekNumber][2] = this.ticketRecords[relativeWeekNumber][2] + 1;
+                // } else {
+                //     this.ticketRecords[relativeWeekNumber][3] = this.ticketRecords[relativeWeekNumber][3] + 1;
+                // }
 
                 //filter text on table
                 let temp = data[j];
@@ -376,13 +378,22 @@ export class ReportComponent implements OnInit {
 
         }
 
-        console.log(this.ticketRecords);
-        console.log(this.AllTicketsData);
+        // console.log(this.ticketRecords);
+        // console.log(this.AllTicketsData);
 
         this.rangeData = [];
         this.sourceCol1 = [];
         this.sourceCol2 = [];
         this.sourceCol3 = [];
+
+         //mock up
+        this.ticketRecords= [
+            ["12-18Nov 2017",18,7,0],
+            ["19-25Nov 2017",13,6,1],
+            ["26 Nov-02 Dec2017",36,20,8],
+            ["3-9Dec 2017",13,10,32]
+        // ];
+        ,["3-9Dec 2017",0,0,25]];
 
         this.ticketRecords.forEach(i => {
             if (i[1] == 0) {
@@ -404,6 +415,8 @@ export class ReportComponent implements OnInit {
         console.log(this.sourceCol1, this.sourceCol2, this.sourceCol3);
 
         this.loadChart(this.rangeData, this.sourceCol1, this.sourceCol2, this.sourceCol3);
+
+       
     }
 
     selectedStartDate() {
