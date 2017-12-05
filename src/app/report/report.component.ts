@@ -393,21 +393,21 @@ export class ReportComponent implements OnInit {
                 //['Week1', 60, 24, '']
                 //var weekNumber = moment(data[j].SubmittedAt).week();
                 //startDate =  moment(this.defaultStartSQLFormat).day(0)
-                var diff = moment(moment(data[j].SubmittedAt).day(6), "DD/MM/YYYY HH:mm:ss").diff(moment(this.startDate, "DD/MM/YYYY HH:mm:ss"));
-                var diffinMS = moment.duration(diff);
-                var lengthOfWeek = Math.floor(diffinMS.asMilliseconds() / 604800000);
-                var endWeek = this.startWeek + lengthOfWeek;
+                // var diff = moment(moment(data[j].SubmittedAt).day(6), "DD/MM/YYYY HH:mm:ss").diff(moment(this.startDate, "DD/MM/YYYY HH:mm:ss"));
+                // var diffinMS = moment.duration(diff);
+                // var lengthOfWeek = Math.floor(diffinMS.asMilliseconds() / 604800000);
+                // var endWeek = this.startWeek + lengthOfWeek;
 
-                var relativeWeekNumber = (endWeek - this.startWeek) + 1;
-                console.log(relativeWeekNumber);
-                if (data[j].TimeUsed < 300000) {
-                    this.ticketRecords[relativeWeekNumber][1] = this.ticketRecords[relativeWeekNumber][1] + 1;
-                }
-                else if (data[j].TimeUsed < 1800000) {
-                    this.ticketRecords[relativeWeekNumber][2] = this.ticketRecords[relativeWeekNumber][2] + 1;
-                } else {
-                    this.ticketRecords[relativeWeekNumber][3] = this.ticketRecords[relativeWeekNumber][3] + 1;
-                }
+                // var relativeWeekNumber = (endWeek - this.startWeek) + 1;
+                // console.log(relativeWeekNumber);
+                // if (data[j].TimeUsed < 300000) {
+                //     this.ticketRecords[relativeWeekNumber][1] = this.ticketRecords[relativeWeekNumber][1] + 1;
+                // }
+                // else if (data[j].TimeUsed < 1800000) {
+                //     this.ticketRecords[relativeWeekNumber][2] = this.ticketRecords[relativeWeekNumber][2] + 1;
+                // } else {
+                //     this.ticketRecords[relativeWeekNumber][3] = this.ticketRecords[relativeWeekNumber][3] + 1;
+                // }
 
                 //filter text on table
                 let temp = data[j];
