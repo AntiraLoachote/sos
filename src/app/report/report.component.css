@@ -49,6 +49,7 @@
 .table-detail {
     padding: 0;
     margin: 100px auto;
+    margin-top: 85px;
 }
 
 .table-detail .table {
@@ -141,68 +142,95 @@
     background: #FFFFFF;
   }
   .fixed_headers th {
-    text-decoration: underline;
+    background: white;
+    color: #868686;
+    font-weight: 500;
+    font-size: 0.9rem;
   }
   .fixed_headers th,
   .fixed_headers td {
-    padding: 5px;
+    padding: 5px 10px;
     text-align: left;
-  }
-  .fixed_headers td:nth-child(1),
-  .fixed_headers th:nth-child(1) {
-    min-width: 150px;
-  }
-  .fixed_headers td:nth-child(2),
-  .fixed_headers th:nth-child(2) {
-    min-width: 150px;
-  }
-  .fixed_headers td:nth-child(3),
-  .fixed_headers th:nth-child(3) {
-    min-width: 100px;
+    color: #B0B0B0;
+    font-size: 0.85rem;
   }
 
-  .fixed_headers td:nth-child(4),
-  .fixed_headers th:nth-child(4) {
-    min-width: 100px;
+  .fixed_headers td {
+    /* padding: .75rem; */
+    height: 80px;
+    border-bottom: 2px solid #B1B3B2;
   }
 
-  .fixed_headers td:nth-child(5),
-  .fixed_headers th:nth-child(5) {
-    min-width: 100px;
+  .fixed_headers td:nth-child(1)
+  {
+    width: 10%;
+
+  }
+  .fixed_headers td:nth-child(2)
+  {
+    width: 10%;
+  }
+  .fixed_headers td:nth-child(3)
+  {
+    width: 9%;
   }
 
-  .fixed_headers td:nth-child(6),
-  .fixed_headers th:nth-child(6) {
-    min-width: 120px;
+  .fixed_headers td:nth-child(4)
+  {
+    width: 8%;
   }
 
-  .fixed_headers td:nth-child(7),
-  .fixed_headers th:nth-child(7) {
-    min-width: 80px;
+  .fixed_headers td:nth-child(5)
+  {
+
+    width: 10%;
   }
 
-  .fixed_headers td:nth-child(8),
-  .fixed_headers th:nth-child(8) {
-    min-width: 170px;
+  .fixed_headers td:nth-child(6)
+  {
+    width: 15%;
+   
+  }
+
+  .fixed_headers td:nth-child(7)
+  {
+    width: 9%;
+  }
+
+  .fixed_headers td:nth-child(8)
+  {
+   
+    width: 6%;
+    max-width: 270px;
   }
 
   .fixed_headers thead {
-    background-color: #333;
-    color: #FDFDFD;
+    background-color: white;
+    color: #868686;
   }
   .fixed_headers thead tr {
     display: block;
     position: relative;
+    border: 1px solid #ddd;
   }
   .fixed_headers tbody {
     display: block;
-    overflow: auto;
+    overflow-y: scroll;
+    overflow-x: hidden;
     width: 100%;
-    height: 300px;
+    height: 410px;
+    border: 1px solid #ddd;
   }
   .fixed_headers tbody tr:nth-child(even) {
-    background-color: #FAFCFB;
+    background-color : white;
   }
+
+  .fixed_headers tbody tr:nth-child(odd) {
+    background-color : #FAFCFB;
+  }
+  /* .p-des {
+    width: 55%;
+  } */
   .old_ie_wrapper {
     height: 300px;
     width: 750px;
@@ -231,7 +259,16 @@
     left: 25px;
   }
   
-
+.btn-export {
+    float: right;
+    margin-bottom: 10px;
+    background-color: #1D7044;
+    border: 0;
+    cursor: pointer;
+    font-size: .9rem;
+    padding: 7px 15px;
+    border-radius: 50px;
+}
   
 @media screen and (min-width: 1285px), screen and (min-height: 615px) {
     .sub-header .navbar  {
@@ -268,8 +305,44 @@
     .anchor {
         position: absolute;
         right: 3vh;
-        top: 3.7%;
+        top: 40%;
     }
+
+    .fixed_headers th:nth-child(2)
+    {
+        padding-left: 25px;
+    }
+    .fixed_headers th:nth-child(3)
+    {
+        padding-left: 96px;
+    }
+  
+    .fixed_headers th:nth-child(4)
+    {
+        padding-left: 59px;
+    }
+  
+    .fixed_headers th:nth-child(5)
+    {
+  
+        padding-left: 32px;
+    }
+  
+    .fixed_headers th:nth-child(6)
+    {
+        padding-left: 78px;
+     
+    }
+  
+    .fixed_headers th:nth-child(7)
+    {
+        padding-left: 80px;
+    }
+
+    .table-detail {
+        margin-bottom: 40px;
+    }
+  
 }
     
 @media screen and (min-width: 1286px), screen and (min-height: 918px) {
@@ -299,15 +372,20 @@
         margin-top: 12px;
     }
 
-    .anchor {
-        position: absolute;
-        right: 3vh;
-        top: 4.7%;
-    }
-
     .col-checkbox {
         padding-bottom: 15px;
         padding-right: 8px;
+    }
+
+    .anchor {
+        position: absolute;
+        right: 38px;
+        top: 38%;
+    }
+
+    .table-detail {
+        margin-bottom: 55px;
+        margin-top: 50px;
     }
 
     #tableDetail {
@@ -317,6 +395,10 @@
     .custom-control-description {
         padding-top: 2px;
     }
+
+    .fixed_headers tbody {
+        height: 666px;
+      }
 
         
 }
@@ -349,9 +431,69 @@
 
     .anchor {
         position: absolute;
-        right: 40px;
-        top: 7%;
+        right: 38px;
+        top: 36%;
     }
+
+    .table-detail {
+        margin-top: 150px;
+        margin-bottom: 320px;
+    }
+
+    #tableDetail {
+        margin-top: 110px;
+    }
+    
+    .fixed_headers th,.fixed_headers td {
+        font-size: 1rem;
+    }
+
+
+    .fixed_headers th:nth-child(2)
+    {
+        padding-left: 76px;
+    }
+    .fixed_headers th:nth-child(3)
+    {
+        padding-left: 160px;
+    }
+  
+    .fixed_headers th:nth-child(4)
+    {
+        padding-left: 130px;
+    }
+  
+    .fixed_headers th:nth-child(5)
+    {
+  
+        padding-left: 90px;
+    }
+  
+    .fixed_headers th:nth-child(6)
+    {
+        padding-left: 155px;
+     
+    }
+  
+    .fixed_headers th:nth-child(7)
+    {
+        padding-left: 184px;
+    }
+
+    .fixed_headers th:nth-child(8)
+    {
+        padding-left: 70px;
+    }
+
+    .btn-export {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+        padding: 9px 21px;
+    }
+
+    .fixed_headers tbody {
+        height: 600px;
+      }
        
 }
 
