@@ -15,52 +15,34 @@
 
   <div class="row">
     <div class="col-3 col-xs-12">
-      <!-- <div class="row"> -->
+
       <div class="form-inline text-label">
         <div class="form-group">
           <label for="example-date-input" style="display: inline-block; width: 81px;">
             <b style="font-size:1rem;">Date from:</b>
           </label>
 
-          <input type="text" class="form-control" placeholder="YYYY-MM-DD" bsDatepicker 
-          [(ngModel)] ="FilterDateFrom"
-          [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
-          (bsValueChange)="FilterDateFrom = $event ; selectedStartDate()"
-          style="display: inline-block; margin-left: 20px;"
+          <input type="text" class="form-control" placeholder="YYYY-MM-DD" bsDatepicker [(ngModel)]="FilterDateFrom" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
+            (bsValueChange)="FilterDateFrom = $event ; selectedStartDate()" style="display: inline-block; margin-left: 20px;"
           />
 
-          <!-- <input class="form-control"
-          [ngModel] ="FilterDateFrom | date:'yyyy-MM-dd'"
-          onkeydown="return false"
-          (ngModelChange)="FilterDateFrom = $event"
-          type="date" 
-          (input)="selectedStartDate()"
-          style="display: inline-block; margin-left: 20px;" 
-          /> -->
         </div>
       </div>
-      <!-- </div> -->
 
-      <!-- <div class="row"> -->
       <div class="form-inline text-label">
         <div class="form-group">
-          
+
           <label for="example-date-input" style="display: inline-block; width: 81px;">
             <b style="font-size:1rem;">Date to:</b>
           </label>
 
-          <input type="text" class="form-control" placeholder="YYYY-MM-DD" bsDatepicker
-          [(ngModel)] ="FilterDateTo"
-          [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
-          (bsValueChange)="FilterDateTo = $event ; selectedStartDate()"
-          style="display: inline-block; margin-left: 20px;"
+          <input type="text" class="form-control" placeholder="YYYY-MM-DD" bsDatepicker [(ngModel)]="FilterDateTo" [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
+            (bsValueChange)="FilterDateTo = $event ; selectedStartDate()" style="display: inline-block; margin-left: 20px;"
           />
 
         </div>
       </div>
-      <!-- </div> -->
 
-      <!-- <div class="row"> -->
       <div class="form-inline text-label">
         <div class="form-group">
           <label for="example-date-input" style="display: inline-block; ">
@@ -69,91 +51,25 @@
 
         </div>
       </div>
-      <!-- </div> -->
+
 
       <div class="row">
         <div class="card">
           <div class="card-block">
             <div class="col-checkbox">
-              <div class="checkteam" >
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" 
-                  [checked]="group1"  (change)="group1 = !group1; changeGroupSelected()">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                    OTC
-                  </span>
-                </label>
-              </div>
-              <div class="checkteam">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" 
-                  [checked]="group2"  (change)="group2 = !group2; changeGroupSelected()">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                    Retail
-                  </span>
-                </label>
-              </div>
-              <div class="checkteam">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input"    
-                  [checked]="group3"  (change)="group3 = !group3; changeGroupSelected()">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                    Siebel Technical Service
-                  </span>
-                </label>
-              </div>
-              <div class="checkteam">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input"    
-                  [checked]="group5"  (change)="group5 = !group5; changeGroupSelected()">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                    GPM
-                  </span>
-                </label>
-              </div>
+              <div class="checkteam" *ngFor="let item of teamList; let inx = index">
+                <label class=" custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ">
 
-              <div class="checkteam">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" 
-                  [checked]="group6"  (change)="group6 = !group6; changeGroupSelected()">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                    EDI CS and XCOM
-                  </span>
-                </label>
-              </div>
-              <div class="checkteam">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input"  [checked]="group7"  (change)="group7 = !group7; changeGroupSelected()">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                    M&S Secondary Distributions
-                  </span>
-                </label>
-              </div>
-              <div class="checkteam">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" [checked]="group8" (change)="group8 = !group8; changeGroupSelected()">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                    Basis Output and Archiving
-                  </span>
-                </label>
-              </div>
-              <div class="checkteam">
-                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-                  <input type="checkbox" class="custom-control-input" [checked]="group9" (change)="group9 = !group9; changeGroupSelected()">
-                  <span class="custom-control-indicator"></span>
-                  <span class="custom-control-description">
-                      S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication
-                  </span>
-                </label>
-              </div>
+                  <input type="checkbox" class="custom-control-input" [(ngModel)]="item.checked" 
+                  [checked]="item.checked" (change)="item.checked=!item.checked; changeGroupSelected(inx,!item.checked)">
 
+                  <span class="custom-control-indicator "></span>
+                  <span class="custom-control-description ">
+                    {{item.name}}
+                  </span>
+                </label>
+              </div>
+            
             </div>
 
           </div>
@@ -162,27 +78,27 @@
 
 
     </div>
-    <div class="col col-xs-12">
+    <div class="col col-xs-12 ">
       <!-- Graph -->
 
-      <div class="col-11">
-        <chart [options]="options"  class="box-chart" ></chart>
+      <div class="col-11 ">
+        <chart [options]="options " class="box-chart "></chart>
       </div>
 
     </div>
   </div>
 
-  <a class="anchor" href="/report#tableDetail" >
-    <img src="./assets/img/down.png" style="width: 2.5vw;">
+  <a class="anchor " href="/report#tableDetail ">
+    <img src="./assets/img/down.png " style="width: 2.5vw; ">
   </a>
 
-  <div class="row" id="tableDetail">
-    
-    <div class="col-11 table-detail">
-        <button type="button" class="btn btn-success btn-export">
-            <img src="./assets/img/icon-excel.JPG" style="width: 24px;">
-            EXPORT</button>
-      <table class="fixed_headers" >
+  <div class="row " id="tableDetail ">
+
+    <div class="col-11 table-detail ">
+      <button type="button " class="btn btn-success btn-export ">
+        <img src="./assets/img/icon-excel.JPG " style="width: 24px; "> EXPORT
+      </button>
+      <table class="fixed_headers ">
         <thead>
           <tr>
             <th>Incident number</th>
@@ -191,105 +107,28 @@
             <th>Products</th>
             <th>Group</th>
             <th>Date Submitted</th>
-            <th >Response time</th>
+            <th>Response time</th>
             <th>Description</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let item of AllTicketsData">
-            <td  [ngClass]="{'text-green': item.TimeUsed < 300000,
-             'text-red' : item.TimeUsed < 1800000 }" style="color: #F6DC71;">{{item.IncidentNumber}}</td>
-            <td >{{item.SubmittedName }} </td>
+          <tr *ngFor="let item of AllTicketsData ">
+            <td [ngClass]="{ 'text-green': item.TimeUsed < 300000, 'text-red' : item.TimeUsed < 1800000 } " style="color:
+                #F6DC71; ">{{item.IncidentNumber}}</td>
+            <td>{{item.SubmittedName }} </td>
             <td>{{item.OncallFName}} </td>
             <td>{{item.ProductName}}</td>
             <td>{{item.GroupName }}</td>
             <td>{{item.SubmittedAt}}</td>
-            <td><span *ngIf="item.ResponseTime != 'Infinity'">{{item.ResponseTime}}</span>
-              <p *ngIf="item.ResponseTime == 'Infinity'">&#8734;</p></td>
-            <td><p class="p-des">{{item.Description }}</p></td>
+            <td>
+              <span *ngIf="item.ResponseTime !='Infinity' ">{{item.ResponseTime}}</span>
+              <p *ngIf="item.ResponseTime=='Infinity' ">&#8734;</p>
+            </td>
+            <td>
+              <p class="p-des ">{{item.Description }}</p>
+            </td>
           </tr>
 
-          <!-- mock -->
-          <!-- <tr>
-            <td class="text-red">S0S0000002566</td>
-            <td>Charida, Pethyothin
-            </td>
-            <td>Sathapana, Sakhet
-            </td>
-            <td>STRIPES EU OTC Order Processing</td>
-            <td>S.W.I.T.F - Society for worldwide interbank financial telecommunication</td>
-            <td>October 9th 2017 11:32:06 pm</td>
-            <td>0 hrs 5 mins 42 secs
-            </td>
-            <td>UC4MON-GBP J3-202 - JSF- 230747 - idenifier - ROIKPIPR Host name: AMPB</td>
-          </tr>
-          <tr>
-            <td class="text-yellow">S0S0000002566</td>
-            <td>Charida, Pethyothin
-            </td>
-            <td>Sathapana, Sakhet
-            </td>
-            <td>STRIPES EU OTC Order Processing</td>
-            <td>S.W.I.T.F - Society for worldwide interbank financial telecommunication</td>
-            <td>October 9th 2017 11:32:06 pm</td>
-            <td>0 hrs 5 mins 42 secs
-            </td>
-            <td>UC4MON-GBP J3-202 - JSF- 230747 - idenifier - ROIKPIPR Host name: AMPB</td>
-          </tr>
-          <tr>
-            <td class="text-green">S0S0000002566</td>
-            <td>Charida, Pethyothin
-            </td>
-            <td>Sathapana, Sakhet
-            </td>
-            <td>STRIPES EU OTC Order Processing</td>
-            <td>S.W.I.T.F - Society for worldwide interbank financial telecommunication</td>
-            <td>October 9th 2017 11:32:06 pm</td>
-            <td>0 hrs 5 mins 42 secs
-            </td>
-            <td>UC4MON-GBP J3-202 - JSF- 230747 - idenifier - ROIKPIPR Host name: AMPB</td>
-          </tr>
-          <tr>
-            <td class="text-red">S0S0000002566</td>
-            <td>Charida, Pethyothin
-            </td>
-            <td>Sathapana, Sakhet
-            </td>
-            <td>STRIPES EU OTC Order Processing</td>
-            <td>S.W.I.T.F - Society for worldwide interbank financial telecommunication</td>
-            <td>October 9th 2017 11:32:06 pm</td>
-            <td>0 hrs 5 mins 42 secs
-            </td>
-            <td>UC4MON-GBP J3-202 - JSF- 230747 - idenifier - ROIKPIPR Host name: AMPB</td>
-          </tr>
-          <tr>
-            <td class="text-yellow">S0S0000002566</td>
-            <td>Charida, Pethyothin
-            </td>
-            <td>Sathapana, Sakhet
-            </td>
-            <td>STRIPES EU OTC Order Processing</td>
-            <td>S.W.I.T.F - Society for worldwide interbank financial telecommunication</td>
-            <td>October 9th 2017 11:32:06 pm</td>
-            <td>0 hrs 5 mins 42 secs
-            </td>
-            <td>UC4MON-GBP J3-202 - JSF- 230747 - idenifier - ROIKPIPR Host name: AMPB</td>
-          </tr>
-          <tr>
-            <td class="text-green">S0S0000002566</td>
-            <td>Charida, Pethyothin
-            </td>
-            <td>Sathapana, Sakhet
-            </td>
-            <td>STRIPES EU OTC Order Processing</td>
-            <td>S.W.I.T.F - Society for worldwide interbank financial telecommunication</td>
-            <td>October 9th 2017 11:32:06 pm</td>
-            <td>0 hrs 5 mins 42 secs
-            </td>
-            <td>UC4MON-GBP J3-202 - JSF- 230747 - idenifier - ROIKPIPR Host name: AMPB</td>
-          </tr> -->
-          
-          
         </tbody>
       </table>
     </div>

@@ -3,6 +3,8 @@ import * as moment from 'moment';
 import { Observable } from 'rxjs/Observable';
 import { forkJoin } from "rxjs/observable/forkJoin";
 import { ReportService } from 'app/report/report.service';
+import { TeamsModel } from 'app/models/team/team-list.model';
+import { TeamService } from 'app/team/team.service';
 
 @Component({
     selector: 'app-report',
@@ -10,6 +12,7 @@ import { ReportService } from 'app/report/report.service';
     styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
+    teamList: any;
     AllTicketsData: any;
     groupIDs: any[] = [];
     defaultEndSQLFormat: string;
@@ -41,6 +44,7 @@ export class ReportComponent implements OnInit {
 
     constructor(
         private _reportService: ReportService,
+        private _teamService: TeamService
     ) {
     }
 
@@ -57,46 +61,84 @@ export class ReportComponent implements OnInit {
         this.defaultEndSQLFormat = moment(this.defaultEnd).format("YYYY-MM-DD");
 
         this.ticketRecords = [];
-        // this.groupIDs = [1, 2, 3, 5, 6, 7, 8, 9];
+        this.teamList = [];
+
+       this.getTeams();
+        // this.mockTeams();
+
         this.prepareGroupSelected();
         this.getTicketsInPeriod();
 
     }
 
-    prepareGroupSelected(){
-        this.groupIDs = [];
+    mockTeams() {
+        //mock test
+        let result = [{ "GroupID": 1, "Name": "Retail", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 2, "Name": "OTC", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 3, "Name": "Siebel Technical Services", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 5, "Name": "GPM", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 6, "Name": "EDI CS and XCOM", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 7, "Name": "S.W.I.F.T. - Society for Worldwide Interbank Financial Telecommunication", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 8, "Name": "M&S Secondary Distribution", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 9, "Name": "Basis Output and Archiving", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }];
+        this.teamList = [];
+        //prepare data select
+        result.forEach(i => {
 
-        if(this.group1){
-            this.groupIDs.push(1);
-        }
-        if(this.group2){
-            this.groupIDs.push(2);
-        }
-        if(this.group3){
-            this.groupIDs.push(3);
-        }
-        if(this.group5){
-            this.groupIDs.push(5);
-        }
-        if(this.group6){
-            this.groupIDs.push(6);
-        }
-        if(this.group7){
-            this.groupIDs.push(7);
-        }
-        if(this.group8){
-            this.groupIDs.push(8);
-        }
-        if(this.group9){
-            this.groupIDs.push(9);
-        }
+            let data = new TeamsModel();
+            data.groupID = i.GroupID;
+            data.name = i.Name;
+            data.checked = true;
 
-        console.log('groupIDs : ' + this.groupIDs);
+            this.teamList.push(data);
+
+        });
     }
 
-    changeGroupSelected(){
-       this.prepareGroupSelected();
-       this.getTicketsInPeriod();
+    getTeams() {
+        this._teamService.getTeams().subscribe(
+            Response => {
+                console.log("Get Teams success!" + JSON.stringify(Response));
+
+                let result = Response;
+
+                this.teamList = [];
+                //prepare data select
+                result.forEach(i => {
+
+                    let data = new TeamsModel();
+                    data.groupID = i.GroupID;
+                    data.name = i.Name;
+                    data.checked = true;
+
+                    this.teamList.push(data);
+
+                });
+
+                console.log("Teams = " + JSON.stringify(this.teamList));
+
+
+            },
+            err => {
+                console.log("Can't get Teams")
+            }
+        );
+    }
+
+    prepareGroupSelected() {
+        this.groupIDs = [];
+
+        this.teamList.forEach(i => {
+
+            if (i.checked) {
+                this.groupIDs.push(i.groupID);
+            }
+        });
+
+        console.log('groupIDs : ' + this.groupIDs);
+
+    }
+
+    changeGroupSelected(index: number, value: boolean) {
+        if (index >= 0) {
+            this.teamList[index].checked = value;
+        }
+        // console.log(JSON.stringify(this.teamList));
+        this.prepareGroupSelected();
+        this.getTicketsInPeriod();
     }
 
     getTicketsInPeriod() {
@@ -242,7 +284,7 @@ export class ReportComponent implements OnInit {
     loadChart(yAixName, sourceCol1, sourceCol2, sourceCol3) {
         let heightItem = 50;
         let positionNum = -31;
-        if(screen.height > 970){
+        if (screen.height > 970) {
             heightItem = 65;
             positionNum = -40;
         }
@@ -272,7 +314,7 @@ export class ReportComponent implements OnInit {
                             width: '100px',
                             'min-width': '100px'
                         },
-                        useHTML : true
+                        useHTML: true
                     }
                 },
                 yAxis: {
@@ -281,6 +323,7 @@ export class ReportComponent implements OnInit {
                         text: null
                     },
                     tickInterval: 20,
+
                 },
                 legend: {
                     reversed: true,
@@ -399,6 +442,15 @@ export class ReportComponent implements OnInit {
         this.sourceCol1 = [];
         this.sourceCol2 = [];
         this.sourceCol3 = [];
+
+        //mock up
+        this.ticketRecords = [
+            ["12-18Nov 2017", 18, 7, 0],
+            ["19-25Nov 2017", 13, 6, 1],
+            ["26 Nov-02 Dec2017", 36, 20, 8],
+            ["3-9Dec 2017", 13, 10, 32]
+            // ];
+            , ["3-9Dec 2017", 0, 0, 25]];
 
         this.ticketRecords.forEach(i => {
             if (i[1] == 0) {
