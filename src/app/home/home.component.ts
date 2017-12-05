@@ -25,9 +25,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
-    $(".sonar-wave").on("webkitAnimationIteration oanimationiteration animationiteration", function(){
-      $(this).css("background-color", this.colorize());
-    })
+    // $(".sonar-wave").on("webkitAnimationIteration oanimationiteration animationiteration", function(){
+    //   $(this).css("background-color", this.colorize());
+    // })
   
 
     this.UsernameBadge = "Krichpas Khumthanom";
@@ -75,10 +75,10 @@ export class HomeComponent implements OnInit {
     this.getUsername();
   }
 
-  colorize() {
-    var hue = Math.random() * 360;
-    return "HSL(" + hue + ",100%,50%)";
-  }
+  // colorize() {
+  //   var hue = Math.random() * 360;
+  //   return "HSL(" + hue + ",100%,50%)";
+  // }
 
   showText() {
     alert("Thank you for completing a ticket");
