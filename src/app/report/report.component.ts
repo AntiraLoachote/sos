@@ -63,8 +63,8 @@ export class ReportComponent implements OnInit {
         this.ticketRecords = [];
         this.teamList = [];
 
-       this.getTeams();
-        // this.mockTeams();
+        // this.getTeams();
+        this.mockTeams();
 
         this.prepareGroupSelected();
         this.getTicketsInPeriod();
