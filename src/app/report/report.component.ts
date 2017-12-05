@@ -240,6 +240,12 @@ export class ReportComponent implements OnInit {
 
 
     loadChart(yAixName, sourceCol1, sourceCol2, sourceCol3) {
+        let heightItem = 50;
+        let positionNum = -31;
+        if(screen.height > 970){
+            heightItem = 65;
+            positionNum = -40;
+        }
         //init bar chart 
         this.options =
             {
@@ -253,11 +259,21 @@ export class ReportComponent implements OnInit {
                 credits: {
                     enabled: false
                 },
+                exporting: {
+                    enabled: false
+                },
                 colors: [
                     '#EA675A', '#F6DC71', '#62D894'
                 ],
                 xAxis: {
-                    categories: yAixName
+                    categories: yAixName,
+                    labels: {
+                        style: {
+                            width: '100px',
+                            'min-width': '100px'
+                        },
+                        useHTML : true
+                    }
                 },
                 yAxis: {
                     min: 0,
@@ -286,10 +302,10 @@ export class ReportComponent implements OnInit {
                             enabled: true,
                             align: 'center',
                             color: 'black',
-                            y: -50
+                            y: positionNum
 
                         },
-                        pointWidth: 80,
+                        pointWidth: heightItem,
                         marginLeft: 0,
                     }
                 },
