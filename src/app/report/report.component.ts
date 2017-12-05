@@ -5,6 +5,7 @@ import { forkJoin } from "rxjs/observable/forkJoin";
 import { ReportService } from 'app/report/report.service';
 import { TeamsModel } from 'app/models/team/team-list.model';
 import { TeamService } from 'app/team/team.service';
+import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 
 @Component({
     selector: 'app-report',
@@ -500,6 +501,28 @@ export class ReportComponent implements OnInit {
 
     }
 
+    exportDataToExcel() {
+
+        var head = ['IncidentNumber', 'User', 'Oncall', 'Products', 'Group', 'Date Submitted','Response time','Description'];
+        var data = [];
+        this.AllTicketsData.forEach(item => {
+            let dataJson = {
+                IncidentNumber: item.IncidentNumber,
+                User: item.SubmittedName,
+                Oncall: item.OncallFName,
+                Products: item.ProductName,
+                Group: item.GroupName,
+                DateSubmitted: item.SubmittedAt,
+                Responsetime: item.ResponseTime,
+                Description:item.Description
+            };
+
+            data.push(dataJson);
+        });
+
+        new Angular2Csv(data, 'sos_ticket_details', { headers: (head) });
+
+    }
 
 
 
