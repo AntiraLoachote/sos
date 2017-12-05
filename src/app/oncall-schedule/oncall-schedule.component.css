@@ -185,3 +185,9 @@
     background: white;
     border: 1px solid #44b9cb;
 }
+
+@media screen and (min-width: 1920px), screen and (min-height: 974px) {
+    .sub-header {
+        margin-top: 44px;
+    }
+}

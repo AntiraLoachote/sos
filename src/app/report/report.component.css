@@ -221,3 +221,10 @@
       padding: 0;
   }
   
+
+
+  @media screen and (min-width: 1920px), screen and (min-height: 974px) {
+    .sub-header {
+        margin-top: 44px;
+    }
+}
