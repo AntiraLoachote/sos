@@ -14,7 +14,7 @@
 <div class="content-all col-12">
 
   <div class="row">
-    <div class="col-3">
+    <div class="col-3 col-xs-12">
       <!-- <div class="row"> -->
       <div class="form-inline text-label">
         <div class="form-group">
@@ -75,7 +75,7 @@
         <div class="card">
           <div class="card-block">
             <div class="col-checkbox">
-              <div class="checkteam" style="margin-top:1.2vw;">
+              <div class="checkteam" >
                 <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
                   <input type="checkbox" class="custom-control-input" 
                   [checked]="group1"  (change)="group1 = !group1; changeGroupSelected()">
@@ -162,21 +162,21 @@
 
 
     </div>
-    <div class="col">
+    <div class="col col-xs-12">
       <!-- Graph -->
 
       <div class="col-11">
-        <chart [options]="options" style=" height: 550px;  width:100%; position:absolute; left: 25px;"></chart>
+        <chart [options]="options"  class="box-chart" ></chart>
       </div>
 
     </div>
   </div>
 
-  <div class="row" style="margin-top: 3vh;">
-    <a class="anchor" href="/report#tableDetail" style=" position: absolute; right: 5vh;">
-      <img src="./assets/img/down.png" style="width: 2.5vw;">
-    </a>
-  </div>
+  <!-- <div class="row" style="margin-top: 3vh;">
+  </div> -->
+  <a class="anchor" href="/report#tableDetail" >
+    <img src="./assets/img/down.png" style="width: 2.5vw;">
+  </a>
 
   <div class="row" id="tableDetail">
     <div class="col-11 table-detail">

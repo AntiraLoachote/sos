@@ -83,6 +83,9 @@
     color: #EA675A !important;
 }
 
+.custom-control {
+    cursor: pointer;
+}
 .custom-control-input:checked~.custom-control-indicator {
     color: #fff;
     background-color: #6EC8D6;
@@ -220,11 +223,139 @@
   :host /deep/  .bs-datepicker-container {
       padding: 0;
   }
+
+  .box-chart {
+    height: 550px;  
+    width:100%; 
+    position:absolute; 
+    left: 25px;
+  }
   
 
+  
+@media screen and (min-width: 1285px), screen and (min-height: 615px) {
+    .sub-header .navbar  {
+        margin-bottom: 0px;
+    }
 
-  @media screen and (min-width: 1920px), screen and (min-height: 974px) {
+    .sub-header .navbar .text {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+
+    }
+
+    .content-all {
+        margin-top: 13px;
+    }
+
+    .box-chart {
+        height: 470px !important;
+      }
+
+    .text-label {
+        margin-left: 1.5vw;
+    }
+
+    .card {
+        margin-left: 2.5vw;
+        width: 100%;
+    }
+
+    .checkteam {
+        margin-top: 8px;
+    }
+
+    .anchor {
+        position: absolute;
+        right: 3vh;
+        top: 3.7%;
+    }
+}
+    
+@media screen and (min-width: 1286px), screen and (min-height: 918px) {
+    .sub-header .navbar  {
+        margin-bottom: 30px;
+    }
+
+    .sub-header .navbar .text {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+
+    }
+
+    .box-chart {
+        height: 550px !important;
+      }
+    
+    .content-all {
+        margin-top: 30px;
+    }
+
+    .text-label {
+        margin-left: 1.5vw;
+    }
+
+    .checkteam {
+        margin-top: 12px;
+    }
+
+    .anchor {
+        position: absolute;
+        right: 3vh;
+        top: 4.7%;
+    }
+
+    .col-checkbox {
+        padding-bottom: 15px;
+        padding-right: 8px;
+    }
+
+    #tableDetail {
+        margin-top: 200px;
+    }
+
+    .custom-control-description {
+        padding-top: 2px;
+    }
+
+        
+}
+
+    
+@media screen and (min-width: 1920px), screen and (min-height: 974px) {
     .sub-header {
         margin-top: 44px;
     }
+
+    .sub-header .navbar  {
+        margin-bottom: 30px;
+    }
+
+    .content-all {
+        margin-top: 30px;
+    }
+
+    .box-chart {
+        height: 650px !important;
+    }
+
+    .checkteam {
+        margin-top: 18px;
+    }
+
+    .text-label {
+        margin-left: 1.5vw;
+    }
+
+    .anchor {
+        position: absolute;
+        right: 40px;
+        top: 7%;
+    }
+       
 }
+
+
+
+
+
