@@ -55,8 +55,9 @@
     color: #dc3545;
     padding: 2px 10px;
     cursor: pointer;
-    width: 10vh;
+    width: 11vh;
     font-size: 0.9rem;
+    padding-left: 15px;
 }
 
 .btn-group .btn-danger:hover {
@@ -70,8 +71,9 @@
     padding: 2px 10px;
     cursor: pointer;
     font-size: 0.9rem;
-    width: 10vh;
+    width: 11vh;
     border: 1px solid;
+    padding-left: 15px;
 }
 .btn-group .btn-info-edit:hover {
     background: transparent;
@@ -163,4 +165,30 @@
 
 .custom-control-input:focus~.custom-control-indicator {
     box-shadow: none;
+}
+
+.top-content {
+    margin-top: 25px; 
+    margin-bottom: 20px;
+}
+
+
+
+@media screen and (min-width: 1285px), screen and (min-height: 615px) {
+    .top-content {
+        margin-top: 20px; 
+        margin-bottom: 15px;
+    }
+
+    .box-pic {
+        max-width: 200px; 
+    }
+        
+}
+
+@media screen and (min-width: 1286px), screen and (min-height: 918px) {
+
+    .box-pic {
+        max-width: none; 
+    }
 }

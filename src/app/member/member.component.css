@@ -111,3 +111,45 @@ body .team-member ::-webkit-scrollbar-thumb {
 .padding-r {
     padding-right: 15px !important;
 }
+
+
+
+/* @media( max-height: 700px ){ */
+@media screen and (min-width: 1285px), screen and (min-height: 615px) {
+    .sub-header .navbar .text {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+
+    }
+
+    .sub-header .navbar {
+        margin-bottom: 10px;
+    }
+    .text-center h1 {
+        font-size: 2.3rem !important;
+        margin-bottom: 18px !important;
+    }
+}
+
+@media screen and (min-width: 1286px), screen and (min-height: 918px) {
+    .sub-header .navbar .text {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+
+    }
+
+    .sub-header .navbar {
+        margin-bottom: 40px;
+    }
+    .text-center h1 {
+        font-size: 2.5rem !important;
+        margin-bottom: 30px !important;
+    }
+}
+
+
+@media screen and (min-width: 1920px), screen and (min-height: 974px) {
+    .sub-header {
+        margin-top: 44px;
+    }
+}
