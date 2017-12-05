@@ -172,24 +172,26 @@
     </div>
   </div>
 
-  <!-- <div class="row" style="margin-top: 3vh;">
-  </div> -->
   <a class="anchor" href="/report#tableDetail" >
     <img src="./assets/img/down.png" style="width: 2.5vw;">
   </a>
 
   <div class="row" id="tableDetail">
+    
     <div class="col-11 table-detail">
-      <table class="table table-striped" >
+        <button type="button" class="btn btn-success btn-export">
+            <img src="./assets/img/icon-excel.JPG" style="width: 24px;">
+            EXPORT</button>
+      <table class="fixed_headers" >
         <thead>
           <tr>
-            <th style="min-width: 130px;">Incident number</th>
+            <th>Incident number</th>
             <th>User</th>
             <th>Oncall</th>
             <th>Products</th>
             <th>Group</th>
-            <th style="min-width: 125px;">Date Submitted</th>
-            <th style="min-width: 115px;">Response time</th>
+            <th>Date Submitted</th>
+            <th >Response time</th>
             <th>Description</th>
           </tr>
         </thead>
@@ -204,7 +206,7 @@
             <td>{{item.SubmittedAt}}</td>
             <td><span *ngIf="item.ResponseTime != 'Infinity'">{{item.ResponseTime}}</span>
               <p *ngIf="item.ResponseTime == 'Infinity'">&#8734;</p></td>
-            <td>{{item.Description }}</td>
+            <td><p class="p-des">{{item.Description }}</p></td>
           </tr>
 
           <!-- mock -->
