@@ -15,19 +15,19 @@ export class OncallScheduleService {
 
   
   //API GET TICKETS
-  // getTicketGroup(dataFrom:string, dataTo:string, groupId: number): Observable<any> {
-  //   const url = this.Config.apiSosUrl + "/api/Tickets/?from=" + dataFrom + '&to=' + dataTo + '&groupid='  + groupId;
-  //   this.sub = this.http.get(url).map(this.extractData);
-  //   return this.sub;
-  // }
+  getSchedules( groupId: number,month: number,year: number): Observable<any> {
+    const url = this.Config.apiSosUrl + "/api/schedules?groupID=" + groupId + '&month=' + month + '&year='  + year;
+    this.sub = this.http.get(url).map(this.extractData);
+    return this.sub;
+  }
 
-  // private extractData(response: Response) {
-  //   if (response.status < 200 || response.status >= 300) {
-  //     throw new Error('Bad response status: ' + response.status);
-  //   }
-  //   let body = response.json();
-  //   return body || {};
-  // }
+  private extractData(response: Response) {
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error('Bad response status: ' + response.status);
+    }
+    let body = response.json();
+    return body || {};
+  }
 
 
 }

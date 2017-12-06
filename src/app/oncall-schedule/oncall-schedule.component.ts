@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit ,ElementRef } from '@angular/core';
 import { ViewChild } from '@angular/core';
 import { CalendarComponent } from 'angular2-fullcalendar/src/calendar/calendar';
 import { TeamService } from 'app/team/team.service';
-import { TeamsModel, UserModel } from 'app/models/team/team-list.model';
+import { TeamsModel, AnalystModel } from 'app/models/team/team-list.model';
 import { MemberService } from 'app/member/member.service';
+import { OncallScheduleService } from 'app/oncall-schedule/oncall-schedule.service';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-oncall-schedule',
@@ -11,22 +13,33 @@ import { MemberService } from 'app/member/member.service';
   styleUrls: ['./oncall-schedule.component.css']
 })
 export class OncallScheduleComponent implements OnInit {
+  profilePicture: string;
+  lanId: string;
+  companyEmail: string;
+  defaultDate: string;
+  Today: string;
+  d: Date;
+  offset: number;
   analystSelected: any;
   analystList: any[];
   teamList: any[];
   username: string
   teamSelected: any;
+  month: number;
+  year: number;
 
   constructor(
     private _teamService: TeamService,
-    private _memberService: MemberService
+    private _memberService: MemberService,
+    private _oncallScheduleService : OncallScheduleService,
+    private elementRef : ElementRef
   ) { }
 
   @ViewChild(CalendarComponent) myCalendar: CalendarComponent;
 
 
   ngOnInit() {
-    this.username = "Krichpas Khumthanom";
+    // this.username = "Krichpas Khumthanom";
 
     let fristData = new TeamsModel();
     fristData.groupID = 0;
@@ -35,12 +48,115 @@ export class OncallScheduleComponent implements OnInit {
     this.teamList = [fristData];
     this.teamSelected = this.teamList[0];
 
+    this.d = new Date();
+    this.month = (this.d.getMonth() + 1);
+    this.year = this.d.getFullYear();
+    this.offset = this.d.getTimezoneOffset();
+    this.Today = moment(new Date()).format("YYYY-MM-DD");
     //GET Team List
     // this.getTeams();
     this.mockTeam();
+    this.mockGetSchedules(1,11,2017);
   }
 
+//   ngAfterViewInit() {
+//     jQuery(this.elementRef.nativeElement).find('.fc-next-button span').click(() => {
+//      console.log("do something here");
+//     });
+// }
+  
+  getSchedules(groupId: number){
+    this._oncallScheduleService.getSchedules(groupId,this.month,this.year).subscribe(        
+      Response => {
 
+      });
+  };
+
+  mockGetSchedules(groupId: number,month: number,year:number){
+      let data = [{"ScheduleID":3682,"GroupUserID":2,"StartDate":"2017-10-30T00:00:00","EndDate":"2017-11-04T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-10-30T18:30:01","EndAt":"2017-11-04T02:00:00","GroupUser":{"GroupUserID":2,"GroupID":1,"UserID":3,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":3,"FirstName":"Thanyathorn","LastName":"Patanaanunwong","LanID":"ap\\tpatana","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[{"ScheduleID":3743,"GroupUserID":2,"StartDate":"2017-11-04T00:00:00","EndDate":"2017-11-06T00:00:00","StartTime":"02:00:01","EndTime":"02:00:00","StartAt":"2017-11-04T02:00:01","EndAt":"2017-11-06T02:00:00"}],"Tickets":[]}},{"ScheduleID":3683,"GroupUserID":163,"StartDate":"2017-11-18T00:00:00","EndDate":"2017-11-20T00:00:00","StartTime":"02:00:01","EndTime":"02:00:00","StartAt":"2017-11-18T02:00:01","EndAt":"2017-11-20T02:00:00","GroupUser":{"GroupUserID":163,"GroupID":1,"UserID":1430,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":1430,"FirstName":"Madhuri","LastName":"Patil-Dasur","LanID":"ap\\mpatild","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[{"ScheduleID":3742,"GroupUserID":163,"StartDate":"2017-11-13T00:00:00","EndDate":"2017-11-15T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-13T18:30:01","EndAt":"2017-11-15T02:00:00"},{"ScheduleID":3746,"GroupUserID":163,"StartDate":"2017-11-16T00:00:00","EndDate":"2017-11-17T00:00:00","StartTime":"11:00:01","EndTime":"02:00:00","StartAt":"2017-11-16T11:00:01","EndAt":"2017-11-17T02:00:00"},{"ScheduleID":3747,"GroupUserID":163,"StartDate":"2017-11-17T00:00:00","EndDate":"2017-11-18T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-17T18:30:01","EndAt":"2017-11-18T02:00:00"}],"Tickets":[]}},{"ScheduleID":3733,"GroupUserID":100,"StartDate":"2017-11-06T00:00:00","EndDate":"2017-11-11T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-06T18:30:01","EndAt":"2017-11-11T02:00:00","GroupUser":{"GroupUserID":100,"GroupID":1,"UserID":298,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":298,"FirstName":"TAWATCHAI","LastName":"SONGPATTANASILP","LanID":"ap\\twc","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[{"ScheduleID":3734,"GroupUserID":100,"StartDate":"2017-11-11T00:00:00","EndDate":"2017-11-13T00:00:00","StartTime":"02:00:01","EndTime":"02:00:00","StartAt":"2017-11-11T02:00:01","EndAt":"2017-11-13T02:00:00"}],"Tickets":[]}},{"ScheduleID":3734,"GroupUserID":100,"StartDate":"2017-11-11T00:00:00","EndDate":"2017-11-13T00:00:00","StartTime":"02:00:01","EndTime":"02:00:00","StartAt":"2017-11-11T02:00:01","EndAt":"2017-11-13T02:00:00","GroupUser":{"GroupUserID":100,"GroupID":1,"UserID":298,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":298,"FirstName":"TAWATCHAI","LastName":"SONGPATTANASILP","LanID":"ap\\twc","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[{"ScheduleID":3733,"GroupUserID":100,"StartDate":"2017-11-06T00:00:00","EndDate":"2017-11-11T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-06T18:30:01","EndAt":"2017-11-11T02:00:00"}],"Tickets":[]}},{"ScheduleID":3742,"GroupUserID":163,"StartDate":"2017-11-13T00:00:00","EndDate":"2017-11-15T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-13T18:30:01","EndAt":"2017-11-15T02:00:00","GroupUser":{"GroupUserID":163,"GroupID":1,"UserID":1430,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":1430,"FirstName":"Madhuri","LastName":"Patil-Dasur","LanID":"ap\\mpatild","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[{"ScheduleID":3683,"GroupUserID":163,"StartDate":"2017-11-18T00:00:00","EndDate":"2017-11-20T00:00:00","StartTime":"02:00:01","EndTime":"02:00:00","StartAt":"2017-11-18T02:00:01","EndAt":"2017-11-20T02:00:00"},{"ScheduleID":3746,"GroupUserID":163,"StartDate":"2017-11-16T00:00:00","EndDate":"2017-11-17T00:00:00","StartTime":"11:00:01","EndTime":"02:00:00","StartAt":"2017-11-16T11:00:01","EndAt":"2017-11-17T02:00:00"},{"ScheduleID":3747,"GroupUserID":163,"StartDate":"2017-11-17T00:00:00","EndDate":"2017-11-18T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-17T18:30:01","EndAt":"2017-11-18T02:00:00"}],"Tickets":[]}},{"ScheduleID":3743,"GroupUserID":2,"StartDate":"2017-11-04T00:00:00","EndDate":"2017-11-06T00:00:00","StartTime":"02:00:01","EndTime":"02:00:00","StartAt":"2017-11-04T02:00:01","EndAt":"2017-11-06T02:00:00","GroupUser":{"GroupUserID":2,"GroupID":1,"UserID":3,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":3,"FirstName":"Thanyathorn","LastName":"Patanaanunwong","LanID":"ap\\tpatana","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[{"ScheduleID":3682,"GroupUserID":2,"StartDate":"2017-10-30T00:00:00","EndDate":"2017-11-04T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-10-30T18:30:01","EndAt":"2017-11-04T02:00:00"}],"Tickets":[]}},{"ScheduleID":3746,"GroupUserID":163,"StartDate":"2017-11-16T00:00:00","EndDate":"2017-11-17T00:00:00","StartTime":"11:00:01","EndTime":"02:00:00","StartAt":"2017-11-16T11:00:01","EndAt":"2017-11-17T02:00:00","GroupUser":{"GroupUserID":163,"GroupID":1,"UserID":1430,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":1430,"FirstName":"Madhuri","LastName":"Patil-Dasur","LanID":"ap\\mpatild","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[{"ScheduleID":3683,"GroupUserID":163,"StartDate":"2017-11-18T00:00:00","EndDate":"2017-11-20T00:00:00","StartTime":"02:00:01","EndTime":"02:00:00","StartAt":"2017-11-18T02:00:01","EndAt":"2017-11-20T02:00:00"},{"ScheduleID":3742,"GroupUserID":163,"StartDate":"2017-11-13T00:00:00","EndDate":"2017-11-15T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-13T18:30:01","EndAt":"2017-11-15T02:00:00"},{"ScheduleID":3747,"GroupUserID":163,"StartDate":"2017-11-17T00:00:00","EndDate":"2017-11-18T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-17T18:30:01","EndAt":"2017-11-18T02:00:00"}],"Tickets":[]}},{"ScheduleID":3747,"GroupUserID":163,"StartDate":"2017-11-17T00:00:00","EndDate":"2017-11-18T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-17T18:30:01","EndAt":"2017-11-18T02:00:00","GroupUser":{"GroupUserID":163,"GroupID":1,"UserID":1430,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":1430,"FirstName":"Madhuri","LastName":"Patil-Dasur","LanID":"ap\\mpatild","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[{"ScheduleID":3683,"GroupUserID":163,"StartDate":"2017-11-18T00:00:00","EndDate":"2017-11-20T00:00:00","StartTime":"02:00:01","EndTime":"02:00:00","StartAt":"2017-11-18T02:00:01","EndAt":"2017-11-20T02:00:00"},{"ScheduleID":3742,"GroupUserID":163,"StartDate":"2017-11-13T00:00:00","EndDate":"2017-11-15T00:00:00","StartTime":"18:30:01","EndTime":"02:00:00","StartAt":"2017-11-13T18:30:01","EndAt":"2017-11-15T02:00:00"},{"ScheduleID":3746,"GroupUserID":163,"StartDate":"2017-11-16T00:00:00","EndDate":"2017-11-17T00:00:00","StartTime":"11:00:01","EndTime":"02:00:00","StartAt":"2017-11-16T11:00:01","EndAt":"2017-11-17T02:00:00"}],"Tickets":[]}},{"ScheduleID":3749,"GroupUserID":5,"StartDate":"2017-11-20T00:00:00","EndDate":"2017-11-27T00:00:00","StartTime":"02:00:01","EndTime":"01:59:59","StartAt":"2017-11-20T02:00:01","EndAt":"2017-11-27T01:59:59","GroupUser":{"GroupUserID":5,"GroupID":1,"UserID":6,"IsGroupAdministrator":true,"IsEscalationReceiver":false,"IsWorkHourReceiver":true,"IsAcknowledgeResultReceiver":true,"Emails":[],"Group":null,"User":{"UserID":6,"FirstName":"Douglas","LastName":"Kreitlov","LanID":"sa\\dekrei1","TelNumber":null,"UserTypeID":1,"Emails":[],"GroupUsers":[],"Tickets":[],"UserType":null},"Schedules":[],"Tickets":[]}}];
+      
+      var dataEvents = [];
+      var offset = this.d.getTimezoneOffset();
+      var timezone = moment(defaultDate).format('Z');
+
+      var defaultDate = new Date();
+      var timezone = moment(defaultDate).format('Z');
+
+      if (defaultDate.getMonth() != month) {
+          defaultDate = new Date(year, month-1, 1, 0,0,0,0);
+      }
+      
+      this.defaultDate = moment(defaultDate).format('YYYY-MM-DD');
+      let j = 0;
+      for (var i = 0; i < data.length ; i++) {
+        //convert to local time
+        var utcStartDate = new Date(data[i].StartAt);
+        var localStartDate = new Date(utcStartDate.getTime() - this.offset * 60 * 1000);
+        var utcEndDate = new Date(data[i].EndAt);
+        var localEndDate = new Date(utcEndDate.getTime() - this.offset * 60 * 1000);
+
+        let color = ['#2EC7C1','#F8F138','#49CC75'];
+        
+        if(j > 2){
+          j = 0;
+        }
+       
+
+        dataEvents.push({
+            id: data[i].ScheduleID,
+            title: "("+timezone + ") " + data[i].GroupUser.User.LastName + ", " + data[i].GroupUser.User.FirstName,
+            start: localStartDate,
+            end: localEndDate,
+            color: color[j]
+            // GroupUserID: data[i].GroupUser.GroupUserID
+        });
+
+        j++;
+
+        // console.log(JSON.stringify(dataEvents));
+
+    }
+        //load calendar
+        this.loadCalendarOptions(dataEvents);
+
+  };
+
+  loadCalendarOptions(dataEvents :any){
+    this.calendarOptions = {
+      height: 'parent',
+      fixedWeekCount: false,
+      defaultDate: this.defaultDate,
+      editable: false,
+      eventLimit: false, // allow "more" link when too many events
+      eventColor: '#2EC7C1',
+      eventTextColor: 'white',
+      timeFormat: 'H:mm:ss',
+      displayEventEnd: true,
+      events: dataEvents,
+      eventClick: function (calEvent, jsEvent, view) {
+        
+           //alert('Event: ' + calEvent.title);
+           console.log(calEvent);
+
+
+      },
+    };
+  }
+    
+
+  selectAnalyst(data :AnalystModel){
+    this.username = data.name;
+    this.companyEmail = data.comEmail;
+    this.lanId = data.lanId;
+  }
+
+  updateUrl() {
+    this.profilePicture = './../assets/img/user1.png';
+  }
+
+  getUserPic() {
+    this.profilePicture = 'https://mysite.na.xom.com/User%20Photos/Profile%20Pictures/'  + (this.lanId.replace('\\', '_')) + '_LThumb.jpg';
+  }
   mockTeam() {
     //mock test
     let result = [{ "GroupID": 1, "Name": "Retail", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 2, "Name": "OTC", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 3, "Name": "Siebel Technical Services", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 5, "Name": "GPM", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 6, "Name": "EDI CS and XCOM", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 7, "Name": "S.W.I.F.T. - Society for Worldwide Interbank Financial Telecommunication", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 8, "Name": "M&S Secondary Distribution", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }, { "GroupID": 9, "Name": "Basis Output and Archiving", "Urgency": "2-High    ", "GroupUsers": [], "Products": [], "GroupAliases": [] }];
@@ -104,7 +220,7 @@ export class OncallScheduleComponent implements OnInit {
 
         this.analystList = [];
 
-        let tempData = new UserModel();
+        let tempData = new AnalystModel();
         tempData.groupId = 0;
         tempData.name = "Choose Analyst";
         tempData.userId = 0;
@@ -114,7 +230,7 @@ export class OncallScheduleComponent implements OnInit {
 
         result.GroupUsers.forEach(i => {
 
-          let data = new UserModel();
+          let data = new AnalystModel();
           data.groupId = i.GroupID;
           data.userId = i.UserID;
           data.name = i.User.FirstName + ' ' + i.User.LastName;
@@ -180,7 +296,7 @@ export class OncallScheduleComponent implements OnInit {
 
     this.analystList = [];
 
-    let tempData = new UserModel();
+    let tempData = new AnalystModel();
     tempData.groupId = 0;
     tempData.name = "Choose Analyst";
     tempData.userId = 0;
@@ -190,19 +306,31 @@ export class OncallScheduleComponent implements OnInit {
 
     mockMember.GroupUsers.forEach(i => {
 
-      let data = new UserModel();
+      let data = new AnalystModel();
       data.groupId = i.GroupID;
       data.userId = i.UserID;
       data.name = i.User.FirstName + ' ' + i.User.LastName;
+      data.lanId = i.User.LanID;
+
+      i.Emails.forEach(email => {
+            if (email.Disabled == false) {
+              if (email.EmailTypeID == 1) { 
+                //companyMail
+                data.comEmail = email.Address;
+              }
+            }
+
+      });
 
       this.analystList.push(data);
 
     });
+
+    console.log('analystList' + JSON.stringify(this.analystList));
+
   }
 
-  selectAnalyst(value :any){
 
-  }
 
 
 
@@ -219,76 +347,78 @@ export class OncallScheduleComponent implements OnInit {
     return imageURL
   }
 
-  calendarOptions: Object = {
-    height: 'parent',
-    fixedWeekCount: false,
-    defaultDate: '2017-09-12',
-    editable: false,
-    eventLimit: true, // allow "more" link when too many events
-    eventColor: '#2EC7C1',
-    eventTextColor: 'white',
-    events: [
-      {
-        title: 'All Day Event',
-        start: '2017-09-01',
-        color: '#2EC7C1'
+  
+  calendarOptions: Object = {};
+  // calendarOptions: Object = {
+  //   height: 'parent',
+  //   fixedWeekCount: false,
+  //   defaultDate: '2017-09-12',
+  //   editable: false,
+  //   eventLimit: true, // allow "more" link when too many events
+  //   eventColor: '#2EC7C1',
+  //   eventTextColor: 'white',
+  //   events: [
+  //     {
+  //       title: 'All Day Event',
+  //       start: '2017-09-01',
+  //       color: '#2EC7C1'
 
-      },
-      {
-        title: 'Long Event',
-        start: '2017-09-07',
-        end: '2017-09-10',
-        color: '#F8F138'
+  //     },
+  //     {
+  //       title: 'Long Event',
+  //       start: '2017-09-07',
+  //       end: '2017-09-10',
+  //       color: '#F8F138'
 
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: '2017-09-09T16:00:00',
-        color: '#49CC75'
-      },
-      {
-        id: 999,
-        title: 'Repeating Event',
-        start: '2017-09-16T16:00:00'
-      },
-      {
-        title: 'Conference',
-        start: '2017-09-11',
-        end: '2017-09-13'
-      },
-      {
-        title: 'Meeting',
-        start: '2017-09-12T10:30:00',
-        end: '2017-09-12T12:30:00'
-      },
-      {
-        title: 'Lunch',
-        start: '2017-09-12T12:00:00'
-      },
-      {
-        title: 'Meeting',
-        start: '2017-09-12T14:30:00'
-      },
-      {
-        title: 'Happy Hour',
-        start: '2017-09-12T17:30:00'
-      },
-      {
-        title: 'Dinner',
-        start: '2017-09-12T20:00:00'
-      },
-      {
-        title: 'Birthday Party',
-        start: '2017-09-13T07:00:00'
-      },
-      {
-        title: 'Click for Google',
-        url: 'http://google.com/',
-        start: '2017-09-28'
-      }
-    ]
-  };
+  //     },
+  //     {
+  //       id: 999,
+  //       title: 'Repeating Event',
+  //       start: '2017-09-09T16:00:00',
+  //       color: '#49CC75'
+  //     },
+  //     {
+  //       id: 999,
+  //       title: 'Repeating Event',
+  //       start: '2017-09-16T16:00:00'
+  //     },
+  //     {
+  //       title: 'Conference',
+  //       start: '2017-09-11',
+  //       end: '2017-09-13'
+  //     },
+  //     {
+  //       title: 'Meeting',
+  //       start: '2017-09-12T10:30:00',
+  //       end: '2017-09-12T12:30:00'
+  //     },
+  //     {
+  //       title: 'Lunch',
+  //       start: '2017-09-12T12:00:00'
+  //     },
+  //     {
+  //       title: 'Meeting',
+  //       start: '2017-09-12T14:30:00'
+  //     },
+  //     {
+  //       title: 'Happy Hour',
+  //       start: '2017-09-12T17:30:00'
+  //     },
+  //     {
+  //       title: 'Dinner',
+  //       start: '2017-09-12T20:00:00'
+  //     },
+  //     {
+  //       title: 'Birthday Party',
+  //       start: '2017-09-13T07:00:00'
+  //     },
+  //     {
+  //       title: 'Click for Google',
+  //       url: 'http://google.com/',
+  //       start: '2017-09-28'
+  //     }
+  //   ]
+  // };
 
   changeCalendarView(view) {
     this.myCalendar.fullCalendar('changeView', view);

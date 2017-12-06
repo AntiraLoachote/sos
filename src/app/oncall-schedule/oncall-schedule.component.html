@@ -109,13 +109,13 @@
         <div class="col-11 box-info">
           <div class="card">
             <div class="card-block">
-              <div class="row">
+              <div class="row" style="    min-height: 95px;">
                 <div class="col-4">
-                  <img [src]="getProfileImageURL()" class="user-image">
+                  <img *ngIf="lanId"  (error)="updateUrl($event)" [src]="profilePicture" class="user-image">
                 </div>
                 <div class="col-7">
                   <h4 class="card-title user-name" style="font-size:1.2vw;">{{username}}</h4>
-                  <h4 class="card-title" style="font-size:1vw">krichpas.khuthanom@exxonmobil.com</h4>
+                  <h4 class="card-title" style="font-size:1vw">{{companyEmail}}</h4>
                 </div>
               </div>
 
@@ -131,7 +131,7 @@
       </div>
     </div>
 
-    <div class="col-7" style="padding: 5vh; padding-top: 0;">
+    <div class="col-7" style="padding: 5vh; padding-top: 0; padding-bottom: 0;">
       <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
 
     </div>

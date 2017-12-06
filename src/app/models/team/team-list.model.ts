@@ -10,3 +10,11 @@ export class UserModel {
     public userId : number;
     public name : string;
 }
+
+export class AnalystModel {
+    public groupId : number;
+    public userId : number;
+    public name : string;
+    public lanId : string;
+    public comEmail :string;
+}
