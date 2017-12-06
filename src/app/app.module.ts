@@ -39,6 +39,7 @@ import { AppRoutingModule } from "app/app-routing.module";
 import { ReportService } from 'app/report/report.service';
 
 import { BsDatepickerModule } from 'ngx-bootstrap';
+import { OncallScheduleService } from 'app/oncall-schedule/oncall-schedule.service';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
       Configuration,
       HomeService,
       TeamService,
-      ReportService
+      ReportService,
+      OncallScheduleService
     ],
   
   bootstrap: [AppComponent]

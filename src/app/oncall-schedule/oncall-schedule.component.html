@@ -1,11 +1,11 @@
 <div class="col sub-header">
-    <nav class="navbar " >
-        <h5 class="text">Oncall Schedule</h5>
-    </nav>
-    
+  <nav class="navbar ">
+    <h5 class="text">Oncall Schedule</h5>
+  </nav>
+
   <div class="row no-gutters" style="margin-top: 4vh;">
     <div class="col">
-      <div class="col-12 row no-gutters" >
+      <div class="col-12 row no-gutters">
         <div class="col-12">
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-2 col-form-label label-topic" style="
@@ -13,16 +13,8 @@
             max-width: 19.333333%;
         ">Group</label>
             <div class="col">
-              <select class="form-control input-oncall">
-                <option>Choose team</option>
-                <option>Retail</option>
-                <option>OTC</option>
-                <option>Siebel Technical Service</option>
-                <option>GPM</option>
-                <option>EDI CS and XCOM</option>
-                <option>S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</option>
-                <option>M&S Secondary Distributions</option>
-                <option>Basis Output and Archiving</option>
+              <select class="form-control input-oncall" [(ngModel)]="teamSelected" (ngModelChange)="selectTeam(teamSelected)" required>
+                <option *ngFor="let team of teamList" [ngValue]="team" [disabled]="team.groupID == 0">{{team.name}}</option>
               </select>
             </div>
           </div>
@@ -51,7 +43,7 @@
       <div class="col-md-12 col-xs-12 row no-gutters">
         <div class="col-md-7 col-xs-12">
           <div class="form-group row no-gutters">
-            <label for="example-text-input" class="col-4 col-form-label label-topic" >Time from:</label>
+            <label for="example-text-input" class="col-4 col-form-label label-topic">Time from:</label>
             <div class="col-7">
               <input class="form-control input-oncall" type="time" value="13:45:00" id="example-time-input">
             </div>
@@ -93,9 +85,10 @@
               max-width: 19.333333%;
           ">Analyst:</label>
             <div class="col">
-              <select class="form-control input-oncall">
-                <option>Choose Analyst</option>
-              </select>
+                <select class="form-control input-oncall" [(ngModel)]="analystSelected" (ngModelChange)="selectAnalyst(analystSelected)" required>
+                    <option *ngFor="let item of analystList" [ngValue]="item" [disabled]="item.userId == 0">{{item.name}}</option>
+                  </select>
+                  
             </div>
           </div>
         </div>
@@ -121,7 +114,7 @@
                   <img [src]="getProfileImageURL()" class="user-image">
                 </div>
                 <div class="col-7">
-                  <h4 class="card-title user-name" style="font-size:1.2vw;" >{{username}}</h4>
+                  <h4 class="card-title user-name" style="font-size:1.2vw;">{{username}}</h4>
                   <h4 class="card-title" style="font-size:1vw">krichpas.khuthanom@exxonmobil.com</h4>
                 </div>
               </div>
