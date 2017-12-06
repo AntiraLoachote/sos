@@ -67,7 +67,6 @@ export class ReportComponent implements OnInit {
         // this.getTeams();
         this.mockTeams();
 
-        this.prepareGroupSelected();
         this.getTicketsInPeriod();
 
     }
@@ -111,6 +110,8 @@ export class ReportComponent implements OnInit {
 
                 console.log("Teams = " + JSON.stringify(this.teamList));
 
+                this.prepareGroupSelected();
+                
 
             },
             err => {
@@ -180,6 +181,7 @@ export class ReportComponent implements OnInit {
         //mock test
         this.testData();
 
+        console.log(('groupIDs => ' + this.groupIDs));
         // this.callTicketsApi(this.defaultStartSQLFormat,this.defaultEndSQLFormat, this.groupIDs);
 
 
