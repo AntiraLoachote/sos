@@ -500,4 +500,40 @@
 
 
 
+@media (min-width: 576px) and  (max-width: 1430px){
+    .form-inline .form-control {
+        width: 50%;
+    }
+        
+}
 
+    
+@media  (max-height: 690px)
+{
+    .content-all {
+        margin-top: 10px;
+    }
+
+    .sub-header .navbar {
+        margin-bottom: 10px;
+    }
+
+    .checkteam {
+        margin-top: 5px;
+    }
+
+    .box-chart {
+        height: 500px !important;
+    }
+
+    .anchor {
+        position: absolute;
+        right: 35px !important;
+        top: 435px !important;
+    }
+
+    .col-checkbox {
+        padding: 2px;
+        padding-bottom: 10px;
+    }
+}
