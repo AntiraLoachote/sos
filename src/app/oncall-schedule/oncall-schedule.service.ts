@@ -14,7 +14,7 @@ export class OncallScheduleService {
 
 
   
-  //API GET TICKETS
+  //API GET Schedules
   getSchedules( groupId: number,month: number,year: number): Observable<any> {
     const url = this.Config.apiSosUrl + "/api/schedules?groupID=" + groupId + '&month=' + month + '&year='  + year;
     this.sub = this.http.get(url).map(this.extractData);
@@ -28,6 +28,23 @@ export class OncallScheduleService {
     let body = response.json();
     return body || {};
   }
+
+    //API POST EDIT USER
+    addSchedule(dataModel: any): Observable<string> {
+      const url = this.Config.apiSosUrl + 'api/schedules';
+      let headers = new Headers({ 'Content-Type': 'application/json' });
+      let options = new RequestOptions({ headers: headers });
+      this.sub = this.http.post(url, dataModel, options).map(this.extractStringData);
+      return this.sub;
+    }
+  
+    private extractStringData(response: Response) {
+      if (response.status < 200 || response.status >= 300) {
+        throw new Error('Bad response status: ' + response.status);
+      }
+      let body = response.text();
+      return body || {};
+    }
 
 
 }

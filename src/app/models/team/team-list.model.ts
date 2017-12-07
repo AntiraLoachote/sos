@@ -17,4 +17,5 @@ export class AnalystModel {
     public name : string;
     public lanId : string;
     public comEmail :string;
+    public groupUserID : number;
 }

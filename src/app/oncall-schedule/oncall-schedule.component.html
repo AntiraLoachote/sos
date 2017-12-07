@@ -26,7 +26,9 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-4 col-form-label label-topic">Date from:</label>
             <div class="col-7">
-              <input class="form-control input-oncall" type="date" value="2017-08-19" id="example-date-input">
+                <input type="text"  [(ngModel)]="DateFrom" class="form-control input-oncall" placeholder="YYYY-MM-DD" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
+                (bsValueChange)="DateFrom = $event ;"
+              />            
             </div>
           </div>
         </div>
@@ -34,7 +36,9 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
             <div class="col-10">
-              <input class="form-control input-oncall" type="date" value="2017-08-19" id="example-date-input">
+                <input type="text"  [(ngModel)]="DateTo" class="form-control input-oncall" placeholder="YYYY-MM-DD" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
+                (bsValueChange)="DateTo = $event ;"
+              />       
             </div>
           </div>
         </div>
@@ -45,7 +49,7 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-4 col-form-label label-topic">Time from:</label>
             <div class="col-7">
-              <input class="form-control input-oncall" type="time" value="13:45:00" id="example-time-input">
+              <timepicker [(ngModel)]="TimeFrom"  [showSeconds]="true"  [showSpinners]="false" [showMeridian]="false"></timepicker>
             </div>
           </div>
         </div>
@@ -53,7 +57,7 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
             <div class="col-10">
-              <input class="form-control input-oncall" type="time" value="13:45:00" id="example-time-input">
+                <timepicker [(ngModel)]="TimeTo"  [showSeconds]="true"  [showSpinners]="false" [showMeridian]="false"></timepicker>                
             </div>
           </div>
         </div>
@@ -62,18 +66,22 @@
 
       <div class="row form-group">
         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="checkbox">
-          <input type="checkbox" class="custom-control-input" id="checkbox" checked="true" title="Repeating">
+          <input type="checkbox" class="custom-control-input" [checked]="!IsAllDay" 
+          (change)="IsAllDay = !IsAllDay ; ">
           <span class="custom-control-indicator"></span>
-          <span class="custom-control-description label-topic" title="Schedule this item to repeat regularly">
-            Recurrence
+          <span class="custom-control-description">
+              Recurrence
           </span>
         </label>
         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="secondbox">
-          <input type="checkbox" class="custom-control-input" id="secondbox">
+
+          <input type="checkbox" class="custom-control-input" [checked]="IsAllDay" 
+          (change)="IsAllDay = !IsAllDay">
           <span class="custom-control-indicator"></span>
-          <span class="custom-control-description label-topic">
-            All day
+          <span class="custom-control-description">
+              All day
           </span>
+
         </label>
       </div>
 
@@ -126,13 +134,13 @@
 
       <div class="row">
         <div class="col-11" style=" text-align: center;">
-          <button type="button" class="btn btn-primary btn-submit"> ADD </button>
+          <button type="button" class="btn btn-primary btn-submit" (click)="addSchedule(groupIdSelected)"> ADD </button>
         </div>
       </div>
     </div>
 
     <div class="col-7" style="padding: 5vh; padding-top: 0; padding-bottom: 0;">
-      <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
+      <angular2-fullcalendar *ngIf="isSeclectedGroup" [options]="calendarOptions"></angular2-fullcalendar>
 
     </div>
   </div>
