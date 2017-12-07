@@ -1,11 +1,11 @@
 <div class="col sub-header">
-    <nav class="navbar " >
-        <h5 class="text">Oncall Schedule</h5>
-    </nav>
-    
+  <nav class="navbar ">
+    <h5 class="text">Oncall Schedule</h5>
+  </nav>
+
   <div class="row no-gutters" style="margin-top: 4vh;">
     <div class="col">
-      <div class="col-12 row no-gutters" >
+      <div class="col-12 row no-gutters">
         <div class="col-12">
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-2 col-form-label label-topic" style="
@@ -13,16 +13,8 @@
             max-width: 19.333333%;
         ">Group</label>
             <div class="col">
-              <select class="form-control input-oncall">
-                <option>Choose team</option>
-                <option>Retail</option>
-                <option>OTC</option>
-                <option>Siebel Technical Service</option>
-                <option>GPM</option>
-                <option>EDI CS and XCOM</option>
-                <option>S.W.I.T.F. - Society for Worldwide Interbank Financial Telecommunication</option>
-                <option>M&S Secondary Distributions</option>
-                <option>Basis Output and Archiving</option>
+              <select class="form-control input-oncall" [(ngModel)]="teamSelected" (ngModelChange)="selectTeam(teamSelected)" required>
+                <option *ngFor="let team of teamList" [ngValue]="team" [disabled]="team.groupID == 0">{{team.name}}</option>
               </select>
             </div>
           </div>
@@ -34,7 +26,9 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-4 col-form-label label-topic">Date from:</label>
             <div class="col-7">
-              <input class="form-control input-oncall" type="date" value="2017-08-19" id="example-date-input">
+                <input type="text"  [(ngModel)]="DateFrom" class="form-control input-oncall" placeholder="YYYY-MM-DD" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
+                (bsValueChange)="DateFrom = $event ;"
+              />            
             </div>
           </div>
         </div>
@@ -42,7 +36,9 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
             <div class="col-10">
-              <input class="form-control input-oncall" type="date" value="2017-08-19" id="example-date-input">
+                <input type="text"  [(ngModel)]="DateTo" class="form-control input-oncall" placeholder="YYYY-MM-DD" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
+                (bsValueChange)="DateTo = $event ;"
+              />       
             </div>
           </div>
         </div>
@@ -51,9 +47,9 @@
       <div class="col-md-12 col-xs-12 row no-gutters">
         <div class="col-md-7 col-xs-12">
           <div class="form-group row no-gutters">
-            <label for="example-text-input" class="col-4 col-form-label label-topic" >Time from:</label>
+            <label for="example-text-input" class="col-4 col-form-label label-topic">Time from:</label>
             <div class="col-7">
-              <input class="form-control input-oncall" type="time" value="13:45:00" id="example-time-input">
+              <timepicker [(ngModel)]="TimeFrom"  [showSeconds]="true"  [showSpinners]="false" [showMeridian]="false"></timepicker>
             </div>
           </div>
         </div>
@@ -61,7 +57,7 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
             <div class="col-10">
-              <input class="form-control input-oncall" type="time" value="13:45:00" id="example-time-input">
+                <timepicker [(ngModel)]="TimeTo"  [showSeconds]="true"  [showSpinners]="false" [showMeridian]="false"></timepicker>                
             </div>
           </div>
         </div>
@@ -70,18 +66,22 @@
 
       <div class="row form-group">
         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="checkbox">
-          <input type="checkbox" class="custom-control-input" id="checkbox" checked="true" title="Repeating">
+          <input type="checkbox" class="custom-control-input" [checked]="!IsAllDay" 
+          (change)="IsAllDay = !IsAllDay ; ">
           <span class="custom-control-indicator"></span>
-          <span class="custom-control-description label-topic" title="Schedule this item to repeat regularly">
-            Recurrence
+          <span class="custom-control-description">
+              Recurrence
           </span>
         </label>
         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="secondbox">
-          <input type="checkbox" class="custom-control-input" id="secondbox">
+
+          <input type="checkbox" class="custom-control-input" [checked]="IsAllDay" 
+          (change)="IsAllDay = !IsAllDay">
           <span class="custom-control-indicator"></span>
-          <span class="custom-control-description label-topic">
-            All day
+          <span class="custom-control-description">
+              All day
           </span>
+
         </label>
       </div>
 
@@ -93,9 +93,10 @@
               max-width: 19.333333%;
           ">Analyst:</label>
             <div class="col">
-              <select class="form-control input-oncall">
-                <option>Choose Analyst</option>
-              </select>
+                <select class="form-control input-oncall" [(ngModel)]="analystSelected" (ngModelChange)="selectAnalyst(analystSelected)" required>
+                    <option *ngFor="let item of analystList" [ngValue]="item" [disabled]="item.userId == 0">{{item.name}}</option>
+                  </select>
+                  
             </div>
           </div>
         </div>
@@ -116,13 +117,13 @@
         <div class="col-11 box-info">
           <div class="card">
             <div class="card-block">
-              <div class="row">
+              <div class="row" style="    min-height: 95px;">
                 <div class="col-4">
-                  <img [src]="getProfileImageURL()" class="user-image">
+                  <img *ngIf="lanId"  (error)="updateUrl($event)" [src]="profilePicture" class="user-image">
                 </div>
                 <div class="col-7">
-                  <h4 class="card-title user-name" style="font-size:1.2vw;" >{{username}}</h4>
-                  <h4 class="card-title" style="font-size:1vw">krichpas.khuthanom@exxonmobil.com</h4>
+                  <h4 class="card-title user-name" style="font-size:1.2vw;">{{username}}</h4>
+                  <h4 class="card-title" style="font-size:1vw">{{companyEmail}}</h4>
                 </div>
               </div>
 
@@ -133,13 +134,13 @@
 
       <div class="row">
         <div class="col-11" style=" text-align: center;">
-          <button type="button" class="btn btn-primary btn-submit"> ADD </button>
+          <button type="button" class="btn btn-primary btn-submit" (click)="addSchedule(groupIdSelected)"> ADD </button>
         </div>
       </div>
     </div>
 
-    <div class="col-7" style="padding: 5vh; padding-top: 0;">
-      <angular2-fullcalendar [options]="calendarOptions"></angular2-fullcalendar>
+    <div class="col-7" style="padding: 5vh; padding-top: 0; padding-bottom: 0;">
+      <angular2-fullcalendar *ngIf="isSeclectedGroup" [options]="calendarOptions"></angular2-fullcalendar>
 
     </div>
   </div>

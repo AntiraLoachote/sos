@@ -285,12 +285,41 @@ export class ReportComponent implements OnInit {
 
 
     loadChart(yAixName, sourceCol1, sourceCol2, sourceCol3) {
-        let heightItem = 50;
-        let positionNum = -31;
-        if (screen.height > 970) {
-            heightItem = 65;
-            positionNum = -40;
+        
+        let lengthData = this.sourceCol1.length;
+        let heightItem = 65;
+        let positionNum = -40;
+
+        if(lengthData == 5){
+            heightItem = 50;
+            positionNum = -32;
         }
+        else if(lengthData == 6){
+            heightItem = 37;
+            positionNum = -25;
+        } 
+        else if(lengthData == 7){
+            heightItem = 32;
+            positionNum = -22;
+        } 
+        else if(lengthData > 7){
+            heightItem = 28;
+            positionNum = 0;
+        } 
+        else if(lengthData > 10){
+            heightItem = 12;
+            positionNum = 0;
+        } 
+        else if(lengthData > 13){
+            heightItem = 5;
+            positionNum = 0;
+        } 
+        
+        
+        // if (screen.height > 970) {
+        //     heightItem = 65;
+        //     positionNum = -40;
+        // }
         //init bar chart 
         this.options =
             {
