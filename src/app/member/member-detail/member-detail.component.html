@@ -16,21 +16,21 @@
                     <br>
                     <div class="btn-group box-two-line">
                         <span class="circle circle-edit"></span>
-                        <button type="button" routerLink="/member/edit/{{memberData.GroupID}}/{{memberData.UserID}}" class="btn btn-info-edit">Edit</button>
+                        <button *ngIf="haveMemberData" type="button" routerLink="/member/edit/{{memberData.GroupID}}/{{memberData.UserID}}" class="btn btn-info-edit">Edit</button>
                     </div>
 
 
                 </div>
             </div>
-            <div class="row align-items-center no-gutters top-content" >
+            <div class="row align-items-center no-gutters top-content">
                 <div class="col-4 box-pic">
                     <div class="thumbnail" *ngIf="profilePicture != ''">
-                        <img (error)="updateUrl($event)" [src]="profilePicture"  />
+                        <img (error)="updateUrl($event)" [src]="profilePicture" />
                     </div>
                 </div>
                 <div class="col">
-                    <h3 class="color-info" style="margin-bottom: 0;">{{memberData.User.FirstName}}</h3>
-                    <h3 class="color-info">{{memberData.User.LastName}}</h3>
+                    <h3 *ngIf="haveMemberData" class="color-info" style="margin-bottom: 0;">{{memberData.User.FirstName}}</h3>
+                    <h3 *ngIf="haveMemberData" class="color-info">{{memberData.User.LastName}}</h3>
                     <p class="color-info" *ngIf="companyMail">{{companyMail}}</p>
                     <p class="color-default" *ngIf="!companyMail">-</p>
                 </div>
@@ -42,13 +42,13 @@
                     <div class="col">
                         <div class="display-group">
                             <label>Domain</label>
-                            <p class="color-info">{{getDomain()}}</p>
+                            <p *ngIf="haveMemberData" class="color-info">{{getDomain()}}</p>
                         </div>
                     </div>
                     <div class="col">
                         <div class="display-group">
                             <label>LAN ID</label>
-                            <p class="color-info">{{getLanId()}}</p>
+                            <p *ngIf="haveMemberData" class="color-info">{{getLanId()}}</p>
                         </div>
                     </div>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="row">
                     <div class="col-3">
                         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsGroupAdministrator" disabled>
+              <input type="checkbox" *ngIf="haveMemberData" class="custom-control-input" [checked]="memberData.IsGroupAdministrator" disabled>
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 Admin
@@ -83,7 +83,7 @@
 
                     <div class="col-7">
                         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsWorkHourReceiver" disabled>
+              <input type="checkbox" *ngIf="haveMemberData"  class="custom-control-input" [checked]="memberData.IsWorkHourReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 Work Hour Receiver
@@ -92,7 +92,7 @@
                     </div>
                     <div class="col-3">
                         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsEscalationReceiver" disabled>
+              <input type="checkbox" *ngIf="haveMemberData" class="custom-control-input" [checked]="memberData.IsEscalationReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 Level2
@@ -101,7 +101,7 @@
                     </div>
                     <div class="col">
                         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input"  [checked]="memberData.IsAcknowledgeResultReceiver" disabled>
+              <input type="checkbox" *ngIf="haveMemberData"  class="custom-control-input"  [checked]="memberData.IsAcknowledgeResultReceiver" disabled>
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 Acknowledgement

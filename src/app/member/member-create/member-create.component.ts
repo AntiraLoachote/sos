@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { OnCallUserModel } from "app/models/member/member.model";
 import { MemberService } from "app/member/member.service";
 import { Router } from "@angular/router";
+import { UserModel } from "app/models/team/team-list.model";
 
 @Component({
   selector: 'app-member-create',
@@ -54,6 +55,13 @@ export class MemberCreateComponent implements OnInit {
     data.IsEscalationReceiver = this.IsEscalationReceiver;
     data.IsAcknowledgeResultReceiver = this.IsAcknowledgeResultReceiver;
     
+    if(this.userDomain == ''  ){
+       alert("กรุณากรอก Domain");
+         return;
+    }else if(this.userLanId == ''){
+        alert("กรุณากรอก LanId");
+        return;
+    }
     console.log("Create User!!");
     console.log(JSON.stringify(data));
     
@@ -67,8 +75,8 @@ export class MemberCreateComponent implements OnInit {
           this.textStatus = Response;
           // alert(this.textStatus);
           console.log("Add User success!" + Response)
-          this.router.navigate(['/member/detail/' + this.groupId + '/' + '0']);
-  
+          //get member list
+          this.getMemberList(this.groupId);
         },
         err => {
           alert("Can't Add User" + err);
@@ -82,5 +90,33 @@ export class MemberCreateComponent implements OnInit {
 
   back(){
     this._memberService.SelectedIndexMember = 0;
+  }
+
+     getMemberList(GroupId: number) {
+    this._memberService.getMembers(GroupId).subscribe(
+      Response => {
+
+        let result = Response;
+
+        let userList = [];
+        result.GroupUsers.forEach(i => {
+
+          let data = new UserModel();
+          data.groupId = i.GroupID;
+          data.userId = i.UserID;
+          data.name = i.User.FirstName + ' ' + i.User.LastName;
+
+          userList.push(data);
+
+        });
+
+        this._memberService.UserList = userList;
+        this._memberService.MemberList = result.GroupUsers;
+
+        this.router.navigate(['/member/detail/' + this.groupId + '/' + '0']);
+
+      }
+    );
+
   }
 }

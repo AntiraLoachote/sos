@@ -5,6 +5,7 @@ import { OnCallUserModel } from "app/models/member/member.model";
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { MemberModalComponent } from "app/member/member-modal/member-modal.component";
+import { UserModel } from "app/models/team/team-list.model";
 
 @Component({
   selector: 'app-member-detail',
@@ -18,11 +19,13 @@ export class MemberDetailComponent implements OnInit {
   profilePicture: string = "";
   userId: any;
   groupId: any;
-  memberData: any;
+  memberData: any = null;
   sharedMail: string = "";
   alternativeMail: string = "";
   companyMail: string = "";
 
+  userList: any[] = [];
+  haveMemberData: boolean = false;
   //ENUMs Global Variables
   EmailTypeID: any = {
     Company: 1,
@@ -48,27 +51,51 @@ export class MemberDetailComponent implements OnInit {
 
 
   ngOnInit() {
-    // console.log("22222222222");
+
     // subscribe to router event
     this.activatedRoute.params.subscribe((params: Params) => {
+      this.groupId = this._memberService.GroupId;
+      this._memberService.GroupId = this.groupId;
       this.userId = params['userId'];
-      // console.log(this.userId);
+      // //console.log('userId' + this.userId);
       this.profilePicture = './../assets/img/user1.png';
+      // //console.log("22222222222");
+      this.haveMemberData = false;
 
-      this.prepareData();
+      if (this._memberService.MemberList == undefined || this.userId == 0) {
+        // //console.log("!!!undefined");
+        this.getMemberList(this.groupId);
+      } else {
+        // //console.log("!! not undefined");
+        this.prepareData();
+
+      }
+      // //console.log(this.haveMemberData);
 
     });
   }
 
 
   prepareData() {
+    //console.log("prepareData");
+    //console.log(this._memberService.MemberList);
 
-    this.memberData = this._memberService.MemberList[0];
+    if (this._memberService.MemberList == undefined) {
+      return;
+    }
+
+
+    // this.memberData = this._memberService.MemberList[0];
     if (this.userId != undefined && this.userId != 0) {
       //select data 
-      for (var i = 0; i < this._memberService.MemberList.length - 1; ++i) {
+
+      for (var i = 0; i < this._memberService.MemberList.length; i++) {
+        console.log(this._memberService.MemberList[i].UserID + ' *** ' + this.userId);
+        console.log('!!! $$$' + JSON.stringify(this._memberService.MemberList[i]));
+
         if (this._memberService.MemberList[i].UserID == this.userId) {
           this.memberData = this._memberService.MemberList[i];
+          //console.log(i + " : " + JSON.stringify(this.memberData));
           this._memberService.SelectedIndexMember = i;
           break;
         }
@@ -83,8 +110,10 @@ export class MemberDetailComponent implements OnInit {
       this._memberService.SelectedIndexMember = 0;
     }
 
-    // console.log('Select member!!')
-    // console.log(JSON.stringify(this.memberData));
+    this.haveMemberData = true;
+
+    // //console.log('Select member!!')
+    // //console.log(JSON.stringify(this.memberData));
 
     this.profilePicture = this.getUserPic(this.memberData.User.LanID);
 
@@ -93,33 +122,33 @@ export class MemberDetailComponent implements OnInit {
     this.alternativeMail = "";
     this.sharedMail = "";
 
-    this.memberData.Emails.forEach(email => {
+    this.memberData.User.Emails.forEach(email => {
 
       if (email.Disabled == false) {
         switch (email.EmailTypeID) {
           case this.EmailTypeID.Company: {
-            console.log("Company");
+            //console.log("Company");
             // if (this.companyMail == "")
             this.companyMail = email.Address;
             break;
           }
 
           case this.EmailTypeID.Personal: {
-            console.log("Personal");
+            //console.log("Personal");
             // if (this.alternativeMail == "")
             this.alternativeMail = email.Address;
             break;
           }
 
           case this.EmailTypeID.Shared: {
-            console.log("Shared");
+            //console.log("Shared");
             // if (this.sharedMail == "")
             this.sharedMail = email.Address;
             break;
           }
 
           default: {
-            console.log("default");
+            //console.log("default");
             break;
           }
         }
@@ -127,6 +156,37 @@ export class MemberDetailComponent implements OnInit {
       }
 
     });
+  }
+
+  getMemberList(GroupId: number) {
+    this._memberService.getMembers(GroupId).subscribe(
+      Response => {
+        //console.log("Get MemberList success 2!" + JSON.stringify(Response));
+
+        let result = Response;
+
+        this.userList = [];
+        result.GroupUsers.forEach(i => {
+
+          let data = new UserModel();
+          data.groupId = i.GroupID;
+          data.userId = i.UserID;
+          data.name = i.User.FirstName + ' ' + i.User.LastName;
+
+          this.userList.push(data);
+
+        });
+
+        this._memberService.UserList = this.userList;
+        this.memberData = result.GroupUsers;
+        console.log("add MemberList detail")
+        this._memberService.MemberList = result.GroupUsers;
+
+        this.prepareData();
+
+      }
+    );
+
   }
 
 
@@ -150,7 +210,7 @@ export class MemberDetailComponent implements OnInit {
 
   removeUser() {
     //show modal component
-    this.bsModalRef = this.modalService.show(MemberModalComponent , this.configModal);
+    this.bsModalRef = this.modalService.show(MemberModalComponent, this.configModal);
     this.bsModalRef.content.Domain = this.getDomain();
     this.bsModalRef.content.Username = this.getLanId();
     this.bsModalRef.content.GroupId = this._memberService.GroupId || 1;
