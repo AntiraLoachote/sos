@@ -12,6 +12,7 @@ export class MemberService {
   public MemberList: any;
   public TeamDataList: any;
   public SelectedIndexMember: number = 0;
+  public UserList: any;
 
   constructor(
     private http: Http,

@@ -67,7 +67,6 @@ export class ReportComponent implements OnInit {
         // this.getTeams();
         this.mockTeams();
 
-        this.getTicketsInPeriod();
 
     }
 
@@ -132,6 +131,7 @@ export class ReportComponent implements OnInit {
 
         console.log('groupIDs : ' + this.groupIDs);
 
+        this.getTicketsInPeriod();
     }
 
     changeGroupSelected(index: number, value: boolean) {
@@ -188,6 +188,7 @@ export class ReportComponent implements OnInit {
     }
 
     callTicketsApi(dataFrom: string, dataTo: string, groupIdList: number[]) {
+         console.log('call -> callTicketsApi');
         //Loop Get Api
         let observables = new Array();
         for (let groupId of groupIdList) {
@@ -199,6 +200,7 @@ export class ReportComponent implements OnInit {
             //[character, characterHomeworld]
             // results[0] is our character
             // results[1] is our character homeworld
+            //  console.log(results);
             this.AllTicketsData = [];
             //add results length == groupIdList
             for (var i = 0; i < groupIdList.length; i++) {

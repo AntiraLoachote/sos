@@ -1,119 +1,119 @@
 <div class="container  border-info" style="margin-top: 10px;">
-  <div class="row" style="min-height: 550px;">
-    <div class="col-11 align-items-center">
+    <div class="row" style="min-height: 550px;">
+        <div class="col-11 align-items-center">
 
-      <div class="row">
-        <div class="col action-group">
-          <div class="btn-group box-two-line">
-            <span class="circle circle-edit"></span>
-            <button type="button" class="btn btn-info">Edit</button>
-          </div>
-        </div>
-      </div>
-      <div class="row align-items-center no-gutters top-content">
-        <div class="col-4 box-pic" >
-            <div class="thumbnail">
-                <img (error)="updateUrl($event)" [src]="profilePicture"  alt="Image" />
+            <div class="row">
+                <div class="col action-group">
+                    <div class="btn-group box-two-line">
+                        <span class="circle circle-edit"></span>
+                        <button type="button" class="btn btn-info">Edit</button>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div class="col">
-          <h3 class="color-info" style="margin-bottom: 0;">{{memberData.User.FirstName}}</h3>
-          <h3 class="color-info">{{memberData.User.LastName}}</h3>
-          <p class="color-info" *ngIf="companyMail">{{companyMail}}</p>
-          <p class="color-default" *ngIf="!companyMail">-</p>
-        </div>
-      </div>
-      <div class="clearfix"></div>
-      <div class="col">
-        <hr>
-        <div class="row">
-          <div class="col">
-            <div class="display-group">
-              <label>Domain</label>
-              <p class="color-info">{{getDomain()}}</p>
+            <div class="row align-items-center no-gutters top-content">
+                <div class="col-4 box-pic">
+                    <div class="thumbnail">
+                        <img *ngIf="haveMemberData" (error)="updateUrl($event)" [src]="profilePicture" alt="Image" />
+                    </div>
+                </div>
+                <div class="col">
+                    <h3 *ngIf="haveMemberData" class="color-info" style="margin-bottom: 0;">{{memberData.User.FirstName}}</h3>
+                    <h3 *ngIf="haveMemberData" class="color-info">{{memberData.User.LastName}}</h3>
+                    <p class="color-info" *ngIf="companyMail">{{companyMail}}</p>
+                    <p class="color-default" *ngIf="!companyMail">-</p>
+                </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="display-group">
-              <label>LAN ID</label>
-              <p class="color-info">{{getLanId()}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <div class="display-group">
-              <label>Shared mailbox</label>
-              <input type="email" class="form-control input-underline" [(ngModel)]="sharedMail"> 
-              <!-- <p class="color-default" *ngIf="sharedMail">{{sharedMail}}</p>
+            <div class="clearfix"></div>
+            <div class="col">
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <div class="display-group">
+                            <label>Domain</label>
+                            <p *ngIf="haveMemberData" class="color-info">{{getDomain()}}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="display-group">
+                            <label>LAN ID</label>
+                            <p *ngIf="haveMemberData" class="color-info">{{getLanId()}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="display-group">
+                            <label>Shared mailbox</label>
+                            <input type="email" class="form-control input-underline" [(ngModel)]="sharedMail">
+                            <!-- <p class="color-default" *ngIf="sharedMail">{{sharedMail}}</p>
               <p class="color-default" *ngIf="!sharedMail">-</p> -->
 
-            </div>
-          </div>
-          <div class="col">
-            <div class="display-group">
-              <label>Alternative email</label>
-              <input type="email" class="form-control input-underline" [(ngModel)]="alternativeMail"> 
-              <!-- <p class="color-default" *ngIf="alternativeMail">{{alternativeMail}}</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="display-group">
+                            <label>Alternative email</label>
+                            <input type="email" class="form-control input-underline" [(ngModel)]="alternativeMail">
+                            <!-- <p class="color-default" *ngIf="alternativeMail">{{alternativeMail}}</p>
               <p class="color-default" *ngIf="!alternativeMail">-</p> -->
-            </div>
-          </div>
-        </div>
-        <hr/>
-        <div class="row">
-          <div class="col-3">
-            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsGroupAdministrator" 
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-3">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+              <input *ngIf="haveMemberData" type="checkbox" class="custom-control-input" [checked]="memberData.IsGroupAdministrator" 
               (change)="memberData.IsGroupAdministrator = !memberData.IsGroupAdministrator" >
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 Admin
               </span>
             </label>
-          </div>
+                    </div>
 
-          <div class="col-7">
-            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input"  [checked]="memberData.IsWorkHourReceiver"
+                    <div class="col-7">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+              <input *ngIf="haveMemberData" type="checkbox" class="custom-control-input"  [checked]="memberData.IsWorkHourReceiver"
               (change)="memberData.IsWorkHourReceiver = !memberData.IsWorkHourReceiver" >
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 Work Hour Receiver
               </span>
             </label>
-          </div>
-          <div class="col-3">
-            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input" [checked]="memberData.IsEscalationReceiver"
+                    </div>
+                    <div class="col-3">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+              <input *ngIf="haveMemberData" type="checkbox" class="custom-control-input" [checked]="memberData.IsEscalationReceiver"
               (change)="memberData.IsEscalationReceiver = !memberData.IsEscalationReceiver" >
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 Level2
               </span>
             </label>
-          </div>
-          <div class="col">
-            <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
-              <input type="checkbox" class="custom-control-input"  [checked]="memberData.IsAcknowledgeResultReceiver"
+                    </div>
+                    <div class="col">
+                        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0">
+              <input *ngIf="haveMemberData" type="checkbox" class="custom-control-input"  [checked]="memberData.IsAcknowledgeResultReceiver"
               (change)="memberData.IsAcknowledgeResultReceiver = !memberData.IsAcknowledgeResultReceiver" >
               <span class="custom-control-indicator"></span>
               <span class="custom-control-description">
                 Acknowledgement
               </span>
             </label>
-          </div>
+                    </div>
+
+                </div>
+                <div class="row box-btn">
+                    <button type="button" class="btn btn-info btn-save" (click)="updateProfile()">Save</button>
+                    <button *ngIf="haveMemberData" type="button" class="btn btn-danger btn-cancel" routerLink="/member/detail/{{memberData.GroupID}}/{{memberData.UserID}}">Cancel</button>
+                </div>
+            </div>
 
         </div>
-        <div class="row box-btn" >
-          <button type="button" class="btn btn-info btn-save" (click)="updateProfile()">Save</button>
-          <button type="button" class="btn btn-danger btn-cancel" routerLink="/member/detail/{{memberData.GroupID}}/{{memberData.UserID}}">Cancel</button>
+        <div class="col-1" style="background-color: #559CCA;">
+
         </div>
-      </div>
-
     </div>
-    <div class="col-1" style="background-color: #559CCA;">
-
-    </div>
-  </div>
 
 </div>

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { MemberService } from "app/member/member.service";
 import { OnCallUserModel } from "app/models/member/member.model";
-
+import { UserModel } from "app/models/team/team-list.model";
 
 @Component({
   selector: 'app-member-edit',
@@ -23,6 +23,9 @@ export class MemberEditComponent implements OnInit {
   userId: any;
   groupId: any;
 
+  userList: any[] = [];
+  haveMemberData: boolean = false;
+
   //ENUMs Global Variables
   EmailTypeID: any = {
     Company: 1,
@@ -39,11 +42,22 @@ export class MemberEditComponent implements OnInit {
   ngOnInit() {
 
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.groupId = params['groupId'];
+      this.groupId = this._memberService.GroupId;
       this.userId = params['userId'];
-      
+
       this.profilePicture = './../assets/img/user1.png';
-      this.prepareData();
+
+      this.haveMemberData = false;
+
+      if (this._memberService.MemberList == undefined) {
+        // console.log("!!!undefined");
+        this.getMemberList(this.groupId);
+      } else {
+        // console.log("!! not undefined");
+        this.prepareData();
+
+      }
+
     });
   }
 
@@ -53,7 +67,7 @@ export class MemberEditComponent implements OnInit {
 
     if (this.userId != undefined && this.userId != 0) {
       //select data 
-      for (var i = 0; i < this._memberService.MemberList.length - 1; ++i) {
+      for (var i = 0; i < this._memberService.MemberList.length; i++) {
         if (this._memberService.MemberList[i].UserID == this.userId) {
           this.memberData = this._memberService.MemberList[i];
           this._memberService.SelectedIndexMember = i;
@@ -71,7 +85,7 @@ export class MemberEditComponent implements OnInit {
     this.alternativeMail = "";
     this.sharedMail = "";
 
-    this.memberData.Emails.forEach(email => {
+    this.memberData.User.Emails.forEach(email => {
 
       if (email.Disabled == false) {
         switch (email.EmailTypeID) {
@@ -105,6 +119,39 @@ export class MemberEditComponent implements OnInit {
       }
 
     });
+
+    this.haveMemberData = true;
+
+  }
+
+  getMemberList(GroupId: number) {
+    this._memberService.getMembers(GroupId).subscribe(
+      Response => {
+        console.log("Get MemberList success 3!" + JSON.stringify(Response));
+
+        let result = Response;
+
+        this.userList = [];
+        result.GroupUsers.forEach(i => {
+
+          let data = new UserModel();
+          data.groupId = i.GroupID;
+          data.userId = i.UserID;
+          data.name = i.User.FirstName + ' ' + i.User.LastName;
+
+          this.userList.push(data);
+
+        });
+
+        this._memberService.UserList = this.userList;
+        this.memberData = result.GroupUsers;
+        this._memberService.MemberList = result.GroupUsers;
+
+        this.prepareData();
+
+      }
+    );
+
   }
 
   getUserPic(lanId: string) {
@@ -136,7 +183,7 @@ export class MemberEditComponent implements OnInit {
     data.IsWorkHourReceiver = this.memberData.IsWorkHourReceiver;
     data.IsEscalationReceiver = this.memberData.IsEscalationReceiver;
     data.IsAcknowledgeResultReceiver = this.memberData.IsAcknowledgeResultReceiver;
-    
+
     console.log("Value Update!!");
     console.log(JSON.stringify(data));
 
@@ -144,14 +191,14 @@ export class MemberEditComponent implements OnInit {
       Response => {
         this.textStatus = Response;
         console.log("Post Update User Data success!" + Response)
-        this.router.navigate(['/member/detail/' + this.groupId + '/' + this.userId]);  
+        this.router.navigate(['/member/detail/' + this.groupId + '/' + this.userId]);
       },
       err => {
         alert("Can't Post Update User")
       }
     );
 
-    
+
   }
 
 }

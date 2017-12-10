@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, NgZone } from '@angular/core';
 import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 import { OnCallUserModel } from "app/models/member/member.model";
 import { MemberService } from "app/member/member.service";
 import { Router } from "@angular/router";
+import { UserModel } from "app/models/team/team-list.model";
+
 
 @Component({
   selector: 'modal-delete-user',
@@ -18,21 +20,22 @@ export class MemberModalComponent implements OnInit {
   constructor(
     public bsModalRef: BsModalRef,
     private _memberService: MemberService,
-    private router: Router
-  ) {}
+    private router: Router,
+    private ngZone: NgZone
+  ) { }
 
 
   ngOnInit() {
     console.log("modal");
-    
+
   }
 
   confirm(): void {
-  
+
     let data = new OnCallUserModel();
-    data.Domain =   this.Domain;
-    data.Username =  this.Username;
-    
+    data.Domain = this.Domain;
+    data.Username = this.Username;
+
     console.log("data remove!!");
     console.log(JSON.stringify(data));
 
@@ -45,13 +48,44 @@ export class MemberModalComponent implements OnInit {
         console.log("Remove User Data success! " + Response)
 
         this.bsModalRef.hide()
-        this.router.navigate(['/member/detail/' + this.GroupId]);
+        //get member list
+        this.getMemberList(this.GroupId);
+
 
       },
       err => {
         console.log("Can't Remove User")
       }
     );
+  }
+
+  getMemberList(GroupId: number) {
+    this._memberService.getMembers(GroupId).subscribe(
+      Response => {
+
+        let result = Response;
+
+        let userList = [];
+        result.GroupUsers.forEach(i => {
+
+          let data = new UserModel();
+          data.groupId = i.GroupID;
+          data.userId = i.UserID;
+          data.name = i.User.FirstName + ' ' + i.User.LastName;
+
+          userList.push(data);
+
+        });
+
+        this._memberService.UserList = userList;
+        this._memberService.MemberList = result.GroupUsers;
+        console.log('call again')
+        this.ngZone.run(() => this.router.navigateByUrl('/member/detail/' + this.GroupId));
+
+        // window.location.href = "/member/detail/" + this.GroupId;
+      }
+    );
+
   }
 
 }

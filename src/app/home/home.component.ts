@@ -87,8 +87,11 @@ export class HomeComponent implements OnInit {
   getUsername() {
     this._homeService.getUser().subscribe(
       Response => {
-        this.UsernameBadge = Response;
-        console.log("Get user success!" + Response)
+        let username = Response;
+        this.UsernameBadge = username.replace("\"", "");
+        this.UsernameBadge = this.UsernameBadge.replace("\"", "");
+
+        console.log("Get user success!" + this.UsernameBadge)
 
       },
       err => {
@@ -110,7 +113,6 @@ export class HomeComponent implements OnInit {
       Response => {
         this.textStatus = Response;
         alert(this.textStatus);
-        
         console.log("Post Tickets success!" + Response)
 
       },

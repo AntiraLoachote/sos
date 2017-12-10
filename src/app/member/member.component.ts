@@ -13,14 +13,14 @@ import { TeamService } from 'app/team/team.service';
   encapsulation: ViewEncapsulation.None
 })
 export class MemberComponent implements OnInit {
-  userList: any[];
+  userList: any[] = [];
   selectedIdx: any = 0;
   groupId: any;
   teamList: TeamsModel[] = [];
   showTeam: string = "Select Team";
   Members: any;
   filterName: string = '';
-
+  typeDetail: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -32,6 +32,8 @@ export class MemberComponent implements OnInit {
 
   ngOnInit() {
 
+
+
     // subscribe to router event
     this.activatedRoute.params.subscribe((params: Params) => {
 
@@ -42,30 +44,60 @@ export class MemberComponent implements OnInit {
         this.groupId = this._memberService.GroupId;
       }
 
-      console.log("Member Com Start!! : groupId " + this.groupId)
-
+      //console.log("Member Com Start!! : groupId " + this.groupId)
 
       //prepare data select
       this.teamList = [];
+      console.log("11111111")
+      if (this._memberService.TeamDataList == undefined) {
+        //Get TeamList
+        this.getTeams();
 
-      //Get TeamList
-      // this.getTeams();
-      this.mockTeams();
+      }
+      else {
+        //console.log("TeamDataList" + this._memberService.TeamDataList)
+        this.teamList = this._memberService.TeamDataList;
+        //select team data 
+        this.teamList.forEach(i => {
+
+          if (i.groupID == this.groupId) {
+            this.showTeam = i.name;
+            console.log("showTeam")
+            return;
+          }
+
+        });
+
+      }
+      console.log("!!!!!!!!!!!!!!!!!!")
+
+      if (this._memberService.UserList == undefined) {
+        this.getMemberList(this.groupId, false);
+        console.log("case 1")
+      }
+      else {
+        if (this._memberService.UserList[0].groupId != this.groupId) {
+          this.getMemberList(this.groupId, false);
+          console.log("case 2")
+        } else {
+          console.log("case 3")
+          this.userList = this._memberService.UserList;
+          console.log("userList" + JSON.stringify(this.userList))
+
+          // this.router.navigate(['/member/detail/' + this.groupId + '/' + this.userList[0].userId]);
 
 
-      //select team data 
-      this.teamList.forEach(i => {
-
-        if (i.groupID == this.groupId) {
-          this.showTeam = i.name;
-          return;
         }
 
-      });
+      }
 
-      //GET Members
-      // this.getMemberList(this.groupId, false);
-      this.mockMemberList(this.groupId, false);
+
+      // this.mockTeams();
+
+
+
+
+      // this.mockMemberList(this.groupId, false);
 
 
     });
@@ -74,7 +106,7 @@ export class MemberComponent implements OnInit {
   getTeams() {
     this._teamService.getTeams().subscribe(
       Response => {
-        console.log("Get Teams success!" + JSON.stringify(Response));
+        //console.log("Get Teams success!" + JSON.stringify(Response));
 
         let result = Response;
 
@@ -91,13 +123,31 @@ export class MemberComponent implements OnInit {
 
         });
 
-        console.log("Teams = " + JSON.stringify(this.teamList));
+        //console.log("Teams = " + JSON.stringify(this.teamList));
 
-        // this._memberService.TeamDataList = this.teamList.slice(1);
+        //console.log(this.teamList);
+
+        //select team data 
+        this.teamList.forEach(i => {
+
+          if (i.groupID == this.groupId) {
+            this.showTeam = i.name;
+            return;
+          }
+
+        });
+        this._memberService.TeamDataList = this.teamList;
+
+        //GET Members
+        // //console.log(this._memberService.UserList);
+        // if (this._memberService.UserList == undefined)
+        //   this.getMemberList(this.groupId, false);
+        // else
+        //   this.userList = this._memberService.UserList;
 
       },
       err => {
-        console.log("Can't get Teams")
+        //console.log("Can't get Teams")
       }
     );
   }
@@ -129,38 +179,49 @@ export class MemberComponent implements OnInit {
     this.groupId = team.groupID;
     this._memberService.GroupId = this.groupId;
     this._memberService.SelectedIndexMember = 0;
-    console.log('GroupId: ', team.groupID);
+    //console.log('GroupId: ', team.groupID);
 
-    // this.getMemberList(this.groupId, false);
-    this.mockMemberList(this.groupId, true);
+    this.getMemberList(this.groupId, true);
+    // this.mockMemberList(this.groupId, true);
 
   }
 
   getMemberList(GroupId: number, isChangeTeam: boolean) {
     this._memberService.getMembers(GroupId).subscribe(
       Response => {
-        console.log("Get MemberList success!" + JSON.stringify(Response));
+        //console.log("Get MemberList success!" + JSON.stringify(Response));
 
         let result = Response;
 
         this.userList = [];
         result.GroupUsers.forEach(i => {
-    
+
           let data = new UserModel();
           data.groupId = i.GroupID;
           data.userId = i.UserID;
           data.name = i.User.FirstName + ' ' + i.User.LastName;
-    
+
           this.userList.push(data);
-    
+
         });
 
-        this.Members = result.GroupUsers;        
-        this._memberService.MemberList = this.Members;
+        // console.log('!!!' + JSON.stringify(this.userList[this.userList.length-1]));
+
+        this._memberService.UserList = this.userList;
+        this.Members = result.GroupUsers;
+
+        this._memberService.MemberList = result.GroupUsers;
+        //  console.log('!!! $$$' + JSON.stringify(this._memberService.MemberList[this._memberService.MemberList.length-1]));
 
         if (isChangeTeam) {
-          this.router.navigate(['/member/detail/' + GroupId]);
+          //console.log('/member/detail/' + GroupId + '/' + this.userList[0].userId)
+          this.router.navigate(['/member/detail/' + GroupId + '/' + this.userList[0].userId]);
         }
+
+
+        // this.router.navigate(['/member/detail/' + GroupId + '/' + this.userList[0].userId]);
+
+
 
       }
     );

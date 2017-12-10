@@ -66,9 +66,10 @@ export class OncallScheduleComponent implements OnInit {
     this.year = this.d.getFullYear();
     this.offset = this.d.getTimezoneOffset();
     this.Today = moment(new Date()).format("YYYY-MM-DD");
+
     //GET Team List
-    // this.getTeams();
-    this.mockTeam();
+    this.getTeams();
+    // this.mockTeam();
 
   }
 
@@ -208,11 +209,11 @@ export class OncallScheduleComponent implements OnInit {
     this.groupIDSelected = teamSelected.groupID;
 
     //mock up
-    this.mockMemberList(teamSelected.groupID);
-    this.mockGetSchedules(teamSelected.groupID, this.month, this.year);
+    // this.mockMemberList(teamSelected.groupID);
+    // this.mockGetSchedules(teamSelected.groupID, this.month, this.year);
 
-    // this.getMemberList(teamSelected.groupID);
-    // this.getSchedules(this.groupIDSelected,this.month, this.year);
+    this.getMemberList(teamSelected.groupID);
+    this.getSchedules(this.groupIDSelected,this.month, this.year);
   }
 
 
