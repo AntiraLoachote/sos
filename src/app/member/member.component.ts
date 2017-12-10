@@ -48,56 +48,51 @@ export class MemberComponent implements OnInit {
 
       //prepare data select
       this.teamList = [];
-      console.log("11111111")
-      if (this._memberService.TeamDataList == undefined) {
-        //Get TeamList
-        this.getTeams();
+      // console.log("11111111")
+      // if (this._memberService.TeamDataList == undefined) {
+      //   //Get TeamList
+      //   this.getTeams();
 
-      }
-      else {
-        //console.log("TeamDataList" + this._memberService.TeamDataList)
-        this.teamList = this._memberService.TeamDataList;
-        //select team data 
-        this.teamList.forEach(i => {
+      // }
+      // else {
+      //   //console.log("TeamDataList" + this._memberService.TeamDataList)
+      //   this.teamList = this._memberService.TeamDataList;
+      //   //select team data 
+      //   this.teamList.forEach(i => {
 
-          if (i.groupID == this.groupId) {
-            this.showTeam = i.name;
-            console.log("showTeam")
-            return;
-          }
+      //     if (i.groupID == this.groupId) {
+      //       this.showTeam = i.name;
+      //       console.log("showTeam")
+      //       return;
+      //     }
 
-        });
+      //   });
 
-      }
-      console.log("!!!!!!!!!!!!!!!!!!")
+      // }
+      // console.log("!!!!!!!!!!!!!!!!!!")
 
-      if (this._memberService.UserList == undefined) {
-        this.getMemberList(this.groupId, false);
-        console.log("case 1")
-      }
-      else {
-        if (this._memberService.UserList[0].groupId != this.groupId) {
-          this.getMemberList(this.groupId, false);
-          console.log("case 2")
-        } else {
-          console.log("case 3")
-          this.userList = this._memberService.UserList;
-          console.log("userList" + JSON.stringify(this.userList))
-
-          // this.router.navigate(['/member/detail/' + this.groupId + '/' + this.userList[0].userId]);
-
-
-        }
-
-      }
-
-
-      // this.mockTeams();
+      // if (this._memberService.UserList == undefined) {
+      //   this.getMemberList(this.groupId, false);
+      //   console.log("case 1")
+      // }
+      // else {
+      //   if (this._memberService.UserList[0].groupId != this.groupId) {
+      //     this.getMemberList(this.groupId, false);
+      //     console.log("case 2")
+      //   } else {
+      //     console.log("case 3")
+      //     this.userList = this._memberService.UserList;
+      //     console.log("userList" + JSON.stringify(this.userList))
 
 
 
+      //   }
 
-      // this.mockMemberList(this.groupId, false);
+      // }
+
+
+      this.mockTeams();
+      this.mockMemberList(this.groupId, false);
 
 
     });
@@ -181,8 +176,8 @@ export class MemberComponent implements OnInit {
     this._memberService.SelectedIndexMember = 0;
     //console.log('GroupId: ', team.groupID);
 
-    this.getMemberList(this.groupId, true);
-    // this.mockMemberList(this.groupId, true);
+    // this.getMemberList(this.groupId, true);
+    this.mockMemberList(this.groupId, true);
 
   }
 
