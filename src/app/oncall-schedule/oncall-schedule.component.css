@@ -59,18 +59,10 @@
       margin-left: 4.5vw;
       margin-top: 1vw;
 } */
-.user-image {
-    width: 7.5vw;
-    border: 0.1rem solid #4ECDC4;
-    border-radius: 50%;
-    height: 7.5vw;
-    margin-left: 1.3vw;
-    margin: 1vw auto;
-    margin-left: 1.3vw;
-}
+
 .user-name {
     color:  #4ECDC4;
-    margin-top:3vw;
+    margin-top:2.5vw;
 }
 
 /* #button-submit{
@@ -101,6 +93,13 @@
 .btn-submit {
     background: #44b9cb;
     border: 2px solid #44b9cb;
+    border-radius: 1.5rem;
+    width: 8vw;
+    padding: 6px;
+    margin-top: 20px;
+}
+
+.btn-delete {
     border-radius: 1.5rem;
     width: 8vw;
     padding: 6px;
@@ -147,6 +146,14 @@
     background: #fdfdfd;
 }
 
+:host /deep/ .fc-button-group  {
+     visibility: hidden;
+}
+
+:host /deep/ .fc-h-event {
+    cursor:pointer;
+}
+
 :host /deep/ .fc-unthemed .fc-content,
 :host /deep/ .fc-unthemed .fc-divider,
 :host /deep/ .fc-unthemed .fc-list-heading td,
@@ -186,6 +193,14 @@
     border: 1px solid #44b9cb;
 }
 
+:host /deep/ .fc-time  {
+    display: none;
+}
+:host /deep/ .fc-timeend {
+    float: right;
+}
+
+
 @media screen and (min-width: 1920px), screen and (min-height: 974px) {
     .sub-header {
         margin-top: 44px;
@@ -221,3 +236,58 @@
 .custom-control-input:focus~.custom-control-indicator {
     box-shadow: none;
 }
+
+/* /////display */
+
+.thumbnail {
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    width: 7.5vw;
+    height: 7.5vw;
+    border: 2px solid #47bdcd;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .thumbnail img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+  }
+  .thumbnail img.portrait {
+    width: 100%;
+    height: auto;
+  }
+
+  /*/////////////*/
+  .btn-calendar-action {
+      position: absolute;
+      top: -45;
+      text-align: right;
+      right: 22px;
+  }
+
+  .btn-calendar-action .btn {
+        background: #44b9cb;
+        border: 2px solid #44b9cb;
+        border-radius: 0.2rem;
+        width: 63px;
+        padding: 6px;
+        font-size: 14px;
+        margin: 0 2px;
+  }
+
+  :host /deep/ .fc-today-button {
+      display:none;
+  }
+
+  .btn-today {
+    background-color: white !important;
+    color: #44b9cb !important;
+  }

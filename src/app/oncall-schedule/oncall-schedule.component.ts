@@ -10,13 +10,18 @@ import * as moment from 'moment';
 import { FormControl } from '@angular/forms';
 import { error } from 'util';
 
+
+import * as $ from 'jquery';
+import { ScheduleModel } from 'app/models/oncall-schedule/schedule.model';
+
 @Component({
   selector: 'app-oncall-schedule',
   templateUrl: './oncall-schedule.component.html',
   styleUrls: ['./oncall-schedule.component.css']
 })
 export class OncallScheduleComponent implements OnInit {
-  groupIDSelected: number;
+  groupIDSelected: number = 0;
+  scheduleIdSelected: number = 0;
   groupUserIdSelected: number;
   isSeclectedGroup: boolean = false;
   profilePicture: string;
@@ -27,29 +32,51 @@ export class OncallScheduleComponent implements OnInit {
   d: Date;
   offset: number;
   analystSelected: any;
-  analystList: any[];
+  analystList: any[] = [];
   teamList: any[];
   username: string
   teamSelected: any;
   month: number;
   year: number;
-  DateFrom: Date;
-  DateTo: Date;
-  TimeFrom: Date = new Date();
-  TimeTo: Date = new Date();
+  DateFrom: any;
+  DateTo: any;
+  TimeFrom: any;
+  TimeTo: any;
+  DataEvent: any = {};
+  AddIsSuccess : boolean = false;
 
-  calendarOptions: Object;
+  // calendarOptions: any = {};
+  calendarOptions: any = {
+        height: 'parent',
+        fixedWeekCount: false,
+        defaultDate: this.defaultDate,
+        editable: false,
+        eventLimit: false, // allow "more" link when too many events
+        eventColor: '#2EC7C1',
+        eventTextColor: 'white',
+        timeFormat: 'H:mm:ss',
+        displayEventEnd: true,
+        events: [] ,
+        eventClick: function (calEvent, jsEvent, view) {
+        //  console.log(calEvent);
+
+        }
+  };
+
   IsAllDay: boolean = true; //false is Recurrence
+
 
   constructor(
     private _teamService: TeamService,
     private _memberService: MemberService,
     private _oncallScheduleService: OncallScheduleService,
-    private elementRef: ElementRef
+    private elementRef: ElementRef,
+  
+
+    
   ) { }
 
   @ViewChild(CalendarComponent) myCalendar: CalendarComponent;
-
 
   ngOnInit() {
     // this.username = "Krichpas Khumthanom";
@@ -61,23 +88,30 @@ export class OncallScheduleComponent implements OnInit {
     this.teamList = [fristData];
     this.teamSelected = this.teamList[0];
 
-    this.d = new Date();
+    this.d= new Date();
     this.month = (this.d.getMonth() + 1);
     this.year = this.d.getFullYear();
     this.offset = this.d.getTimezoneOffset();
-    this.Today = moment(new Date()).format("YYYY-MM-DD");
+    this.Today = moment(new Date()).format("DD/MM/YYYY");
+
+    this.TimeFrom = new Date(this.d.getFullYear(),
+    this.d.getMonth(),this.d.getDate(),0,0,0);
+    this.TimeTo = new Date(this.d.getFullYear(),
+    this.d.getMonth(),this.d.getDate(),0,0,59);
 
     //GET Team List
     this.getTeams();
+
     // this.mockTeam();
 
   }
 
-  ngAfterViewInit() {
-    jQuery(this.elementRef.nativeElement).find('button.fc-next-button').click(() => {
-      console.log("do something here");
-    });
-  }
+  // ngAfterViewInit() {
+  //   jQuery(this.elementRef.nativeElement).find('button.fc-next-button').click(() => {
+  //     console.log("do something here");
+  //   });
+  // }
+
 
   changeCalendarView(view) {
     this.myCalendar.fullCalendar('changeView', view);
@@ -142,11 +176,12 @@ export class OncallScheduleComponent implements OnInit {
         var defaultDate = new Date();
         var timezone = moment(defaultDate).format('Z');
 
-        if (defaultDate.getMonth() != month) {
+        if (defaultDate.getMonth() + 1 != month) {
           defaultDate = new Date(year, month - 1, 1, 0, 0, 0, 0);
         }
 
         this.defaultDate = moment(defaultDate).format('YYYY-MM-DD');
+        console.log('defaultDate => ' + defaultDate)
         let j = 0;
         for (var i = 0; i < data.length; i++) {
           //convert to local time
@@ -154,17 +189,20 @@ export class OncallScheduleComponent implements OnInit {
           var localStartDate = new Date(utcStartDate.getTime() - this.offset * 60 * 1000);
           var utcEndDate = new Date(data[i].EndAt);
           var localEndDate = new Date(utcEndDate.getTime() - this.offset * 60 * 1000);
-
-          let color = ['#2EC7C1', '#F8F138', '#49CC75'];
+          var timeStart = moment(localStartDate).format('HH:mm:ss');
+          var timeEnd = moment(localEndDate).format('HH:mm:ss');
+          let color = ['#2EC7C1', '#f4ad72', '#49CC75' ];
 
           if (j > 2) {
             j = 0;
           }
-
+          var a = '<span class="fc-timeend">T(' + timeEnd + ')/span>';
+          var htmlObject = $(a);
+          //htmlObject.prop('outerHTML')
 
           dataEvents.push({
             id: data[i].ScheduleID,
-            title: "(" + timezone + ") " + data[i].GroupUser.User.LastName + ", " + data[i].GroupUser.User.FirstName,
+            title: "S("+ timeStart + ")  " + "(" + timezone + ") " + data[i].GroupUser.User.LastName + ", " + data[i].GroupUser.User.FirstName + "  T("+ timeEnd + ")",
             start: localStartDate,
             end: localEndDate,
             color: color[j],
@@ -173,8 +211,9 @@ export class OncallScheduleComponent implements OnInit {
 
           j++;
 
-          // console.log(JSON.stringify(dataEvents));
+         
         }
+        // console.log(JSON.stringify(dataEvents));
         //load calendar
         this.loadCalendarOptions(dataEvents);
       });
@@ -182,38 +221,135 @@ export class OncallScheduleComponent implements OnInit {
 
 
   loadCalendarOptions(dataEvents: any) {
-    this.calendarOptions = {
-      height: 'parent',
-      fixedWeekCount: false,
-      defaultDate: this.defaultDate,
-      editable: false,
-      eventLimit: false, // allow "more" link when too many events
-      eventColor: '#2EC7C1',
-      eventTextColor: 'white',
-      timeFormat: 'H:mm:ss',
-      displayEventEnd: true,
-      events: dataEvents,
-      eventClick: function (calEvent, jsEvent, view) {
-        //alert('Event: ' + calEvent.title);
-        console.log(calEvent);
+    console.log('dataEvents' + JSON.stringify(dataEvents))
+      this.calendarOptions = {
+        height: 'parent',
+        fixedWeekCount: false,
+        defaultDate: this.defaultDate,
+        editable: false,
+        eventLimit: false, // allow "more" link when too many events
+        eventColor: '#2EC7C1',
+        eventTextColor: 'white',
+        timeFormat: 'H:mm:ss',
+        displayEventEnd: true,
+        events: dataEvents,
+        eventClick:
+            //   function(calEvent, jsEvent, view) {
 
-      },
-    };
+            //     alert('Event: ' + calEvent.title);
+
+            //     // change the border color just for fun
+            //     $(this).css('border-color', '#444');
+                
+            // },
+      
+        (calEvent, jsEvent, view) => {
+          this.selctedEvent(calEvent, jsEvent, view);
+       }
+       
+      
+      };
+    
+    // this.calendarOptions.events = dataEvents;
+    // $('#myCalendar').fullCalendar('refetchEventSources', dataEvents);
+
+    this.isSeclectedGroup = true;
   }
 
+  public selctedEvent(calEvent:any, jsEvent:any, view:any){
+    this.scheduleIdSelected = calEvent.id;
+    console.log(calEvent.title + ' ' + calEvent.id);
+    this.DataEvent = {
+            scheduleId: calEvent.id,
+            title: calEvent.title,
+            startDate: calEvent.start,
+            startTime:calEvent.start,
+            endDate: calEvent.end,
+            endTime: calEvent.end,
+            groupUserID: calEvent.groupUserID
+          };
+
+    // console.log(this.DataEvent.startDate.year() +',' + this.DataEvent.startDate.month() +',' + this.DataEvent.startDate.date())
+
+    this.DateFrom =  new Date(this.DataEvent.startDate.year(), this.DataEvent.startDate.month(), this.DataEvent.startDate.date());
+
+    this.DateTo = new Date(this.DataEvent.endDate.year(), this.DataEvent.endDate.month(), this.DataEvent.endDate.date());
+
+  // console.log(this.DataEvent.startDate.hour() +',' + this.DataEvent.startDate.minute() +',' + this.DataEvent.startDate.second())
+
+   this.DateTo = new Date(this.DataEvent.endDate.year(), this.DataEvent.endDate.month(), this.DataEvent.endDate.date());
+
+      this.TimeFrom = new Date(
+        this.DataEvent.startDate.year(), 
+        this.DataEvent.startDate.month(), 
+        this.DataEvent.startDate.date(),
+        this.DataEvent.startDate.hour(),
+        this.DataEvent.startDate.minute(),
+        this.DataEvent.startDate.second()
+        );
+
+      this.TimeTo = new Date(
+        this.DataEvent.endDate.year(), 
+        this.DataEvent.endDate.month(), 
+        this.DataEvent.endDate.date(),
+        this.DataEvent.endDate.hour(),
+        this.DataEvent.endDate.minute(),
+        this.DataEvent.endDate.second()
+        );
+
+        //select Analyst
+        console.log(JSON.stringify(this.analystList))
+        for(var i=0; i < this.analystList.length ; i++){
+           console.log(this.DataEvent.groupUserID + ' : ' + this.analystList[i].groupUserID)
+         if(this.DataEvent.groupUserID == this.analystList[i].groupUserID){
+             this.analystSelected = this.analystList[i];
+             this.selectAnalyst(this.analystSelected);
+             break;
+         } 
+        }
+
+        this.AddIsSuccess = false;
+      
+  }
+
+  clearInputData(){
+    this.DateFrom = undefined;
+    this.DateTo = undefined;
+    this.TimeFrom = new Date(this.d.getFullYear(),
+    this.d.getMonth(),this.d.getDate(),0,0,0);
+    this.TimeTo = new Date(this.d.getFullYear(),
+    this.d.getMonth(),this.d.getDate(),0,0,59);
+
+    if(this.analystList != [] && this.analystList != undefined){
+        this.analystSelected = this.analystList[0];
+    }
+
+    this.lanId = null;
+    this.username = "";
+    this.companyEmail = "";
+    this.AddIsSuccess = false;
+    this.scheduleIdSelected = 0;
+
+
+  };
 
   selectTeam(teamSelected: TeamsModel) {
     console.log(teamSelected);
 
-    this.isSeclectedGroup = true;
     this.groupIDSelected = teamSelected.groupID;
+    this.scheduleIdSelected = 0;
 
+    this.month = (this.d.getMonth() + 1);
+    this.year = this.d.getFullYear();
+
+    this.clearInputData();
     //mock up
     // this.mockMemberList(teamSelected.groupID);
     // this.mockGetSchedules(teamSelected.groupID, this.month, this.year);
 
-    this.getMemberList(teamSelected.groupID);
+    this.isSeclectedGroup = false;
     this.getSchedules(this.groupIDSelected,this.month, this.year);
+    this.getMemberList(teamSelected.groupID);
   }
 
 
@@ -222,6 +358,7 @@ export class OncallScheduleComponent implements OnInit {
     this.companyEmail = data.comEmail;
     this.lanId = data.lanId;
     this.groupUserIdSelected = data.groupUserID;
+    this.getUserPic();
   }
 
   updateUrl() {
@@ -257,7 +394,7 @@ export class OncallScheduleComponent implements OnInit {
         let result = Response;
 
 
-        this.teamList = [];
+        //this.teamList = [];
 
         //prepare data select
         result.forEach(i => {
@@ -293,6 +430,7 @@ export class OncallScheduleComponent implements OnInit {
         tempData.groupId = 0;
         tempData.name = "Choose Analyst";
         tempData.userId = 0;
+        tempData.groupUserID = 0;
 
         this.analystList = [tempData];
         this.analystSelected = this.analystList[0];
@@ -325,35 +463,95 @@ export class OncallScheduleComponent implements OnInit {
 
   }
 
-  addSchedule(groupUserId: number) {
-    let utcStartAndEndDateTime = this.getEndAndStartDateTimeUTC();
-    let oncallGroupUserID = groupUserId;
+  getToday(){
+     this.clearInputData();
+     this.month = this.d.getMonth() + 1;
+     this.year = this.d.getFullYear();
 
-    let data = {
-      GroupUserID: oncallGroupUserID,
-      StartAt: utcStartAndEndDateTime[0],
-      EndAt: utcStartAndEndDateTime[1],
-      StartDate: utcStartAndEndDateTime[2],
-      EndDate: utcStartAndEndDateTime[3],
-      StartTime: utcStartAndEndDateTime[4],
-      EndTime: utcStartAndEndDateTime[5]
-    };
+     this.isSeclectedGroup = false;
+     this.getSchedules(this.groupIDSelected,this.month, this.year);
+  }
+  prevMonth(){
+    this.clearInputData();
+
+    var tempDate = new Date(this.year,this.month,2);
+    tempDate.setMonth(tempDate.getMonth() - 1);
+
+    this.month = tempDate.getMonth();
+    this.year = tempDate.getFullYear();
+
+    // console.log(this.month + ' <=> ' + this.year)
+
+    if(this.month == 0){
+      this.month = 12;
+      this.year = this.year-1;
+    }
+
+    // console.log(this.month + ' : ' + this.year)
+
+    this.isSeclectedGroup = false;
+    this.getSchedules(this.groupIDSelected,this.month, this.year);
+  }
+
+  nextMonth(){
+    this.clearInputData();
+
+    var tempDate = new Date(this.year,this.month,2);
+    tempDate.setMonth(tempDate.getMonth() + 1);
+
+    this.month = tempDate.getMonth();
+    this.year = tempDate.getFullYear();
+    
+      // console.log(this.month + ' <== Next => ' + this.year)
+
+    if(this.month == 0){
+      this.month = 12;
+      this.year = this.year -1;
+    }
+
+    // console.log(this.month + ' : ' + this.year)
+
+    this.isSeclectedGroup = false;
+    this.getSchedules(this.groupIDSelected,this.month, this.year);
+  }
+
+
+  addSchedule() {
+    let utcStartAndEndDateTime = this.getEndAndStartDateTimeUTC();
+
+    let data = new ScheduleModel();
+      data.GroupUserID = this.analystSelected.groupUserID;
+      data.StartAt = utcStartAndEndDateTime[0];
+      data.EndAt = utcStartAndEndDateTime[1];
+      data.StartDate = utcStartAndEndDateTime[2];
+      data.EndDate = utcStartAndEndDateTime[3];
+      data.StartTime = utcStartAndEndDateTime[4];
+      data.EndTime = utcStartAndEndDateTime[5];
+
+    console.log(JSON.stringify(data))
+
+    this.month =+ (moment(data.StartDate).format('MM'));
+    this.year =+ (moment(data.StartDate).format('YYYY'));
+    
+    console.log(this.month + " < Add > " + this.year)
 
     this._oncallScheduleService.addSchedule(data).subscribe(
       Response => {
         //getSchedules
-
+       console.log("Add Schedule Succes!!");
+       this.scheduleIdSelected = 0;
+       this.isSeclectedGroup = false;
         this.getSchedules(this.groupIDSelected, this.month, this.year)
 
       },
       error => {
-        console.log("Can't addSchedule");
+        console.log("Can't addSchedule" + error);
       });
 
   }
 
 
-  getEndAndStartDateTimeUTC(): any[] {
+  getEndAndStartDateTimeUTC(): any {
 
     var EndAndStartDateTimeUTC = new Array(6);
 
@@ -367,7 +565,7 @@ export class OncallScheduleComponent implements OnInit {
     ///// end data time 
     var timeToHour = this.TimeTo.getHours();
     var timeToMinute = this.TimeTo.getMinutes();
-    let endDateTime = moment(this.DateTo).set({ hour: timeToHour, minute: timeToMinute }).format('YYYY-MM-DD HH:mm:ss');
+    let endDateTime = moment(this.DateTo).set({ hour: timeToHour, minute: timeToMinute , second: 59 }).format('YYYY-MM-DD HH:mm:ss');
 
     var utcEndDateTime = moment(endDateTime).utc();
 
@@ -378,6 +576,69 @@ export class OncallScheduleComponent implements OnInit {
     EndAndStartDateTimeUTC[4] = moment(utcStartDateTime).format('HH:mm:ss');
     EndAndStartDateTimeUTC[5] = moment(utcEndDateTime).format('HH:mm:ss');
     return EndAndStartDateTimeUTC;
+  }
+
+  updateSchedule() {
+    let utcStartAndEndDateTime = this.getEndAndStartDateTimeUTC();
+
+    let data = new ScheduleModel();
+      data.ScheduleID = this.DataEvent.scheduleId;
+      data.GroupUserID = this.analystSelected.groupUserID;
+      data.StartAt = utcStartAndEndDateTime[0];
+      data.EndAt = utcStartAndEndDateTime[1];
+      data.StartDate = utcStartAndEndDateTime[2];
+      data.EndDate = utcStartAndEndDateTime[3];
+      data.StartTime = utcStartAndEndDateTime[4];
+      data.EndTime = utcStartAndEndDateTime[5];
+
+    console.log(JSON.stringify(data))
+
+    this.month =+ (moment(data.StartDate).format('MM'));
+    this.year =+ (moment(data.StartDate).format('YYYY'));
+    
+    console.log(this.month + " < Update > " + this.year)
+
+    this._oncallScheduleService.updateSchedule(data).subscribe(
+      Response => {
+        //getSchedules
+       console.log("Update Schedule Succes!!");
+        this.isSeclectedGroup = false;
+        this.getSchedules(this.groupIDSelected, this.month, this.year)
+
+      },
+      error => {
+        console.log("Can't Update Schedule" + error);
+      });
+
+  }
+
+    removeSchedule() {
+   
+      
+
+    console.log('Remove => ID ' + this.DataEvent.scheduleId)
+
+    this.month =+ (moment(this.DataEvent.startDate).format('MM'));
+    this.year =+ (moment(this.DataEvent.startDate).format('YYYY'));
+    
+    console.log(this.month + " < Delete > " + this.year)
+
+    this._oncallScheduleService.deleteSchedule(this.DataEvent.scheduleId).subscribe(
+      Response => {
+        
+        console.log("Delete Schedule Succes!!");
+
+        //clearInputData
+        this.clearInputData();
+        //getSchedules
+        this.isSeclectedGroup = false;
+        this.getSchedules(this.groupIDSelected, this.month, this.year)
+
+      },
+      error => {
+        console.log("Can't Delete Schedule" + error);
+      });
+
   }
 
   mockMemberList(GroupId: number) {

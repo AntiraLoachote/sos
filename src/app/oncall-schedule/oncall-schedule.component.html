@@ -26,8 +26,8 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-4 col-form-label label-topic">Date from:</label>
             <div class="col-7">
-                <input type="text"  [(ngModel)]="DateFrom" class="form-control input-oncall" placeholder="YYYY-MM-DD" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
-                (bsValueChange)="DateFrom = $event ;"
+                <input type="text"  [(ngModel)]="DateFrom" [isDisabled]="groupIDSelected == 0" class="form-control input-oncall" placeholder="DD/MM/YYYY" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
+                (bsValueChange)="DateFrom = $event ; DateTo = DateFrom"
               />            
             </div>
           </div>
@@ -36,8 +36,8 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
             <div class="col-10">
-                <input type="text"  [(ngModel)]="DateTo" class="form-control input-oncall" placeholder="YYYY-MM-DD" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
-                (bsValueChange)="DateTo = $event ;"
+                <input type="text"  [(ngModel)]="DateTo" [minDate]="DateFrom" [isDisabled]="groupIDSelected == 0" class="form-control input-oncall" placeholder="DD/MM/YYYY" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
+                (bsValueChange)="DateTo = $event ; "
               />       
             </div>
           </div>
@@ -49,7 +49,7 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-4 col-form-label label-topic">Time from:</label>
             <div class="col-7">
-              <timepicker [(ngModel)]="TimeFrom"  [showSeconds]="true"  [showSpinners]="false" [showMeridian]="false"></timepicker>
+              <timepicker [(ngModel)]="TimeFrom" (ngModelChange)="TimeTo = TimeFrom" [readonlyInput]="groupIDSelected == 0" [showSeconds]="false"  [showSpinners]="false" [showMeridian]="false"></timepicker>
             </div>
           </div>
         </div>
@@ -57,25 +57,17 @@
           <div class="form-group row no-gutters">
             <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
             <div class="col-10">
-                <timepicker [(ngModel)]="TimeTo"  [showSeconds]="true"  [showSpinners]="false" [showMeridian]="false"></timepicker>                
+                <timepicker [(ngModel)]="TimeTo" [min]="TimeFrom" [readonlyInput]="groupIDSelected == 0"  [showSeconds]="false"  [showSpinners]="false" [showMeridian]="false"></timepicker>                
             </div>
           </div>
         </div>
       </div>
 
 
-      <div class="row form-group">
-        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="checkbox">
-          <input type="checkbox" class="custom-control-input" [checked]="!IsAllDay" 
-          (change)="IsAllDay = !IsAllDay ; ">
-          <span class="custom-control-indicator"></span>
-          <span class="custom-control-description">
-              Recurrence
-          </span>
-        </label>
-        <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="secondbox">
+      <div class="row form-group" style="display:none">
+         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="checkbox">
 
-          <input type="checkbox" class="custom-control-input" [checked]="IsAllDay" 
+          <input type="checkbox" class="custom-control-input custom-checkbox mb-2 mr-sm-2 mb-sm-0" [checked]="IsAllDay" 
           (change)="IsAllDay = !IsAllDay">
           <span class="custom-control-indicator"></span>
           <span class="custom-control-description">
@@ -83,6 +75,15 @@
           </span>
 
         </label>
+        <label style="visibility:hidden" class="custom-control " id="secondbox">
+          <input type="checkbox" class="custom-control-input" [checked]="!IsAllDay" 
+          (change)="IsAllDay = !IsAllDay ; ">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">
+              Recurrence
+          </span>
+        </label>
+       
       </div>
 
       <div class="col-12 row no-gutters">
@@ -118,8 +119,10 @@
           <div class="card">
             <div class="card-block">
               <div class="row" style="    min-height: 95px;">
-                <div class="col-4">
-                  <img *ngIf="lanId"  (error)="updateUrl($event)" [src]="profilePicture" class="user-image">
+                <div class="col-4 ">
+                  <div class="thumbnail" *ngIf="lanId">
+                        <img *ngIf="lanId"  (error)="updateUrl($event)" [src]="profilePicture" >
+                    </div>
                 </div>
                 <div class="col-7">
                   <h4 class="card-title user-name" style="font-size:1.2vw;">{{username}}</h4>
@@ -134,13 +137,20 @@
 
       <div class="row">
         <div class="col-11" style=" text-align: center;">
-          <button type="button" class="btn btn-primary btn-submit" (click)="addSchedule(groupIdSelected)"> ADD </button>
+          <button *ngIf="groupIDSelected != 0 && scheduleIdSelected == 0 " type="button" class="btn btn-primary btn-submit" (click)="addSchedule()"> ADD </button>
+          <button *ngIf="scheduleIdSelected != 0 " type="button" class="btn btn-primary btn-submit" (click)="updateSchedule()" > UPDATE </button>
+          <button *ngIf="scheduleIdSelected != 0 " type="button" class="btn btn-danger btn-delete" (click)="removeSchedule()" > DELETE </button>
         </div>
       </div>
     </div>
 
     <div class="col-7" style="padding: 5vh; padding-top: 0; padding-bottom: 0;">
-      <angular2-fullcalendar *ngIf="isSeclectedGroup" [options]="calendarOptions"></angular2-fullcalendar>
+        <div class="col-12 btn-calendar-action" *ngIf="groupIDSelected != 0">
+          <button type="button" class="btn btn-info btn-today" (click)="getToday()" > TODAY </button>
+          <button type="button" class="btn btn-info " (click)="prevMonth()" > PREV </button>
+          <button type="button" class="btn btn-info " (click)="nextMonth()" > NEXT </button>
+        </div>
+      <angular2-fullcalendar id="myCalendar" *ngIf="isSeclectedGroup" [options]="calendarOptions"></angular2-fullcalendar>
 
     </div>
   </div>
