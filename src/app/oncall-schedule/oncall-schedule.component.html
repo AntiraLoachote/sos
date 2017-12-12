@@ -1,71 +1,69 @@
 <div class="col sub-header">
-  <nav class="navbar ">
-    <h5 class="text">Oncall Schedule</h5>
-  </nav>
+    <nav class="navbar ">
+        <h5 class="text">Oncall Schedule</h5>
+    </nav>
 
-  <div class="row no-gutters" style="margin-top: 4vh;">
-    <div class="col">
-      <div class="col-12 row no-gutters">
-        <div class="col-12">
-          <div class="form-group row no-gutters">
-            <label for="example-text-input" class="col-2 col-form-label label-topic" style="
+    <div class="row no-gutters" style="margin-top: 4vh;">
+        <div class="col">
+            <div class="col-12 row no-gutters">
+                <div class="col-12">
+                    <div class="form-group row no-gutters">
+                        <label for="example-text-input" class="col-2 col-form-label label-topic" style="
             flex: 0 0 19.333333%;
             max-width: 19.333333%;
         ">Group</label>
-            <div class="col">
-              <select class="form-control input-oncall" [(ngModel)]="teamSelected" (ngModelChange)="selectTeam(teamSelected)" required>
+                        <div class="col">
+                            <select class="form-control input-oncall" [(ngModel)]="teamSelected" (ngModelChange)="selectTeam(teamSelected)" required>
                 <option *ngFor="let team of teamList" [ngValue]="team" [disabled]="team.groupID == 0">{{team.name}}</option>
               </select>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-12 col-xs-12 row no-gutters">
-        <div class="col-md-7 col-xs-12">
-          <div class="form-group row no-gutters">
-            <label for="example-text-input" class="col-4 col-form-label label-topic">Date from:</label>
-            <div class="col-7">
-                <input type="text"  [(ngModel)]="DateFrom" [isDisabled]="groupIDSelected == 0" class="form-control input-oncall" placeholder="DD/MM/YYYY" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
-                (bsValueChange)="DateFrom = $event ; DateTo = DateFrom"
-              />            
+            <div class="col-md-12 col-xs-12 row no-gutters">
+                <div class="col-md-7 col-xs-12">
+                    <div class="form-group row no-gutters">
+                        <label for="example-text-input" class="col-4 col-form-label label-topic">Date from:</label>
+                        <div class="col-7">
+                            <input type="text" [(ngModel)]="DateFrom" [isDisabled]="groupIDSelected == 0" class="form-control input-oncall" placeholder="DD/MM/YYYY" bsDatepicker [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-blue',showWeekNumbers: false}" (bsValueChange)="DateFrom = $event"
+                            />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <div class="form-group row no-gutters">
+                        <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
+                        <div class="col-10">
+                            <input type="text" [(ngModel)]="DateTo" [minDate]="DateFrom" [isDisabled]="groupIDSelected == 0" class="form-control input-oncall" placeholder="DD/MM/YYYY" bsDatepicker [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-blue',showWeekNumbers: false}"
+                                (bsValueChange)="DateTo = $event ; " />
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-xs-12">
-          <div class="form-group row no-gutters">
-            <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
-            <div class="col-10">
-                <input type="text"  [(ngModel)]="DateTo" [minDate]="DateFrom" [isDisabled]="groupIDSelected == 0" class="form-control input-oncall" placeholder="DD/MM/YYYY" bsDatepicker [bsConfig]="{dateInputFormat: 'YYYY-MM-DD',containerClass:'theme-blue',showWeekNumbers: false}"
-                (bsValueChange)="DateTo = $event ; "
-              />       
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="col-md-12 col-xs-12 row no-gutters">
-        <div class="col-md-7 col-xs-12">
-          <div class="form-group row no-gutters">
-            <label for="example-text-input" class="col-4 col-form-label label-topic">Time from:</label>
-            <div class="col-7">
-              <timepicker [(ngModel)]="TimeFrom" (ngModelChange)="TimeTo = TimeFrom" [readonlyInput]="groupIDSelected == 0" [showSeconds]="false"  [showSpinners]="false" [showMeridian]="false"></timepicker>
+            <div class="col-md-12 col-xs-12 row no-gutters">
+                <div class="col-md-7 col-xs-12">
+                    <div class="form-group row no-gutters">
+                        <label for="example-text-input" class="col-4 col-form-label label-topic">Time from:</label>
+                        <div class="col-7">
+                            <timepicker [(ngModel)]="TimeFrom" (ngModelChange)="TimeTo = TimeFrom" [readonlyInput]="groupIDSelected == 0" [showSeconds]="false" [showSpinners]="false" [showMeridian]="false"></timepicker>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 col-xs-12">
+                    <div class="form-group row no-gutters">
+                        <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
+                        <div class="col-10">
+                            <timepicker [(ngModel)]="TimeTo" [min]="TimeFrom" [readonlyInput]="groupIDSelected == 0" [showSeconds]="false" [showSpinners]="false" [showMeridian]="false"></timepicker>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col-md-5 col-xs-12">
-          <div class="form-group row no-gutters">
-            <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
-            <div class="col-10">
-                <timepicker [(ngModel)]="TimeTo" [min]="TimeFrom" [readonlyInput]="groupIDSelected == 0"  [showSeconds]="false"  [showSpinners]="false" [showMeridian]="false"></timepicker>                
-            </div>
-          </div>
-        </div>
-      </div>
 
 
-      <div class="row form-group" style="display:none">
-         <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="checkbox">
+            <div class="row form-group" style="display:none">
+                <label class="custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0" id="checkbox">
 
           <input type="checkbox" class="custom-control-input custom-checkbox mb-2 mr-sm-2 mb-sm-0" [checked]="IsAllDay" 
           (change)="IsAllDay = !IsAllDay">
@@ -75,7 +73,7 @@
           </span>
 
         </label>
-        <label style="visibility:hidden" class="custom-control " id="secondbox">
+                <label style="visibility:hidden" class="custom-control " id="secondbox">
           <input type="checkbox" class="custom-control-input" [checked]="!IsAllDay" 
           (change)="IsAllDay = !IsAllDay ; ">
           <span class="custom-control-indicator"></span>
@@ -83,84 +81,82 @@
               Recurrence
           </span>
         </label>
-       
-      </div>
 
-      <div class="col-12 row no-gutters">
-        <div class="col-12">
-          <div class="form-group row no-gutters">
-            <label for="example-text-input" class="col-2 col-form-label label-topic" style="
+            </div>
+
+            <div class="col-12 row no-gutters">
+                <div class="col-12">
+                    <div class="form-group row no-gutters">
+                        <label for="example-text-input" class="col-2 col-form-label label-topic" style="
               flex: 0 0 19.333333%;
               max-width: 19.333333%;
           ">Analyst:</label>
-            <div class="col">
-                <select class="form-control input-oncall" [(ngModel)]="analystSelected" (ngModelChange)="selectAnalyst(analystSelected)" required>
+                        <div class="col">
+                            <select class="form-control input-oncall" [(ngModel)]="analystSelected" (ngModelChange)="selectAnalyst(analystSelected)" required>
                     <option *ngFor="let item of analystList" [ngValue]="item" [disabled]="item.userId == 0">{{item.name}}</option>
                   </select>
-                  
-            </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- <div class="row">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- <div class="row">
         <b style="font-size:1.1vw;" id="SelectAnalyst">Analyst:</b>
         <select class="form-control" id="sizegroup" >
           <option >Choose Analyst</option>
         </select>
 
       </div> -->
-      <div class="row">
-        <b class="label-topic" style="margin-left: 4.5vw;
+            <div class="row">
+                <b class="label-topic" style="margin-left: 4.5vw;
         margin-bottom: 15px;">More information:</b>
-      </div>
-      <div class="row">
-        <div class="col-11 box-info">
-          <div class="card">
-            <div class="card-block">
-              <div class="row" style="    min-height: 95px;">
-                <div class="col-4 ">
-                  <div class="thumbnail" *ngIf="lanId">
-                        <img *ngIf="lanId"  (error)="updateUrl($event)" [src]="profilePicture" >
+            </div>
+            <div class="row">
+                <div class="col-11 box-info">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="row" style="    min-height: 95px;">
+                                <div class="col-4 ">
+                                    <div class="thumbnail" *ngIf="lanId">
+                                        <img *ngIf="lanId" (error)="updateUrl($event)" [src]="profilePicture">
+                                    </div>
+                                </div>
+                                <div class="col-7">
+                                    <h4 class="card-title user-name" style="font-size:1.2vw;">{{username}}</h4>
+                                    <h4 class="card-title" style="font-size:1vw">{{companyEmail}}</h4>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
-                <div class="col-7">
-                  <h4 class="card-title user-name" style="font-size:1.2vw;">{{username}}</h4>
-                  <h4 class="card-title" style="font-size:1vw">{{companyEmail}}</h4>
-                </div>
-              </div>
-
             </div>
-          </div>
+
+            <div class="row">
+                <div class="col-12" style=" text-align: center;">
+                    <button *ngIf="groupIDSelected != 0 && scheduleIdSelected == 0 " type="button" class="btn btn-primary btn-submit" (click)="addSchedule()" [disabled]="lanId == '' || lanId == undefined || DateFrom == undefined || DateTo == undefined "> ADD </button>
+                    <button *ngIf="scheduleIdSelected != 0 " type="button" class="btn btn-primary btn-submit" (click)="updateSchedule()"> UPDATE </button>
+                    <button *ngIf="scheduleIdSelected != 0 " type="button" class="btn btn-danger btn-delete" (click)="removeSchedule()"> DELETE </button>
+                </div>
+            </div>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-12" style=" text-align: center;">
-          <button *ngIf="groupIDSelected != 0 && scheduleIdSelected == 0 " type="button" class="btn btn-primary btn-submit" (click)="addSchedule()"> ADD </button>
-          <button *ngIf="scheduleIdSelected != 0 " type="button" class="btn btn-primary btn-submit" (click)="updateSchedule()" > UPDATE </button>
-          <button *ngIf="scheduleIdSelected != 0 " type="button" class="btn btn-danger btn-delete" (click)="removeSchedule()" > DELETE </button>
+        <div class="col-7 box-calendar">
+            <div class="col-12 btn-calendar-action" *ngIf="groupIDSelected != 0">
+                <button type="button" class="btn btn-info btn-today" (click)="getToday()"> TODAY </button>
+                <button type="button" class="btn btn-info " (click)="prevMonth()"> PREV </button>
+                <button type="button" class="btn btn-info " (click)="nextMonth()"> NEXT </button>
+            </div>
+
+            <angular2-fullcalendar id="myCalendar" *ngIf="isSeclectedGroup" [options]="calendarOptions"></angular2-fullcalendar>
+
+
         </div>
-      </div>
-    </div>
-
-    <div class="col-7 box-calendar" >
-        <div class="col-12 btn-calendar-action" *ngIf="groupIDSelected != 0">
-          <button type="button" class="btn btn-info btn-today" (click)="getToday()" > TODAY </button>
-          <button type="button" class="btn btn-info " (click)="prevMonth()" > PREV </button>
-          <button type="button" class="btn btn-info " (click)="nextMonth()" > NEXT </button>
-        </div>
-      
-      <angular2-fullcalendar id="myCalendar" *ngIf="isSeclectedGroup" [options]="calendarOptions"></angular2-fullcalendar>
-
-
-    </div>
-    <div class="col-6" [hidden]="IsHiddenTemp" 
-    *ngIf="groupIDSelected != 0"
-     style="height: 450px;position:absolute; min-width:53%;
+        <div class="col-6" [hidden]="IsHiddenTemp" *ngIf="groupIDSelected != 0" style="height: 450px;position:absolute; min-width:53%;
       right:41px;opacity:0.4; ">
-        <angular2-fullcalendar id="tempCalendar" [options]="tempCalendarOptions"  ></angular2-fullcalendar>
+            <angular2-fullcalendar id="tempCalendar" [options]="tempCalendarOptions"></angular2-fullcalendar>
+        </div>
+
     </div>
-  
-  </div>
 </div>

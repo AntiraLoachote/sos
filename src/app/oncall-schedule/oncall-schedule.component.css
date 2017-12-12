@@ -377,3 +377,10 @@ screen and (min-height: 974px) {
 :host /deep/ #tempCalendar td.fc-today {
     background: white !important;
 }
+
+.btn-submit:disabled {
+    cursor:default;
+    background-color: #ddd;
+    border: 0;
+    opacity: 1;
+}
