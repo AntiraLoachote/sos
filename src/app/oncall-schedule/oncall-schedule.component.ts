@@ -13,6 +13,7 @@ import { error } from 'util';
 
 import * as $ from 'jquery';
 import { ScheduleModel } from 'app/models/oncall-schedule/schedule.model';
+import { ModalDirective } from "ngx-bootstrap";
 
 @Component({
   selector: 'app-oncall-schedule',
@@ -20,6 +21,9 @@ import { ScheduleModel } from 'app/models/oncall-schedule/schedule.model';
   styleUrls: ['./oncall-schedule.component.css']
 })
 export class OncallScheduleComponent implements OnInit {
+  
+  @ViewChild('childModal') public childModal:ModalDirective;
+
   groupIDSelected: number = 0;
   scheduleIdSelected: number = 0;
   groupUserIdSelected: number;
@@ -647,6 +651,8 @@ export class OncallScheduleComponent implements OnInit {
   }
 
   removeSchedule() {
+    //hide modal
+    this.childModal.hide();
 
 
 
@@ -673,6 +679,14 @@ export class OncallScheduleComponent implements OnInit {
         console.log("Can't Delete Schedule" + error);
       });
 
+  }
+
+  public showChildModal():void {
+    this.childModal.show();
+  }
+ 
+  public hideChildModal():void {
+    this.childModal.hide();
   }
 
   mockMemberList(GroupId: number) {

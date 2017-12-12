@@ -1,15 +1,19 @@
-.content-all{
+.content-all {
     padding-top: 3rem;
 }
-#team{
-    color:white;
+
+#team {
+    color: white;
     margin-left: 2%;
     margin-top: 1%;
 }
-#sidebar{
+
+#sidebar {
     margin-top: 1.5vw;
-   margin-left: 3vw;
+    margin-left: 3vw;
 }
+
+
 /* #example-date-input{
     margin-top: 1.5vw;
     margin-left: 1vw;
@@ -18,10 +22,13 @@
     padding: 0px 8px;
     border-radius: 0;
 } */
-#second{
+
+#second {
     margin-top: 1.5vw;
     margin-left: 0.5vw;
 }
+
+
 /* #sizegroup{
     width: 27vw;
      margin-top: 1.5vw;
@@ -29,10 +36,13 @@
     padding: 0px 8px;
     border-radius: 0;
 } */
-#Selectgroup{
-      margin-top: 1.5vw;
-   margin-left: 5vw;
+
+#Selectgroup {
+    margin-top: 1.5vw;
+    margin-left: 5vw;
 }
+
+
 /* #example-time-input{
  margin-top: 1.5vw;
     margin-left: 1vw;
@@ -41,19 +51,23 @@
     padding: 0px 8px;
     border-radius: 0;
 } */
-#SelectAnalyst{
-     margin-top: 1.5vw;
-   margin-left: 4.5vw;
+
+#SelectAnalyst {
+    margin-top: 1.5vw;
+    margin-left: 4.5vw;
 }
-#checkbox{
+
+#checkbox {
     margin-left: 9.8vw;
     /* margin-top: 1vw; */
-  
 }
-#secondbox{
+
+#secondbox {
     /* margin-top: 1vw; */
     margin-left: 4.7vw;
 }
+
+
 /* .card{
         width: 33vw;
       margin-left: 4.5vw;
@@ -61,9 +75,10 @@
 } */
 
 .user-name {
-    color:  #4ECDC4;
-    margin-top:2.5vw;
+    color: #4ECDC4;
+    margin-top: 2.5vw;
 }
+
 
 /* #button-submit{
     background: #44b9cb;
@@ -72,7 +87,6 @@
     width: 6vw;
     margin-left:15vw;
 } */
-
 
 .input-oncall {
     font-size: 1rem;
@@ -107,7 +121,6 @@
     margin-left: 15px;
 }
 
-
 .label-topic {
     font-size: 1rem;
     color: #868686;
@@ -116,18 +129,17 @@
     padding-right: 10px;
 }
 
-
 .sub-header {
     margin-top: 44px;
     padding: 0;
 }
 
-.sub-header .navbar  {
+.sub-header .navbar {
     background-color: #627485 !important;
     margin-bottom: 20px;
 }
 
-.sub-header .navbar .text  {
+.sub-header .navbar .text {
     font-size: 1.1rem;
     color: white;
     margin-left: 2%;
@@ -136,7 +148,9 @@
     margin-bottom: 0;
 }
 
+
 /* //// calendar */
+
 :host /deep/ .fc-left h2 {
     font-size: 1.6rem;
     color: #868686;
@@ -147,12 +161,12 @@
     background: #fdfdfd;
 }
 
-:host /deep/ .fc-button-group  {
-     visibility: hidden;
+:host /deep/ .fc-button-group {
+    visibility: hidden;
 }
 
 :host /deep/ .fc-h-event {
-    cursor:pointer;
+    cursor: pointer;
 }
 
 :host /deep/ .fc-unthemed .fc-content,
@@ -188,26 +202,27 @@
     color: white;
 }
 
-:host /deep/ .fc-today-button  {
+:host /deep/ .fc-today-button {
     color: #44b9cb;
     background: white;
     border: 1px solid #44b9cb;
 }
 
+
 /*:host /deep/ .fc-time  {
     display: none;
 }*/
+
 :host /deep/ .fc-timeend {
     float: right;
 }
 
-
-@media screen and (min-width: 1920px), screen and (min-height: 974px) {
+@media screen and (min-width: 1920px),
+screen and (min-height: 974px) {
     .sub-header {
         margin-top: 44px;
     }
 }
-
 
 :host /deep/ .hidden {
     display: none;
@@ -219,7 +234,8 @@
 
 .custom-control-input:checked~.custom-control-indicator {
     color: #fff;
-    background-color: #6EC8D6;;
+    background-color: #6EC8D6;
+    ;
 }
 
 .custom-control-description {
@@ -238,6 +254,7 @@
     box-shadow: none;
 }
 
+
 /* /////display */
 
 .thumbnail {
@@ -250,50 +267,53 @@
     border-radius: 50%;
     margin-top: 10px;
     margin-bottom: 10px;
-  }
-  .thumbnail img {
+}
+
+.thumbnail img {
     position: absolute;
     left: 50%;
     top: 50%;
     height: 100%;
     width: auto;
-    -webkit-transform: translate(-50%,-50%);
-        -ms-transform: translate(-50%,-50%);
-            transform: translate(-50%,-50%);
-  }
-  .thumbnail img.portrait {
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.thumbnail img.portrait {
     width: 100%;
     height: auto;
-  }
+}
 
-  /*/////////////*/
-  .btn-calendar-action {
-      position: absolute;
-      top: -45;
-      text-align: right;
-      right: 22px;
-  }
 
-  .btn-calendar-action .btn {
-        background: #44b9cb;
-        border: 2px solid #44b9cb;
-        border-radius: 0.2rem;
-        width: 63px;
-        padding: 6px;
-        font-size: 14px;
-        margin: 0 2px;
-  }
+/*/////////////*/
 
-  :host /deep/ .fc-today-button {
-      display:none;
-  }
+.btn-calendar-action {
+    position: absolute;
+    top: -45;
+    text-align: right;
+    right: 22px;
+}
 
-  .btn-today {
+.btn-calendar-action .btn {
+    background: #44b9cb;
+    border: 2px solid #44b9cb;
+    border-radius: 0.2rem;
+    width: 63px;
+    padding: 6px;
+    font-size: 14px;
+    margin: 0 2px;
+}
+
+ :host /deep/ .fc-today-button {
+    display: none;
+}
+
+.btn-today {
     background-color: white !important;
     color: #44b9cb !important;
-  }
+}
 
-  
 @media screen and (min-width: 1285px),
 screen and (min-height: 615px) {
     .sub-header .navbar {
@@ -306,9 +326,8 @@ screen and (min-height: 615px) {
     .content-all {
         margin-top: 13px;
     }
-
     .box-calendar {
-        height:450px;
+        height: 450px;
     }
 }
 
@@ -327,9 +346,8 @@ screen and (min-height: 918px) {
     .content-all {
         margin-top: 30px;
     }
-
     .box-calendar {
-        height:470px;
+        height: 470px;
     }
 }
 
@@ -344,15 +362,14 @@ screen and (min-height: 974px) {
     .content-all {
         margin-top: 30px;
     }
-
     .box-calendar {
-        height:500px;
+        height: 500px;
     }
-
 }
 
 .box-calendar {
-    padding: 5vh; padding-top: 0;
+    padding: 5vh;
+    padding-top: 0;
     padding-bottom: 0;
 }
 
@@ -364,13 +381,11 @@ screen and (min-height: 974px) {
     visibility: hidden;
 }
 
-:host /deep/ #tempCalendar .fc-day-number
-{
-     visibility: hidden;
+:host /deep/ #tempCalendar .fc-day-number {
+    visibility: hidden;
 }
 
-:host /deep/ #tempCalendar .fc-scroller 
-{
+:host /deep/ #tempCalendar .fc-scroller {
     overflow-y: hidden !important;
 }
 
@@ -379,8 +394,48 @@ screen and (min-height: 974px) {
 }
 
 .btn-submit:disabled {
-    cursor:default;
+    cursor: default;
     background-color: #ddd;
     border: 0;
     opacity: 1;
+}
+
+
+/* del modal */
+
+.btn-save {
+    text-align: center;
+    margin-right: 10px;
+    width: 13vh;
+    border-radius: 20px;
+}
+
+.btn-cancel {
+    text-align: center;
+    width: 13vh;
+    border-radius: 20px;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+@media (min-width: 576px) {
+    .del-dialog {
+        max-width: 700px;
+    }
+}
+
+.del-dialog .modal-content {
+    border-radius: 0;
+}
+
+.modal-footer {
+    background: #F2F2F2;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.del-dialog {
+    margin-top: 155px;
 }
