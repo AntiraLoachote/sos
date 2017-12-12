@@ -67,7 +67,6 @@ export class ReportComponent implements OnInit {
         // this.getTeams();
         this.mockTeams();
 
-
     }
 
     mockTeams() {
@@ -139,8 +138,8 @@ export class ReportComponent implements OnInit {
             this.teamList[index].checked = value;
         }
         // console.log(JSON.stringify(this.teamList));
-        this.prepareGroupSelected();
-        this.getTicketsInPeriod();
+        // this.prepareGroupSelected();
+        // this.getTicketsInPeriod();
     }
 
     getTicketsInPeriod() {
@@ -360,6 +359,7 @@ export class ReportComponent implements OnInit {
 
                 },
                 legend: {
+                    borderWidth: 0,
                     reversed: true,
                     align: 'left',
                     verticalAlign: 'top',

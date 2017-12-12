@@ -17,6 +17,10 @@
     background: #ddd;
 }
 
+.btn {
+    cursor: pointer;
+}
+
 .color-info {
    color: #47bdcd;
 }

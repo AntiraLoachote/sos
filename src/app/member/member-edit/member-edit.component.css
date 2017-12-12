@@ -13,6 +13,10 @@
     margin: 0 auto;
 }
 
+.btn {
+    cursor: pointer;
+}
+
 .navbar-header {
     background: #ddd;
 }

@@ -59,18 +59,10 @@
       margin-left: 4.5vw;
       margin-top: 1vw;
 } */
-.user-image {
-    width: 7.5vw;
-    border: 0.1rem solid #4ECDC4;
-    border-radius: 50%;
-    height: 7.5vw;
-    margin-left: 1.3vw;
-    margin: 1vw auto;
-    margin-left: 1.3vw;
-}
+
 .user-name {
     color:  #4ECDC4;
-    margin-top:3vw;
+    margin-top:2.5vw;
 }
 
 /* #button-submit{
@@ -107,6 +99,14 @@
     margin-top: 20px;
 }
 
+.btn-delete {
+    border-radius: 1.5rem;
+    width: 8vw;
+    padding: 6px;
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
 
 .label-topic {
     font-size: 1rem;
@@ -118,7 +118,7 @@
 
 
 .sub-header {
-    margin-top: 45px;
+    margin-top: 44px;
     padding: 0;
 }
 
@@ -145,6 +145,14 @@
 
 :host /deep/ .fc-view-container {
     background: #fdfdfd;
+}
+
+:host /deep/ .fc-button-group  {
+     visibility: hidden;
+}
+
+:host /deep/ .fc-h-event {
+    cursor:pointer;
 }
 
 :host /deep/ .fc-unthemed .fc-content,
@@ -186,6 +194,14 @@
     border: 1px solid #44b9cb;
 }
 
+/*:host /deep/ .fc-time  {
+    display: none;
+}*/
+:host /deep/ .fc-timeend {
+    float: right;
+}
+
+
 @media screen and (min-width: 1920px), screen and (min-height: 974px) {
     .sub-header {
         margin-top: 44px;
@@ -220,4 +236,144 @@
 
 .custom-control-input:focus~.custom-control-indicator {
     box-shadow: none;
+}
+
+/* /////display */
+
+.thumbnail {
+    margin: auto;
+    position: relative;
+    overflow: hidden;
+    width: 7.5vw;
+    height: 7.5vw;
+    border: 2px solid #47bdcd;
+    border-radius: 50%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  .thumbnail img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 100%;
+    width: auto;
+    -webkit-transform: translate(-50%,-50%);
+        -ms-transform: translate(-50%,-50%);
+            transform: translate(-50%,-50%);
+  }
+  .thumbnail img.portrait {
+    width: 100%;
+    height: auto;
+  }
+
+  /*/////////////*/
+  .btn-calendar-action {
+      position: absolute;
+      top: -45;
+      text-align: right;
+      right: 22px;
+  }
+
+  .btn-calendar-action .btn {
+        background: #44b9cb;
+        border: 2px solid #44b9cb;
+        border-radius: 0.2rem;
+        width: 63px;
+        padding: 6px;
+        font-size: 14px;
+        margin: 0 2px;
+  }
+
+  :host /deep/ .fc-today-button {
+      display:none;
+  }
+
+  .btn-today {
+    background-color: white !important;
+    color: #44b9cb !important;
+  }
+
+  
+@media screen and (min-width: 1285px),
+screen and (min-height: 615px) {
+    .sub-header .navbar {
+        margin-bottom: 0px;
+    }
+    .sub-header .navbar .text {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+    .content-all {
+        margin-top: 13px;
+    }
+
+    .box-calendar {
+        height:450px;
+    }
+}
+
+@media screen and (min-width: 1286px),
+screen and (min-height: 918px) {
+    .sub-header .navbar {
+        margin-bottom: 30px;
+    }
+    .sub-header .navbar .text {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+    .box-chart {
+        height: 550px !important;
+    }
+    .content-all {
+        margin-top: 30px;
+    }
+
+    .box-calendar {
+        height:470px;
+    }
+}
+
+@media screen and (min-width: 1920px),
+screen and (min-height: 974px) {
+    .sub-header {
+        margin-top: 44px;
+    }
+    .sub-header .navbar {
+        margin-bottom: 30px;
+    }
+    .content-all {
+        margin-top: 30px;
+    }
+
+    .box-calendar {
+        height:500px;
+    }
+
+}
+
+.box-calendar {
+    padding: 5vh; padding-top: 0;
+    padding-bottom: 0;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+:host /deep/ #tempCalendar .fc-left {
+    visibility: hidden;
+}
+
+:host /deep/ #tempCalendar .fc-day-number
+{
+     visibility: hidden;
+}
+
+:host /deep/ #tempCalendar .fc-scroller 
+{
+    overflow-y: hidden !important;
+}
+
+:host /deep/ #tempCalendar td.fc-today {
+    background: white !important;
 }

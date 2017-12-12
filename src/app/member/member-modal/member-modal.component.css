@@ -12,6 +12,11 @@
 }
 
 
+.btn {
+    cursor: pointer;
+}
+
+
 /* del modal */
 
 @media (min-width: 576px) {

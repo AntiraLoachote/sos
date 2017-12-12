@@ -1,71 +1,53 @@
-<div class="content"> 
-<div class="container row center-align">
-        <div class="col s12 m6 l3">
-            <div><i class="material-icons md-36" style="color: #009688;">looks_one</i></div>
-            <div class="card">
-                <div class="activator card-image waves-effect waves-block waves-light blink">
-                    <img src="images/ic_priority_high_black_48px.svg" />
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">DETECTION</span>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">DETECTION<i class="material-icons right">close</i></span>
-                    <img src="images/itsm.svg" />
-                    <p>When you detects an issues which cause <span class="red-text">high</span> business impact.</p>
-                    <p>Either submits an incident at SOS Submit page or create "<span class="red-text">HIGH</span>" incident in ITSM.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l3">
-            <div><i class="material-icons md-36" style="color: #009688;">looks_two</i></div>
-            <div class="card">
-                <div class="activator card-image waves-effect waves-block waves-light blink">
-                    <img src="images/ic_phone_black_48px.svg" />
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">ALERT</span>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">ALERT ONCALL<i class="material-icons right">close</i></span>
-                    <img src="images/ic_forward_5_black_48px.svg" />
-                    <p>SOS will sends incident confirmation to submitter and then start to alert Oncall.</p>
-                    <p>SOS will continuing to alert Oncall every 5 minutes until Oncall acknowledge.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l3">
-            <div><i class="material-icons md-36" style="color: #009688;">looks_3</i></div>
-            <div class="card">
-                <div class="activator card-image waves-effect waves-block waves-light blink">
-                    <img src="images/ic_done_black_48px.svg" />
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">ACKNOWLEDGEMENT</span>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">ACKNOWLEDGE<i class="material-icons right">close</i></span>
-                    <img src="images/ic_mail_outline_black_48px.svg" />
-                    <p>Oncall receives incident notification and SOS sends acknowledgement once Oncall response.</p>
-                    <p>SOS then sends email to notified incident submitter that Oncall is taking care of the issue right now.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col s12 m6 l3">
-            <div><i class="material-icons md-36" style="color: #009688;">looks_4</i></div>
-            <div class="card">
-                <div class="activator card-image waves-effect waves-block waves-light blink">
-                    <img src="images/ic_trending_up_black_48px.svg" />
-                </div>
-                <div class="card-content">
-                    <span class="card-title activator grey-text text-darken-4">ESCALATION</span>
-                </div>
-                <div class="card-reveal">
-                    <span class="card-title grey-text text-darken-4">ESCALATION<i class="material-icons right">close</i></span>
-                    <img src="images/ic_forward_30_black_48px.svg" />
-                    <p>If 30 minutes passed and no Oncall has acknowledge an issues, SOS automatically escalate issue to Oncall's Supervisor instead.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="container-fluid app-content px-5">
+    
+    	<!--<div class="row px-5">
+	  <div class="col-2" style="max-width: 9vw;">
+		<img class="pl-2" src="./assets/img/sosphone.png" style="width:7vw">
+	  </div>
+	  <div class="col" style="padding-top: 1.5%;">
+		<h3 class="lead shift-title" style="font-size:1.5vw;">(SOS)</h3>
+		<h1 class="lead" style="font-size:1.5vw">Single On-call Service</h1>
+	  </div>
+	</div>-->
+    <div class="row px-5">
+<div class="col">
+<div class="card bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-body">
+    <h4 class="card-title" id= "HeaderField">DETECTION</h4>
+    <img class="pl-2" src="./assets/img/magnifier.png" style="width:6vw">
+    <p class="card-text">When you detects an issues which cause <span style="color: red;">high</span> business impact.</p>
+     <p class="card-text">Either submits an incident at SOS Submit page or create "<span style="color: red;">HIGH</span>" incident in ITSM.</p>
+  </div>
+</div>
+</div>
+<div class="col">
+<div class="card bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-body">
+    <h4 class="card-title" id= "HeaderField">ALERT ON-CALL</h4>
+    <img class="pl-2" src="./assets/img/arrow.png" style="width:6vw">
+    <p class="card-text">SOS will sends incident confirmation to submitter and then start to alert Oncall.</p>
+  <p class="card-text">SOS will continuing to alert Oncall every 5 minutes until Oncall acknowledge.</p>
+  </div>
+</div>
+</div>
+<div class="col">
+<div class="card bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-body">
+    <h4 class="card-title" id= "HeaderField" >ACKNOWLEDGE</h4>
+    <img class="pl-2" src="./assets/img/Letter.png" style="width:6.1vw">
+    <p class="card-text">Oncall receives incident notification and SOS sends acknowledgement once Oncall response.</p>
+    <p class="card-text">SOS then sends email to notified incident submitter that Oncall is taking care of the issue right now.</p>
+  </div>
+</div>
+</div>
+<div class="col">
+<div class="card bg-light mb-3" style="max-width: 20rem;">
+  <div class="card-body">
+    <h4 class="card-title" id= "HeaderField" >ESCALATION</h4>
+    <img class="pl-2" src="./assets/img/30-minutes.png" style="width:6vw">
+    <p class="card-text">If 30 minutes passed and no Oncall has acknowledge an issues, SOS automatically escalate issue to Oncall's Supervisor instead.</p>
+  </div>
+</div>
+</div>
+</div>
 </div>

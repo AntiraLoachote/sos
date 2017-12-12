@@ -1,30 +1,35 @@
-.content-all{
+.content-all {
     /* padding: 0; */
     margin-top: 2rem;
 }
-#team{
-    color:white;
+
+#team {
+    color: white;
     margin-left: 2%;
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 0;
 }
-.col-4-data{
+
+.col-4-data {
     margin-top: 1.5vw;
     margin-left: 5vw;
     /*background: green;*/
 }
-#example-date-input{
-     /* margin-top: 1.5vw;
+
+#example-date-input {
+    /* margin-top: 1.5vw;
     width: 13vw; */
     font-size: 1vw;
 }
-.card{
-        width: 21vw;
-      margin-left: 4.5vw;
-      margin-top: 1vw;
+
+.card {
+    width: 21vw;
+    margin-left: 4.5vw;
+    margin-top: 1vw;
 }
-.checkteam{
+
+.checkteam {
     margin-left: 1vw;
     margin-top: 0.6vw;
 }
@@ -34,18 +39,21 @@
     margin-top: 1vw;
 }
 
+
 /*new*/
+
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color : #FAFCFB;
+    background-color: #FAFCFB;
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-    background-color : #FAFCFB;
+    background-color: #FAFCFB;
 }
 
 .table {
-    background-color:#FFFFFF;
+    background-color: #FFFFFF;
 }
+
 .table-detail {
     padding: 0;
     margin: 100px auto;
@@ -60,7 +68,7 @@
     color: #B0B0B0;
     padding: .5rem;
     padding-bottom: .3rem;
-    font-size: 0.9rem; 
+    font-size: 0.9rem;
     border-bottom: 2px solid #B1B3B2;
     border-top: 1px solid #B1B3B2;
 }
@@ -77,7 +85,7 @@
 }
 
 .text-yellow {
- color: #F6DC71 !important;
+    color: #F6DC71 !important;
 }
 
 .text-green {
@@ -87,6 +95,7 @@
 .custom-control {
     cursor: pointer;
 }
+
 .custom-control-input:checked~.custom-control-indicator {
     color: #fff;
     background-color: #6EC8D6;
@@ -116,16 +125,16 @@
 }
 
 .sub-header {
-    margin-top: 45px;
+    margin-top: 44px;
     padding: 0;
 }
 
-.sub-header .navbar  {
+.sub-header .navbar {
     background-color: #627485 !important;
     margin-bottom: 20px;
 }
 
-.sub-header .navbar .text  {
+.sub-header .navbar .text {
     font-size: 1.1rem;
     color: white;
     margin-left: 2%;
@@ -134,131 +143,135 @@
     margin-bottom: 0;
 }
 
-
 .fixed_headers {
     width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
     background: #FFFFFF;
-  }
-  .fixed_headers th {
+}
+
+.fixed_headers th {
     background: white;
     color: #868686;
     font-weight: 500;
     font-size: 0.9rem;
-  }
-  .fixed_headers th,
-  .fixed_headers td {
+}
+
+.fixed_headers th,
+.fixed_headers td {
     padding: 5px 10px;
     text-align: left;
     color: #B0B0B0;
     font-size: 0.85rem;
-  }
+}
 
-  .fixed_headers td {
+.fixed_headers td {
     /* padding: .75rem; */
     height: 80px;
     border-bottom: 2px solid #B1B3B2;
-  }
+}
 
-  .fixed_headers td:nth-child(1)
-  {
+.fixed_headers td:nth-child(1) {
     width: 10%;
+}
 
-  }
-  .fixed_headers td:nth-child(2)
-  {
+.fixed_headers td:nth-child(2) {
     width: 10%;
-  }
-  .fixed_headers td:nth-child(3)
-  {
+}
+
+.fixed_headers td:nth-child(3) {
     width: 9%;
-  }
+}
 
-  .fixed_headers td:nth-child(4)
-  {
+.fixed_headers td:nth-child(4) {
     width: 8%;
-  }
+}
 
-  .fixed_headers td:nth-child(5)
-  {
-
+.fixed_headers td:nth-child(5) {
     width: 10%;
-  }
+}
 
-  .fixed_headers td:nth-child(6)
-  {
+.fixed_headers td:nth-child(6) {
     width: 15%;
-   
-  }
+}
 
-  .fixed_headers td:nth-child(7)
-  {
+.fixed_headers td:nth-child(7) {
     width: 9%;
-  }
+}
 
-  .fixed_headers td:nth-child(8)
-  {
-   
+.fixed_headers td:nth-child(8) {
     width: 6%;
     max-width: 270px;
-  }
+}
 
-  .fixed_headers thead {
+.fixed_headers thead {
     background-color: white;
     color: #868686;
-  }
-  .fixed_headers thead tr {
+}
+
+.fixed_headers thead tr {
     display: block;
     position: relative;
     border: 1px solid #ddd;
-  }
-  .fixed_headers tbody {
+}
+
+.fixed_headers tbody {
     display: block;
     overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
     height: 410px;
     border: 1px solid #ddd;
-  }
-  .fixed_headers tbody tr:nth-child(even) {
-    background-color : white;
-  }
+}
 
-  .fixed_headers tbody tr:nth-child(odd) {
-    background-color : #FAFCFB;
-  }
-  /* .p-des {
+.fixed_headers tbody tr:nth-child(even) {
+    background-color: white;
+}
+
+.fixed_headers tbody tr:nth-child(odd) {
+    background-color: #FAFCFB;
+}
+
+
+/* .p-des {
     width: 55%;
   } */
-  .old_ie_wrapper {
+
+.old_ie_wrapper {
     height: 300px;
     width: 750px;
     overflow-x: hidden;
     overflow-y: auto;
-  }
-  .old_ie_wrapper tbody {
+}
+
+.old_ie_wrapper tbody {
     height: auto;
-  }
-  
+}
+
+
 /* datepicker */
+
 :host /deep/ .bs-datepicker-head {
     height: 50px;
     padding: 8px;
+}
 
-  }
+ :host /deep/ .bs-datepicker-container {
+    padding: 0;
+}
 
-  :host /deep/  .bs-datepicker-container {
-      padding: 0;
-  }
-
-  .box-chart {
-    height: 550px;  
-    width:100%; 
-    position:absolute; 
+.box-chart {
+    height: 550px;
+    width: 100%;
+    position: absolute;
     left: 25px;
-  }
-  
+}
+
+.btn {
+    cursor: pointer;
+}
+
+
 .btn-export {
     float: right;
     margin-bottom: 10px;
@@ -269,271 +282,230 @@
     padding: 7px 15px;
     border-radius: 50px;
 }
-  
-@media screen and (min-width: 1285px), screen and (min-height: 615px) {
-    .sub-header .navbar  {
+
+@media screen and (min-width: 1285px),
+screen and (min-height: 615px) {
+    .sub-header .navbar {
         margin-bottom: 0px;
     }
-
     .sub-header .navbar .text {
         padding-top: 5px !important;
         padding-bottom: 5px !important;
-
     }
-
     .content-all {
         margin-top: 13px;
     }
-
     .box-chart {
         height: 470px !important;
-      }
-
+    }
     .text-label {
         margin-left: 1.5vw;
     }
-
     .card {
         margin-left: 2.5vw;
         width: 100%;
     }
-
     .checkteam {
         margin-top: 8px;
     }
-
     .anchor {
         position: absolute;
         right: 3vh;
         top: 40%;
     }
-
-    .fixed_headers th:nth-child(2)
-    {
+    .fixed_headers th:nth-child(2) {
         padding-left: 25px;
     }
-    .fixed_headers th:nth-child(3)
-    {
+    .fixed_headers th:nth-child(3) {
         padding-left: 96px;
     }
-  
-    .fixed_headers th:nth-child(4)
-    {
+    .fixed_headers th:nth-child(4) {
         padding-left: 59px;
     }
-  
-    .fixed_headers th:nth-child(5)
-    {
-  
+    .fixed_headers th:nth-child(5) {
         padding-left: 32px;
     }
-  
-    .fixed_headers th:nth-child(6)
-    {
+    .fixed_headers th:nth-child(6) {
         padding-left: 78px;
-     
     }
-  
-    .fixed_headers th:nth-child(7)
-    {
+    .fixed_headers th:nth-child(7) {
         padding-left: 80px;
     }
-
     .table-detail {
         margin-bottom: 40px;
     }
-  
-}
-    
-@media screen and (min-width: 1286px), screen and (min-height: 918px) {
-    .sub-header .navbar  {
-        margin-bottom: 30px;
+      .btn-submit {
+        padding: 3px !important;
+        margin-bottom: 8px !important;
     }
 
+    .custom-control {
+        margin: 4px auto;
+    }
+
+    .custom-checkbox .custom-control-indicator {
+        width: 20px;
+        height: 20px;
+    }
+    .custom-control-description {
+        font-size: 0.8rem;
+        padding-top: 2px;
+    }
+}
+
+@media screen and (min-width: 1286px),
+screen and (min-height: 918px) {
+    .sub-header .navbar {
+        margin-bottom: 20px;
+    }
     .sub-header .navbar .text {
         padding-top: 8px !important;
         padding-bottom: 8px !important;
-
     }
-
     .box-chart {
         height: 550px !important;
-      }
-    
-    .content-all {
-        margin-top: 30px;
     }
-
+    .content-all {
+        margin-top: 15px;
+    }
     .text-label {
         margin-left: 1.5vw;
     }
-
     .checkteam {
-        margin-top: 12px;
+        margin-top: 10px;
     }
-
     .col-checkbox {
-        padding-bottom: 15px;
+        padding-bottom: 10px;
         padding-right: 8px;
     }
-
     .anchor {
         position: absolute;
         right: 38px;
         top: 38%;
     }
-
     .table-detail {
         margin-bottom: 55px;
         margin-top: 50px;
     }
-
     #tableDetail {
         margin-top: 200px;
     }
-
     .custom-control-description {
         padding-top: 2px;
     }
-
     .fixed_headers tbody {
         height: 666px;
-      }
-
-        
+    }
+  
 }
 
-    
-@media screen and (min-width: 1920px), screen and (min-height: 974px) {
+@media screen and (min-width: 1920px),
+screen and (min-height: 974px) {
     .sub-header {
         margin-top: 44px;
     }
-
-    .sub-header .navbar  {
+    .sub-header .navbar {
         margin-bottom: 30px;
     }
-
     .content-all {
         margin-top: 30px;
     }
-
     .box-chart {
         height: 650px !important;
     }
-
     .checkteam {
         margin-top: 18px;
     }
-
     .text-label {
         margin-left: 1.5vw;
     }
-
     .anchor {
         position: absolute;
         right: 38px;
         top: 36%;
     }
-
     .table-detail {
         margin-top: 150px;
         margin-bottom: 320px;
     }
-
     #tableDetail {
         margin-top: 110px;
     }
-    
-    .fixed_headers th,.fixed_headers td {
+    .fixed_headers th,
+    .fixed_headers td {
         font-size: 1rem;
     }
-
-
-    .fixed_headers th:nth-child(2)
-    {
+    .fixed_headers th:nth-child(2) {
         padding-left: 76px;
     }
-    .fixed_headers th:nth-child(3)
-    {
+    .fixed_headers th:nth-child(3) {
         padding-left: 160px;
     }
-  
-    .fixed_headers th:nth-child(4)
-    {
+    .fixed_headers th:nth-child(4) {
         padding-left: 130px;
     }
-  
-    .fixed_headers th:nth-child(5)
-    {
-  
+    .fixed_headers th:nth-child(5) {
         padding-left: 90px;
     }
-  
-    .fixed_headers th:nth-child(6)
-    {
+    .fixed_headers th:nth-child(6) {
         padding-left: 155px;
-     
     }
-  
-    .fixed_headers th:nth-child(7)
-    {
+    .fixed_headers th:nth-child(7) {
         padding-left: 184px;
     }
-
-    .fixed_headers th:nth-child(8)
-    {
+    .fixed_headers th:nth-child(8) {
         padding-left: 70px;
     }
-
     .btn-export {
         margin-bottom: 20px;
         font-size: 1.2rem;
         padding: 9px 21px;
     }
-
     .fixed_headers tbody {
         height: 600px;
-      }
-       
+    }
 }
 
-
-
-
-@media (min-width: 576px) and  (max-width: 1430px){
+@media (min-width: 576px) and (max-width: 1430px) {
     .form-inline .form-control {
         width: 50%;
     }
-        
 }
 
-    
-@media  (max-height: 690px)
-{
+@media (max-height: 690px) {
     .content-all {
         margin-top: 10px;
     }
-
     .sub-header .navbar {
         margin-bottom: 10px;
     }
-
     .checkteam {
-        margin-top: 5px;
+        margin-top: 2px;
     }
-
     .box-chart {
         height: 500px !important;
     }
-
     .anchor {
         position: absolute;
         right: 35px !important;
         top: 435px !important;
     }
-
     .col-checkbox {
         padding: 2px;
         padding-bottom: 10px;
     }
+}
+
+.btn-submit {
+    background: #44b9cb;
+    border: 2px solid #44b9cb;
+    border-radius: 1.5rem;
+    width: 7vw;
+    padding: 6px;
+    margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.btn {
+    cursor: pointer;
 }

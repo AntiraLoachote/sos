@@ -90,8 +90,8 @@ export class MemberDetailComponent implements OnInit {
       //select data 
 
       for (var i = 0; i < this._memberService.MemberList.length; i++) {
-        console.log(this._memberService.MemberList[i].UserID + ' *** ' + this.userId);
-        console.log('!!! $$$' + JSON.stringify(this._memberService.MemberList[i]));
+        // console.log(this._memberService.MemberList[i].UserID + ' *** ' + this.userId);
+        // console.log('!!! $$$' + JSON.stringify(this._memberService.MemberList[i]));
 
         if (this._memberService.MemberList[i].UserID == this.userId) {
           this.memberData = this._memberService.MemberList[i];
@@ -124,7 +124,7 @@ export class MemberDetailComponent implements OnInit {
 
     this.memberData.User.Emails.forEach(email => {
 
-      if (email.Disabled == false) {
+      if (email.Disabled == false || email.Disabled == null) {
         switch (email.EmailTypeID) {
           case this.EmailTypeID.Company: {
             //console.log("Company");

@@ -1,17 +1,39 @@
-.modal-content{
-    width: 39vw;
-    height: 30vh;
-    text-align: center;
-    margin-top: 50%; 
-}
+
 body { font-family: Verdana, sans-serif; }
 h1,h2 { font-family: Garamond, "Times New Roman", serif; }
 
 
+.btn-cancel {
+    text-align: center;
+    width: 13vh;
+    border-radius: 20px;
+}
 
 
+/* del modal */
 
+@media (min-width: 576px) {
+    .del-dialog {
+        max-width: 700px;
+    }
+}
 
+.del-dialog .modal-content {
+    border-radius: 0;
+}
+
+.modal-footer {
+    background: #F2F2F2;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.del-dialog {
+    margin-top: 155px;
+}
+.modal fade{
+    padding-top: 100rem;
+}
 
 
 
