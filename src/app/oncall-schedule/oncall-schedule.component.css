@@ -104,6 +104,7 @@
     width: 8vw;
     padding: 6px;
     margin-top: 20px;
+    margin-left: 15px;
 }
 
 
@@ -117,7 +118,7 @@
 
 
 .sub-header {
-    margin-top: 45px;
+    margin-top: 44px;
     padding: 0;
 }
 
@@ -193,9 +194,9 @@
     border: 1px solid #44b9cb;
 }
 
-:host /deep/ .fc-time  {
+/*:host /deep/ .fc-time  {
     display: none;
-}
+}*/
 :host /deep/ .fc-timeend {
     float: right;
 }
@@ -291,3 +292,88 @@
     background-color: white !important;
     color: #44b9cb !important;
   }
+
+  
+@media screen and (min-width: 1285px),
+screen and (min-height: 615px) {
+    .sub-header .navbar {
+        margin-bottom: 0px;
+    }
+    .sub-header .navbar .text {
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+    }
+    .content-all {
+        margin-top: 13px;
+    }
+
+    .box-calendar {
+        height:450px;
+    }
+}
+
+@media screen and (min-width: 1286px),
+screen and (min-height: 918px) {
+    .sub-header .navbar {
+        margin-bottom: 30px;
+    }
+    .sub-header .navbar .text {
+        padding-top: 8px !important;
+        padding-bottom: 8px !important;
+    }
+    .box-chart {
+        height: 550px !important;
+    }
+    .content-all {
+        margin-top: 30px;
+    }
+
+    .box-calendar {
+        height:470px;
+    }
+}
+
+@media screen and (min-width: 1920px),
+screen and (min-height: 974px) {
+    .sub-header {
+        margin-top: 44px;
+    }
+    .sub-header .navbar {
+        margin-bottom: 30px;
+    }
+    .content-all {
+        margin-top: 30px;
+    }
+
+    .box-calendar {
+        height:500px;
+    }
+
+}
+
+.box-calendar {
+    padding: 5vh; padding-top: 0;
+    padding-bottom: 0;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+:host /deep/ #tempCalendar .fc-left {
+    visibility: hidden;
+}
+
+:host /deep/ #tempCalendar .fc-day-number
+{
+     visibility: hidden;
+}
+
+:host /deep/ #tempCalendar .fc-scroller 
+{
+    overflow-y: hidden !important;
+}
+
+:host /deep/ #tempCalendar td.fc-today {
+    background: white !important;
+}

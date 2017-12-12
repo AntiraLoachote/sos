@@ -44,7 +44,7 @@ export class OncallScheduleComponent implements OnInit {
   TimeTo: any;
   DataEvent: any = {};
   AddIsSuccess : boolean = false;
-
+  IsHiddenTemp: boolean = false;
   // calendarOptions: any = {};
   calendarOptions: any = {
         height: 'parent',
@@ -63,7 +63,21 @@ export class OncallScheduleComponent implements OnInit {
         }
   };
 
+  tempCalendarOptions: any = {
+        height: 'parent',
+        fixedWeekCount: false,
+        defaultDate: this.defaultDate,
+        editable: false,
+        eventLimit: false, // allow "more" link when too many events
+        eventColor: '#2EC7C1',
+        eventTextColor: 'white',
+        timeFormat: 'H:mm:ss',
+        displayEventEnd: true,
+        events: [] 
+  };
+
   IsAllDay: boolean = true; //false is Recurrence
+
 
 
   constructor(
@@ -105,13 +119,6 @@ export class OncallScheduleComponent implements OnInit {
     // this.mockTeam();
 
   }
-
-  // ngAfterViewInit() {
-  //   jQuery(this.elementRef.nativeElement).find('button.fc-next-button').click(() => {
-  //     console.log("do something here");
-  //   });
-  // }
-
 
   changeCalendarView(view) {
     this.myCalendar.fullCalendar('changeView', view);
@@ -196,16 +203,19 @@ export class OncallScheduleComponent implements OnInit {
           if (j > 2) {
             j = 0;
           }
-          var a = '<span class="fc-timeend">T(' + timeEnd + ')/span>';
-          var htmlObject = $(a);
+
+          // var a = '<span class="fc-timeend">T(' + timeEnd + ')/span>';
+          // var htmlObject = $(a);
           //htmlObject.prop('outerHTML')
 
           dataEvents.push({
             id: data[i].ScheduleID,
-            title: "S("+ timeStart + ")  " + "(" + timezone + ") " + data[i].GroupUser.User.LastName + ", " + data[i].GroupUser.User.FirstName + "  T("+ timeEnd + ")",
+            // title: "S("+ timeStart + ")  " + "(" + timezone + ") " + data[i].GroupUser.User.LastName + ", " + data[i].GroupUser.User.FirstName + "  T("+ timeEnd + ")",
+            title: "(" + timezone + ") " + data[i].GroupUser.User.LastName + ", " + data[i].GroupUser.User.FirstName,
             start: localStartDate,
             end: localEndDate,
             color: color[j],
+            
             groupUserID: data[i].GroupUser.GroupUserID
           });
 
@@ -254,6 +264,12 @@ export class OncallScheduleComponent implements OnInit {
     // $('#myCalendar').fullCalendar('refetchEventSources', dataEvents);
 
     this.isSeclectedGroup = true;
+
+    this.IsHiddenTemp = false;
+
+    setTimeout(function(){
+      this.IsHiddenTemp = true;
+    }.bind(this),200)
   }
 
   public selctedEvent(calEvent:any, jsEvent:any, view:any){
@@ -337,6 +353,8 @@ export class OncallScheduleComponent implements OnInit {
     console.log(teamSelected);
 
     this.groupIDSelected = teamSelected.groupID;
+
+    //reset
     this.scheduleIdSelected = 0;
 
     this.month = (this.d.getMonth() + 1);
@@ -445,7 +463,7 @@ export class OncallScheduleComponent implements OnInit {
           data.groupUserID = i.GroupUserID
 
           i.Emails.forEach(email => {
-            if (email.Disabled == false) {
+            if (email.Disabled == false || email.Disabled == null) {
               if (email.EmailTypeID == 1) {
                 //companyMail
                 data.comEmail = email.Address;
@@ -715,7 +733,7 @@ export class OncallScheduleComponent implements OnInit {
       data.groupUserID = i.GroupUserID
 
       i.Emails.forEach(email => {
-        if (email.Disabled == false) {
+        if (email.Disabled == false || email.Disabled == null) {
           if (email.EmailTypeID == 1) {
             //companyMail
             data.comEmail = email.Address;

@@ -125,7 +125,7 @@
 }
 
 .sub-header {
-    margin-top: 45px;
+    margin-top: 44px;
     padding: 0;
 }
 
@@ -267,6 +267,11 @@
     left: 25px;
 }
 
+.btn {
+    cursor: pointer;
+}
+
+
 .btn-export {
     float: right;
     margin-bottom: 10px;
@@ -329,12 +334,29 @@ screen and (min-height: 615px) {
     .table-detail {
         margin-bottom: 40px;
     }
+      .btn-submit {
+        padding: 3px !important;
+        margin-bottom: 8px !important;
+    }
+
+    .custom-control {
+        margin: 4px auto;
+    }
+
+    .custom-checkbox .custom-control-indicator {
+        width: 20px;
+        height: 20px;
+    }
+    .custom-control-description {
+        font-size: 0.8rem;
+        padding-top: 2px;
+    }
 }
 
 @media screen and (min-width: 1286px),
 screen and (min-height: 918px) {
     .sub-header .navbar {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
     }
     .sub-header .navbar .text {
         padding-top: 8px !important;
@@ -344,13 +366,13 @@ screen and (min-height: 918px) {
         height: 550px !important;
     }
     .content-all {
-        margin-top: 30px;
+        margin-top: 15px;
     }
     .text-label {
         margin-left: 1.5vw;
     }
     .checkteam {
-        margin-top: 12px;
+        margin-top: 10px;
     }
     .col-checkbox {
         padding-bottom: 10px;
@@ -374,6 +396,7 @@ screen and (min-height: 918px) {
     .fixed_headers tbody {
         height: 666px;
     }
+  
 }
 
 @media screen and (min-width: 1920px),
@@ -457,7 +480,7 @@ screen and (min-height: 974px) {
         margin-bottom: 10px;
     }
     .checkteam {
-        margin-top: 5px;
+        margin-top: 2px;
     }
     .box-chart {
         height: 500px !important;
@@ -480,5 +503,9 @@ screen and (min-height: 974px) {
     width: 7vw;
     padding: 6px;
     margin-bottom: 12px;
+    cursor: pointer;
+}
+
+.btn {
     cursor: pointer;
 }

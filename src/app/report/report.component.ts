@@ -360,6 +360,7 @@ export class ReportComponent implements OnInit {
 
                 },
                 legend: {
+                    borderWidth: 0,
                     reversed: true,
                     align: 'left',
                     verticalAlign: 'top',

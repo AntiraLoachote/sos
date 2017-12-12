@@ -16,7 +16,12 @@ select {
     height: 45px !important;
     text-transform: uppercase;
     border-radius: 0;
+    cursor: pointer;
 
+}
+
+.btn {
+    cursor: pointer;
 }
 
 

@@ -87,7 +87,7 @@ export class MemberEditComponent implements OnInit {
 
     this.memberData.User.Emails.forEach(email => {
 
-      if (email.Disabled == false) {
+      if (email.Disabled == false || email.Disabled == null ) {
         switch (email.EmailTypeID) {
           case this.EmailTypeID.Company: {
             console.log("Company");
@@ -191,13 +191,42 @@ export class MemberEditComponent implements OnInit {
       Response => {
         this.textStatus = Response;
         console.log("Post Update User Data success!" + Response)
-        this.router.navigate(['/member/detail/' + this.groupId + '/' + this.userId]);
+        this.reGetMemberList(this.groupId)
       },
       err => {
         alert("Can't Post Update User")
       }
     );
 
+
+  }
+
+  reGetMemberList(GroupId: number) {
+    this._memberService.getMembers(GroupId).subscribe(
+      Response => {
+
+        let result = Response;
+
+        let userList = [];
+        result.GroupUsers.forEach(i => {
+
+          let data = new UserModel();
+          data.groupId = i.GroupID;
+          data.userId = i.UserID;
+          data.name = i.User.FirstName + ' ' + i.User.LastName;
+
+          userList.push(data);
+
+        });
+
+        this._memberService.UserList = userList;
+        this._memberService.MemberList = result.GroupUsers;
+        console.log('call again')
+        this.router.navigate(['/member/detail/' + this.groupId + '/' + this.userId]);
+
+
+      }
+    );
 
   }
 
