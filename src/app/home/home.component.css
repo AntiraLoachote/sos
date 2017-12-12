@@ -1,12 +1,13 @@
-.app-content{
+.app-content {
     margin-top: 15vh;
 }
 
-.section-title{
-    height:90px;
+.section-title {
+    height: 90px;
     padding-left: 5%;
 }
-.section-button{
+
+.section-button {
     /*background: palegreen;*/
     height: 7rem;
     text-align: center;
@@ -14,28 +15,34 @@
     margin-top: 6%;
     margin-bottom: 8%;
 }
-.section-content{
+
+.section-content {
     margin-top: 2%;
 }
-.section-data{
-    background:white;
+
+.section-data {
+    background: white;
     margin-top: 10%;
     /* height: 57rem; */
     width: 70%;
     margin: auto;
     margin-bottom: 75px;
 }
-#clickhere{
-    color:transparent;
+
+#clickhere {
+    color: transparent;
     border: transparent;
     background: transparent;
 }
-#example-text-input{
- width: 100%;
+
+#example-text-input {
+    width: 100%;
     box-sizing: border-box;
     border: none;
     border-bottom: 2px solid #44b9cb;
 }
+
+
 /*.form-control{
     width: 30vw;
 
@@ -43,6 +50,7 @@
     border: none;
     border-bottom: 2px solid #44b9cb;
 }*/
+
 input {
     width: 10vw;
     padding: 0 20px;
@@ -53,47 +61,51 @@ input::-webkit-input-placeholder {
     font-size: 1.8vw;
     line-height: 1;
 }
-.dropdown{
-    
-}
-#dropdownMenuButton{
+
+.dropdown {}
+
+#dropdownMenuButton {
     width: 100%;
     /* height: 3vw; */
-    background:whitesmoke;
+    background: whitesmoke;
     color: gray;
     padding: 12px 0;
     /*border: gray;*/
 }
-.dropdown-item{
-     /* width: 38vw;
+
+.dropdown-item {
+    /* width: 38vw;
     height: 3vw; */
     padding: 10px 15px;
 }
-#example-text-description{
+
+#example-text-description {
     box-sizing: border-box;
     border: none;
     border-bottom: 2px solid #44b9cb;
     width: 38vw;
     height: 7vw;
 }
-#shift-logo{
+
+#shift-logo {
     padding-top: 2%;
 }
-.test{
-       width: 8vw;
-       height: 5.5vh;
+
+.test {
+    width: 8vw;
+    height: 5.5vh;
 }
-#button-submit{
+
+#button-submit {
     background: #44b9cb;
     border: 2px solid #44b9cb;
     border-radius: 2vw;
     padding: 11px 30px;
 }
+
 a.anchor {
- padding-top: 100px;
+    padding-top: 100px;
 }
-
-
 
 .form-control:disabled {
     background: transparent;
@@ -101,32 +113,42 @@ a.anchor {
 
 
 /* Make it looks good on CodePen */
+
 html {
     background-color: #cef;
-  }
-  html, body, .sonar-wrapper {
+}
+
+html,
+body,
+.sonar-wrapper {
     height: 100%;
-  }
-  
-  /* Prevent scrollbars to appear when waves go out of bound */
-  .sonar-wrapper {
+}
+
+
+/* Prevent scrollbars to appear when waves go out of bound */
+
+.sonar-wrapper {
     position: relative;
     z-index: 0;
     overflow: hidden;
-  }
-  
-  /* The circle */
-  .sonar-emitter {
+}
+
+
+/* The circle */
+
+.sonar-emitter {
     position: relative;
     margin: 18px auto;
     width: 4vw;
     height: 4vw;
     border-radius: 9999px;
     background-color: transparent;
-  }
-  
-  /* the 'wave', same shape and size as its parent */
-  .sonar-wave {
+}
+
+
+/* the 'wave', same shape and size as its parent */
+
+.sonar-wave {
     position: absolute;
     top: 0;
     left: 0;
@@ -137,27 +159,35 @@ html {
     opacity: 0;
     z-index: -1;
     pointer-events: none;
-  }
-  
-  /*
+}
+
+
+/*
     Animate!
     NOTE: add browser prefixes where needed.
   */
-  .sonar-wave {
+
+.sonar-wave {
     animation: sonarWave 2s linear infinite;
-  }
-  
-  @keyframes sonarWave {
+}
+
+@keyframes sonarWave {
     from {
-      opacity: 0.4;
+        opacity: 0.4;
     }
     to {
-      transform: scale(3);
-      opacity: 0;
+        transform: scale(3);
+        opacity: 0;
     }
-  }
-
+}
 
 .btn {
     cursor: pointer;
+}
+
+.btn-success {
+    text-align: center;
+    margin-right: 10px;
+    width: 13vh;
+    border-radius: 20px;
 }
