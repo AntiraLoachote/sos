@@ -1,8 +1,10 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation , TemplateRef  } from '@angular/core';
 import { OnCallUserModel } from "app/models/member/member.model";
 import { MemberService } from "app/member/member.service";
 import { Router } from "@angular/router";
 import { UserModel } from "app/models/team/team-list.model";
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/modal-options.class';
 
 @Component({
   selector: 'app-member-create',
@@ -23,15 +25,23 @@ export class MemberCreateComponent implements OnInit {
 
   groupId: any;
 
+  public modalRef: BsModalRef;
+
   constructor(
     private _memberService: MemberService,
-    private router: Router
+    private router: Router,
+    private modalService: BsModalService
   ) { }
 
   ngOnInit() {
     this.groupId = this._memberService.GroupId;
     this.clearData();
   }
+
+  public openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+
   clearData(){
     this.userDomain = "";
     this.userLanId = "";
@@ -56,10 +66,10 @@ export class MemberCreateComponent implements OnInit {
     data.IsAcknowledgeResultReceiver = this.IsAcknowledgeResultReceiver;
     
     if(this.userDomain == ''  ){
-       alert("กรุณากรอก Domain");
+      //  alert("กรุณากรอก Domain");
          return;
     }else if(this.userLanId == ''){
-        alert("กรุณากรอก LanId");
+        // alert("กรุณากรอก LanId");
         return;
     }
     console.log("Create User!!");

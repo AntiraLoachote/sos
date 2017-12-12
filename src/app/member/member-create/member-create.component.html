@@ -89,7 +89,11 @@
 
         </div>
         <div class="row box-btn">
-          <button type="button" class="btn btn-info btn-save" (click)="addUserOnGroup()">Save</button>
+          <button *ngIf="userDomain != '' && userLanId != ''" type="button" class="btn btn-info btn-save" (click)="addUserOnGroup()">Save</button>
+          <button *ngIf="userDomain == '' && userLanId != ''" type="button" class="btn btn-info btn-save" (click)="openModal(ValidateDomain)">Save</button>
+          <button *ngIf="userLanId == '' && userDomain != ''" type="button" class="btn btn-info btn-save" (click)="openModal(ValidateLanId)">Save</button>
+          <button *ngIf="userDomain == '' && userLanId == ''" type="button" class="btn btn-info btn-save" (click)="openModal(ValidateDomain)">Save</button>
+          
           <button type="button" class="btn btn-danger btn-cancel" (click)="back()" routerLink="/member/detail/{{groupId}}">Cancel</button>
         </div>
       </div>
@@ -101,3 +105,39 @@
   </div>
 
 </div>
+
+<!-- modal -->
+<template #ValidateDomain>
+
+ <div class="modal-header">
+  <h4 class="modal-title pull-left">Information required</h4>
+
+</div>
+<div class="modal-body">
+  <p style="font-weight: 500; margin-bottom: 20px;
+  margin-top: 5px;">Please fill Domain to proceed</p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-danger btn-cancel" aria-label="Close" (click)="modalRef.hide()">Close</button>
+
+</div>
+
+</template>
+
+
+<template #ValidateLanId>
+  
+   <div class="modal-header">
+    <h4 class="modal-title pull-left">Information required</h4>
+  
+  </div>
+  <div class="modal-body">
+    <p style="font-weight: 500; margin-bottom: 20px;
+    margin-top: 5px;">Please fill Lan ID to proceed</p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger btn-cancel" aria-label="Close" (click)="modalRef.hide()">Close</button>
+  
+  </div>
+  
+  </template>
