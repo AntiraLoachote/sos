@@ -41,6 +41,7 @@ import { ReportService } from 'app/report/report.service';
 import { BsDatepickerModule } from 'ngx-bootstrap';
 import { OncallScheduleService } from 'app/oncall-schedule/oncall-schedule.service';
 import { TimepickerModule } from 'ngx-bootstrap';
+import { ModalModule }from 'ngx-bootstrap';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { TimepickerModule } from 'ngx-bootstrap';
     AppRoutingModule,
     MemberModule,
     BsDatepickerModule.forRoot(),
-    TimepickerModule.forRoot()
+    TimepickerModule.forRoot(),
+    ModalModule.forRoot()
   ],
 
   providers: [

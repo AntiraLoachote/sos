@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {ViewChild, Component,  OnInit} from '@angular/core';
 
 import { HomeService } from './home.service';
 import { TicketsModel } from "app/models/home/create-ticket-.model";
+import { ModalDirective } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +10,16 @@ import { TicketsModel } from "app/models/home/create-ticket-.model";
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  @ViewChild('childModal') public childModal:ModalDirective;
+  
   ticketsData: TicketsModel = new TicketsModel();
   UsernameBadge: string;
-  textStatus: string;
+  // textStatus: string;
   teamSelected : any;
   description : string;
 
   teamList : any[];
+  textStatus: string='Ticket : SOS000000002612<br>Our on-call will contact you shortly';
   
   constructor(
     private _homeService: HomeService
@@ -112,14 +116,22 @@ export class HomeComponent implements OnInit {
     this._homeService.postSosTickets(this.ticketsData).subscribe(
       Response => {
         this.textStatus = Response;
-        alert(this.textStatus);
-        console.log("Post Tickets success!" + Response)
+        // console.log("Post Tickets success!" + Response)
+        this.showChildModal();
 
       },
       err => {
         console.log("Can't Post Tickets")
       }
     );
+  }
+
+  public showChildModal():void {
+    this.childModal.show();
+  }
+ 
+  public hideChildModal():void {
+    this.childModal.hide();
   }
 
 
