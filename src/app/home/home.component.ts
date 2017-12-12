@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   description : string;
 
   teamList : any[];
-  textStatus: string='Ticket : SOS000000002612<br>Our on-call will contact you shortly';
+  textStatus: string;
   
   constructor(
     private _homeService: HomeService
