@@ -92,9 +92,15 @@
               max-width: 19.333333%;
           ">Analyst:</label>
                         <div class="col">
-                            <select class="form-control input-oncall" [(ngModel)]="analystSelected" (ngModelChange)="selectAnalyst(analystSelected)" required>
-                    <option *ngFor="let item of analystList" [ngValue]="item" [disabled]="item.userId == 0">{{item.name}}</option>
-                  </select>
+                        <!-- <select class="form-control input-oncall" [(ngModel)]="analystSelected" (ngModelChange)="selectAnalyst(analystSelected)" required>
+                            <option *ngFor="let item of analystList" [ngValue]="item" [disabled]="item.userId == 0">{{item.name}}</option>
+                        </select> -->
+
+                        <ng-select  [items]="AnalystSelector"
+                                (data)="refreshValue($event)"
+                                placeholder="Choose Analyst"
+                                *ngIf="isLoadAnalystSelector">
+                        </ng-select>
 
                         </div>
                     </div>

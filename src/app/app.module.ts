@@ -42,6 +42,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap';
 import { OncallScheduleService } from 'app/oncall-schedule/oncall-schedule.service';
 import { TimepickerModule } from 'ngx-bootstrap';
 import { ModalModule }from 'ngx-bootstrap';
+import { SelectModule } from 'ng2-select';
 
 @NgModule({
   declarations: [
@@ -58,6 +59,7 @@ import { ModalModule }from 'ngx-bootstrap';
   ],
 
   imports: [
+    SelectModule,
     BrowserModule,
     ChartModule,
     FormsModule,

@@ -14,6 +14,8 @@ import { error } from 'util';
 import * as $ from 'jquery';
 import { ScheduleModel } from 'app/models/oncall-schedule/schedule.model';
 import { ModalDirective } from "ngx-bootstrap";
+import { SelectorModel } from 'app/models/oncall-schedule/selector.model';
+import { forEach } from '@angular/router/src/utils/collection';
 
 @Component({
   selector: 'app-oncall-schedule',
@@ -21,7 +23,7 @@ import { ModalDirective } from "ngx-bootstrap";
   styleUrls: ['./oncall-schedule.component.css']
 })
 export class OncallScheduleComponent implements OnInit {
-  
+
   @ViewChild('childModal') public childModal:ModalDirective;
   @ViewChild('validateModal') public validateModal:ModalDirective;
 
@@ -83,7 +85,8 @@ export class OncallScheduleComponent implements OnInit {
 
   IsAllDay: boolean = true; //false is Recurrence
 
-
+  isLoadAnalystSelector: boolean = false;
+  AnalystSelector: Array<SelectorModel> = [];
 
   constructor(
     private _teamService: TeamService,
@@ -98,7 +101,6 @@ export class OncallScheduleComponent implements OnInit {
   @ViewChild(CalendarComponent) myCalendar: CalendarComponent;
 
   ngOnInit() {
-    // this.username = "Krichpas Khumthanom";
 
     let fristData = new TeamsModel();
     fristData.groupID = 0;
@@ -117,19 +119,12 @@ export class OncallScheduleComponent implements OnInit {
     this.TimeTo = new Date(this.d.getFullYear(), this.d.getMonth(), this.d.getDate(), 0, 0, 59);
 
     //GET Team List
-    // this.getTeams();
+    this.getTeams();
 
-    // this.DateFrom =  new Date(2017,12,10);
-    //     this.DateTo = new Date(2017,12,15);
-
-    this.mockTeam();
+    //this.mockTeam();
 
   }
 
-
-  changeCalendarView(view) {
-    this.myCalendar.fullCalendar('changeView', view);
-  }
 
   mockGetSchedules(groupId: number, month: number, year: number) {
     let data = [{ "ScheduleID": 3682, "GroupUserID": 2, "StartDate": "2017-10-30T00:00:00", "EndDate": "2017-11-04T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-10-30T18:30:01", "EndAt": "2017-11-04T02:00:00", "GroupUser": { "GroupUserID": 2, "GroupID": 1, "UserID": 3, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 3, "FirstName": "Thanyathorn", "LastName": "Patanaanunwong", "LanID": "ap\\tpatana", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [{ "ScheduleID": 3743, "GroupUserID": 2, "StartDate": "2017-11-04T00:00:00", "EndDate": "2017-11-06T00:00:00", "StartTime": "02:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-04T02:00:01", "EndAt": "2017-11-06T02:00:00" }], "Tickets": [] } }, { "ScheduleID": 3683, "GroupUserID": 163, "StartDate": "2017-11-18T00:00:00", "EndDate": "2017-11-20T00:00:00", "StartTime": "02:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-18T02:00:01", "EndAt": "2017-11-20T02:00:00", "GroupUser": { "GroupUserID": 163, "GroupID": 1, "UserID": 1430, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 1430, "FirstName": "Madhuri", "LastName": "Patil-Dasur", "LanID": "ap\\mpatild", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [{ "ScheduleID": 3742, "GroupUserID": 163, "StartDate": "2017-11-13T00:00:00", "EndDate": "2017-11-15T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-13T18:30:01", "EndAt": "2017-11-15T02:00:00" }, { "ScheduleID": 3746, "GroupUserID": 163, "StartDate": "2017-11-16T00:00:00", "EndDate": "2017-11-17T00:00:00", "StartTime": "11:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-16T11:00:01", "EndAt": "2017-11-17T02:00:00" }, { "ScheduleID": 3747, "GroupUserID": 163, "StartDate": "2017-11-17T00:00:00", "EndDate": "2017-11-18T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-17T18:30:01", "EndAt": "2017-11-18T02:00:00" }], "Tickets": [] } }, { "ScheduleID": 3733, "GroupUserID": 100, "StartDate": "2017-11-06T00:00:00", "EndDate": "2017-11-11T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-06T18:30:01", "EndAt": "2017-11-11T02:00:00", "GroupUser": { "GroupUserID": 100, "GroupID": 1, "UserID": 298, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 298, "FirstName": "TAWATCHAI", "LastName": "SONGPATTANASILP", "LanID": "ap\\twc", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [{ "ScheduleID": 3734, "GroupUserID": 100, "StartDate": "2017-11-11T00:00:00", "EndDate": "2017-11-13T00:00:00", "StartTime": "02:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-11T02:00:01", "EndAt": "2017-11-13T02:00:00" }], "Tickets": [] } }, { "ScheduleID": 3734, "GroupUserID": 100, "StartDate": "2017-11-11T00:00:00", "EndDate": "2017-11-13T00:00:00", "StartTime": "02:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-11T02:00:01", "EndAt": "2017-11-13T02:00:00", "GroupUser": { "GroupUserID": 100, "GroupID": 1, "UserID": 298, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 298, "FirstName": "TAWATCHAI", "LastName": "SONGPATTANASILP", "LanID": "ap\\twc", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [{ "ScheduleID": 3733, "GroupUserID": 100, "StartDate": "2017-11-06T00:00:00", "EndDate": "2017-11-11T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-06T18:30:01", "EndAt": "2017-11-11T02:00:00" }], "Tickets": [] } }, { "ScheduleID": 3742, "GroupUserID": 163, "StartDate": "2017-11-13T00:00:00", "EndDate": "2017-11-15T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-13T18:30:01", "EndAt": "2017-11-15T02:00:00", "GroupUser": { "GroupUserID": 163, "GroupID": 1, "UserID": 1430, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 1430, "FirstName": "Madhuri", "LastName": "Patil-Dasur", "LanID": "ap\\mpatild", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [{ "ScheduleID": 3683, "GroupUserID": 163, "StartDate": "2017-11-18T00:00:00", "EndDate": "2017-11-20T00:00:00", "StartTime": "02:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-18T02:00:01", "EndAt": "2017-11-20T02:00:00" }, { "ScheduleID": 3746, "GroupUserID": 163, "StartDate": "2017-11-16T00:00:00", "EndDate": "2017-11-17T00:00:00", "StartTime": "11:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-16T11:00:01", "EndAt": "2017-11-17T02:00:00" }, { "ScheduleID": 3747, "GroupUserID": 163, "StartDate": "2017-11-17T00:00:00", "EndDate": "2017-11-18T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-17T18:30:01", "EndAt": "2017-11-18T02:00:00" }], "Tickets": [] } }, { "ScheduleID": 3743, "GroupUserID": 2, "StartDate": "2017-11-04T00:00:00", "EndDate": "2017-11-06T00:00:00", "StartTime": "02:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-04T02:00:01", "EndAt": "2017-11-06T02:00:00", "GroupUser": { "GroupUserID": 2, "GroupID": 1, "UserID": 3, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 3, "FirstName": "Thanyathorn", "LastName": "Patanaanunwong", "LanID": "ap\\tpatana", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [{ "ScheduleID": 3682, "GroupUserID": 2, "StartDate": "2017-10-30T00:00:00", "EndDate": "2017-11-04T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-10-30T18:30:01", "EndAt": "2017-11-04T02:00:00" }], "Tickets": [] } }, { "ScheduleID": 3746, "GroupUserID": 163, "StartDate": "2017-11-16T00:00:00", "EndDate": "2017-11-17T00:00:00", "StartTime": "11:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-16T11:00:01", "EndAt": "2017-11-17T02:00:00", "GroupUser": { "GroupUserID": 163, "GroupID": 1, "UserID": 1430, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 1430, "FirstName": "Madhuri", "LastName": "Patil-Dasur", "LanID": "ap\\mpatild", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [{ "ScheduleID": 3683, "GroupUserID": 163, "StartDate": "2017-11-18T00:00:00", "EndDate": "2017-11-20T00:00:00", "StartTime": "02:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-18T02:00:01", "EndAt": "2017-11-20T02:00:00" }, { "ScheduleID": 3742, "GroupUserID": 163, "StartDate": "2017-11-13T00:00:00", "EndDate": "2017-11-15T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-13T18:30:01", "EndAt": "2017-11-15T02:00:00" }, { "ScheduleID": 3747, "GroupUserID": 163, "StartDate": "2017-11-17T00:00:00", "EndDate": "2017-11-18T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-17T18:30:01", "EndAt": "2017-11-18T02:00:00" }], "Tickets": [] } }, { "ScheduleID": 3747, "GroupUserID": 163, "StartDate": "2017-11-17T00:00:00", "EndDate": "2017-11-18T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-17T18:30:01", "EndAt": "2017-11-18T02:00:00", "GroupUser": { "GroupUserID": 163, "GroupID": 1, "UserID": 1430, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 1430, "FirstName": "Madhuri", "LastName": "Patil-Dasur", "LanID": "ap\\mpatild", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [{ "ScheduleID": 3683, "GroupUserID": 163, "StartDate": "2017-11-18T00:00:00", "EndDate": "2017-11-20T00:00:00", "StartTime": "02:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-18T02:00:01", "EndAt": "2017-11-20T02:00:00" }, { "ScheduleID": 3742, "GroupUserID": 163, "StartDate": "2017-11-13T00:00:00", "EndDate": "2017-11-15T00:00:00", "StartTime": "18:30:01", "EndTime": "02:00:00", "StartAt": "2017-11-13T18:30:01", "EndAt": "2017-11-15T02:00:00" }, { "ScheduleID": 3746, "GroupUserID": 163, "StartDate": "2017-11-16T00:00:00", "EndDate": "2017-11-17T00:00:00", "StartTime": "11:00:01", "EndTime": "02:00:00", "StartAt": "2017-11-16T11:00:01", "EndAt": "2017-11-17T02:00:00" }], "Tickets": [] } }, { "ScheduleID": 3749, "GroupUserID": 5, "StartDate": "2017-11-20T00:00:00", "EndDate": "2017-11-27T00:00:00", "StartTime": "02:00:01", "EndTime": "01:59:59", "StartAt": "2017-11-20T02:00:01", "EndAt": "2017-11-27T01:59:59", "GroupUser": { "GroupUserID": 5, "GroupID": 1, "UserID": 6, "IsGroupAdministrator": true, "IsEscalationReceiver": false, "IsWorkHourReceiver": true, "IsAcknowledgeResultReceiver": true, "Emails": [], "Group": null, "User": { "UserID": 6, "FirstName": "Douglas", "LastName": "Kreitlov", "LanID": "sa\\dekrei1", "TelNumber": null, "UserTypeID": 1, "Emails": [], "GroupUsers": [], "Tickets": [], "UserType": null }, "Schedules": [], "Tickets": [] } }];
@@ -267,8 +262,6 @@ export class OncallScheduleComponent implements OnInit {
 
     };
 
-    // this.calendarOptions.events = dataEvents;
-    // $('#myCalendar').fullCalendar('refetchEventSources', dataEvents);
 
     this.isSeclectedGroup = true;
 
@@ -353,6 +346,8 @@ export class OncallScheduleComponent implements OnInit {
     this.AddIsSuccess = false;
     this.scheduleIdSelected = 0;
 
+    this.AnalystSelector = [];
+    this.isLoadAnalystSelector = false;
 
   };
 
@@ -368,36 +363,52 @@ export class OncallScheduleComponent implements OnInit {
     this.year = this.d.getFullYear();
 
     this.clearInputData();
+
+    this.isSeclectedGroup = false;
+    this.getSchedules(this.groupIDSelected, this.month, this.year);
+    this.getMemberList(teamSelected.groupID);
+
     //mock up
     // this.mockMemberList(teamSelected.groupID);
     // this.mockGetSchedules(teamSelected.groupID, this.month, this.year);
 
-    this.isSeclectedGroup = false;
-    this.getSchedules(this.groupIDSelected, this.month, this.year);
-
-    this.analystList = [];
-
-    let tempData = new AnalystModel();
-    tempData.groupId = 0;
-    tempData.name = "Choose Analyst";
-    tempData.userId = 0;
-    tempData.groupUserID = 0;
-
-    this.analystList = [tempData];
-    this.analystSelected = this.analystList[0];
-
     //mock
-    let tempData2 = new AnalystModel();
-    tempData2.groupId = 1;
-    tempData2.name = "Test Analyst";
-    tempData2.userId = 1;
-    tempData2.groupUserID = 1;
-    tempData2.lanId = 'AAAA';
+    // let tempData2 = new AnalystModel();
+    // tempData2.groupId = 1;
+    // tempData2.name = "Test Analyst";
+    // tempData2.userId = 1;
+    // tempData2.groupUserID = 1;
+    // tempData2.lanId = 'AAAA';
+    // tempData2.comEmail = 'AAAA@sssss.com'
 
-    this.analystList.push(tempData2)
-    //mock
+    // this.analystList.push(tempData2)
 
-    this.getMemberList(teamSelected.groupID);
+    // let tempData3 = new AnalystModel();
+    // tempData3.groupId = 3;
+    // tempData3.name = "Antira 5555";
+    // tempData3.userId = 3;
+    // tempData3.groupUserID = 3;
+    // tempData3.lanId = 'BBBB';
+    // tempData3.comEmail = 'BBBB@sssss.com'
+
+    // this.analystList.push(tempData3)
+
+    // this.AnalystSelector = [];
+    // this.analystList.forEach(i => {
+      
+    //     let data = new SelectorModel();
+    //     data.id = i.groupUserID;
+    //     data.text = i.name;
+
+    //     this.AnalystSelector.push(data);
+      
+    // });
+
+    // this.isLoadAnalystSelector = true;
+    // console.log(JSON.stringify(this.AnalystSelector))
+
+     //end mock
+
   }
 
 
@@ -407,6 +418,23 @@ export class OncallScheduleComponent implements OnInit {
     this.lanId = data.lanId;
     this.groupUserIdSelected = data.groupUserID;
     this.getUserPic();
+  }
+ 
+  public refreshValue(value:any):void {
+    if(value.id != undefined){
+      //value.id  is groupUserID
+      console.log('ID : ' + value.id)
+
+      this.analystList.forEach(i => {
+          if(i.groupUserID == value.id){
+            this.selectAnalyst(i);
+            this.analystSelected = i;
+            console.log('analystSelected : ' + JSON.stringify(this.analystSelected))
+            return;
+          }
+        
+      });
+    }
   }
 
   updateUrl() {
@@ -437,7 +465,7 @@ export class OncallScheduleComponent implements OnInit {
 
     this._teamService.getTeams().subscribe(
       Response => {
-        console.log("Get Teams success!" + JSON.stringify(Response));
+        // console.log("Get Teams success!" + JSON.stringify(Response));
 
         let result = Response;
 
@@ -455,7 +483,7 @@ export class OncallScheduleComponent implements OnInit {
 
         });
 
-        console.log("Teams = " + JSON.stringify(this.teamList));
+        // console.log("Teams = " + JSON.stringify(this.teamList));
 
       },
       err => {
@@ -468,7 +496,7 @@ export class OncallScheduleComponent implements OnInit {
   getMemberList(GroupId: number) {
     this._memberService.getMembers(GroupId).subscribe(
       Response => {
-        console.log("Get MemberList success!" + JSON.stringify(Response));
+        // console.log("Get MemberList success!" + JSON.stringify(Response));
 
         let result = Response;
 
@@ -494,8 +522,25 @@ export class OncallScheduleComponent implements OnInit {
           });
 
           this.analystList.push(data);
+          
 
         });
+
+        this.AnalystSelector = [];
+        this.analystList.forEach(i => {
+          
+            let data = new SelectorModel();
+            data.id = i.groupUserID;
+            data.text = i.name;
+    
+            this.AnalystSelector.push(data);
+          
+        });
+    
+        this.isLoadAnalystSelector = true;
+        // reset
+        this.isLoadAnalystSelector = false;
+        setTimeout(() => {this.isLoadAnalystSelector = true;})
 
       }
     );
@@ -574,7 +619,7 @@ export class OncallScheduleComponent implements OnInit {
           this.month = + (moment(data.StartDate).format('MM'));
           this.year = + (moment(data.StartDate).format('YYYY'));
       
-          console.log(this.month + " < Add > " + this.year)
+          // console.log(this.month + " < Add > " + this.year)
       
           this._oncallScheduleService.addSchedule(data).subscribe(
             Response => {
@@ -691,7 +736,7 @@ export class OncallScheduleComponent implements OnInit {
           this.month = + (moment(data.StartDate).format('MM'));
           this.year = + (moment(data.StartDate).format('YYYY'));
       
-          console.log(this.month + " < Update > " + this.year)
+          // console.log(this.month + " < Update > " + this.year)
       
           this._oncallScheduleService.updateSchedule(data).subscribe(
             Response => {
@@ -717,12 +762,12 @@ export class OncallScheduleComponent implements OnInit {
 
 
 
-    console.log('Remove => ID ' + this.DataEvent.scheduleId)
+    // console.log('Remove => ID ' + this.DataEvent.scheduleId)
 
     this.month = + (moment(this.DataEvent.startDate).format('MM'));
     this.year = + (moment(this.DataEvent.startDate).format('YYYY'));
 
-    console.log(this.month + " < Delete > " + this.year)
+    // console.log(this.month + " < Delete > " + this.year)
 
     this._oncallScheduleService.deleteSchedule(this.DataEvent.scheduleId).subscribe(
       Response => {
@@ -842,7 +887,24 @@ export class OncallScheduleComponent implements OnInit {
 
     });
 
-    console.log('analystList' + JSON.stringify(this.analystList));
+    this.AnalystSelector = [];
+    this.analystList.forEach(i => {
+      
+        let data = new SelectorModel();
+        data.id = i.groupUserID;
+        data.text = i.name;
+
+        this.AnalystSelector.push(data);
+      
+    });
+
+    this.isLoadAnalystSelector = true;
+
+    // reset
+    this.isLoadAnalystSelector = false;
+    setTimeout(() => {this.isLoadAnalystSelector = true;})
+
+    // console.log('analystList' + JSON.stringify(this.analystList));
 
   }
 
