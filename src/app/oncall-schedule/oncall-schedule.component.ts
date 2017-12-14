@@ -89,6 +89,8 @@ export class OncallScheduleComponent implements OnInit {
   AnalystSelector: Array<SelectorModel> = [];
   Analyst: any[] = null;
 
+  showTextHeadr: string = 'Oncall Schedule';
+
   constructor(
     private _teamService: TeamService,
     private _memberService: MemberService,
@@ -275,7 +277,10 @@ export class OncallScheduleComponent implements OnInit {
     }.bind(this),200)
   }
 
-  public selctedEvent(calEvent:any, jsEvent:any, view:any){
+  public selctedEvent(calEvent: any, jsEvent: any, view: any) {
+
+    this.showTextHeadr = 'Modify On-call schedule';
+
     this.scheduleIdSelected = calEvent.id;
     console.log(calEvent.title + ' ' + calEvent.id);
     this.DataEvent = {
@@ -369,7 +374,19 @@ export class OncallScheduleComponent implements OnInit {
     this.AnalystSelector = [];
     this.isLoadAnalystSelector = false;
     this.Analyst = null;
+    this.showTextHeadr = 'Oncall Schedule';
 
+  };
+
+  backToSelectTeam(){
+    this.teamList.forEach(i => {
+      
+       if(i.groupID == this.groupIDSelected){
+          this.selectTeam(i);
+          return;
+       }
+      
+    });
   };
 
   selectTeam(teamSelected: TeamsModel) {
