@@ -23,6 +23,7 @@ import { ModalDirective } from "ngx-bootstrap";
 export class OncallScheduleComponent implements OnInit {
   
   @ViewChild('childModal') public childModal:ModalDirective;
+  @ViewChild('validateModal') public validateModal:ModalDirective;
 
   groupIDSelected: number = 0;
   scheduleIdSelected: number = 0;
@@ -293,9 +294,9 @@ export class OncallScheduleComponent implements OnInit {
 
     // console.log(this.DataEvent.startDate.year() +',' + this.DataEvent.startDate.month() +',' + this.DataEvent.startDate.date())
 
-    this.DateFrom = new Date(this.DataEvent.startDate.year(), this.DataEvent.startDate.month(), this.DataEvent.startDate.date());
+      this.DateFrom =  new Date(this.DataEvent.startDate.year(), this.DataEvent.startDate.month(), this.DataEvent.startDate.date());
 
-    this.DateTo = new Date(this.DataEvent.endDate.year(), this.DataEvent.endDate.month(), this.DataEvent.endDate.date());
+      this.DateTo = new Date(this.DataEvent.endDate.year(), this.DataEvent.endDate.month(), this.DataEvent.endDate.date());
 
     // console.log(this.DataEvent.startDate.hour() +',' + this.DataEvent.startDate.minute() +',' + this.DataEvent.startDate.second())
 
@@ -555,39 +556,93 @@ export class OncallScheduleComponent implements OnInit {
 
 
   addSchedule() {
-    let utcStartAndEndDateTime = this.getEndAndStartDateTimeUTC();
+    if(this.checkValidateDateTime()){
 
-    let data = new ScheduleModel();
-    data.GroupUserID = this.analystSelected.groupUserID;
-    data.StartAt = utcStartAndEndDateTime[0];
-    data.EndAt = utcStartAndEndDateTime[1];
-    data.StartDate = utcStartAndEndDateTime[2];
-    data.EndDate = utcStartAndEndDateTime[3];
-    data.StartTime = utcStartAndEndDateTime[4];
-    data.EndTime = utcStartAndEndDateTime[5];
-
-    console.log(JSON.stringify(data))
-
-    this.month = + (moment(data.StartDate).format('MM'));
-    this.year = + (moment(data.StartDate).format('YYYY'));
-
-    console.log(this.month + " < Add > " + this.year)
-
-    this._oncallScheduleService.addSchedule(data).subscribe(
-      Response => {
-        //getSchedules
-        console.log("Add Schedule Succes!!");
-        this.scheduleIdSelected = 0;
-        this.isSeclectedGroup = false;
-        this.getSchedules(this.groupIDSelected, this.month, this.year)
-
-      },
-      error => {
-        console.log("Can't addSchedule" + error);
-      });
+      let utcStartAndEndDateTime = this.getEndAndStartDateTimeUTC();
+      
+          let data = new ScheduleModel();
+          data.GroupUserID = this.analystSelected.groupUserID;
+          data.StartAt = utcStartAndEndDateTime[0];
+          data.EndAt = utcStartAndEndDateTime[1];
+          data.StartDate = utcStartAndEndDateTime[2];
+          data.EndDate = utcStartAndEndDateTime[3];
+          data.StartTime = utcStartAndEndDateTime[4];
+          data.EndTime = utcStartAndEndDateTime[5];
+      
+          console.log(JSON.stringify(data))
+      
+          this.month = + (moment(data.StartDate).format('MM'));
+          this.year = + (moment(data.StartDate).format('YYYY'));
+      
+          console.log(this.month + " < Add > " + this.year)
+      
+          this._oncallScheduleService.addSchedule(data).subscribe(
+            Response => {
+              //getSchedules
+              console.log("Add Schedule Succes!!");
+              this.scheduleIdSelected = 0;
+              this.isSeclectedGroup = false;
+              this.getSchedules(this.groupIDSelected, this.month, this.year)
+      
+            },
+            error => {
+              console.log("Can't addSchedule" + error);
+            });
+    }else{
+      this.validateModal.show();
+    }
+   
 
   }
 
+  checkValidateDateTime() : boolean{
+        ///// start  data time 
+        var yFrom = this.DateFrom.getFullYear();
+        var mFrom = this.DateFrom.getMonth();
+        var dFrom = this.DateFrom.getDate();
+
+        var yTo = this.DateTo.getFullYear();
+        var mTo = this.DateTo.getMonth();
+        var dTo = this.DateTo.getDate();
+
+        var isValidateDate = false;
+        if(yFrom < yTo){
+          isValidateDate = true;
+        }else if(yFrom == yTo && mFrom < mTo){
+          isValidateDate = true;
+        }else if(yFrom == yTo && mFrom == mTo && dFrom < dTo){
+          isValidateDate = true;
+        }else if(yFrom == yTo && mFrom == mTo && dFrom == dTo){
+          isValidateDate = true;
+        }else{
+          isValidateDate = false;
+        }
+
+        var timeFromHour = this.TimeFrom.getHours();
+        var timeFromMinute = this.TimeFrom.getMinutes();
+
+        ///// end data time 
+        var timeToHour = this.TimeTo.getHours();
+        var timeToMinute = this.TimeTo.getMinutes();
+        
+        var isValidateTime = false;
+
+        if(timeFromHour < timeToHour){
+          isValidateTime = true;
+        }else if(timeFromHour == timeToHour && timeFromMinute <= timeToMinute){
+          isValidateTime = true;
+        }else{
+          isValidateTime = false;
+        }
+
+
+        if(isValidateDate && isValidateTime){
+          return true;
+        }else{
+          return false;
+        }
+
+  }
 
   getEndAndStartDateTimeUTC(): any {
 
@@ -617,37 +672,43 @@ export class OncallScheduleComponent implements OnInit {
   }
 
   updateSchedule() {
-    let utcStartAndEndDateTime = this.getEndAndStartDateTimeUTC();
 
-    let data = new ScheduleModel();
-    data.ScheduleID = this.DataEvent.scheduleId;
-    data.GroupUserID = this.analystSelected.groupUserID;
-    data.StartAt = utcStartAndEndDateTime[0];
-    data.EndAt = utcStartAndEndDateTime[1];
-    data.StartDate = utcStartAndEndDateTime[2];
-    data.EndDate = utcStartAndEndDateTime[3];
-    data.StartTime = utcStartAndEndDateTime[4];
-    data.EndTime = utcStartAndEndDateTime[5];
+    if(this.checkValidateDateTime()){
+      let utcStartAndEndDateTime = this.getEndAndStartDateTimeUTC();
+      
+          let data = new ScheduleModel();
+          data.ScheduleID = this.DataEvent.scheduleId;
+          data.GroupUserID = this.analystSelected.groupUserID;
+          data.StartAt = utcStartAndEndDateTime[0];
+          data.EndAt = utcStartAndEndDateTime[1];
+          data.StartDate = utcStartAndEndDateTime[2];
+          data.EndDate = utcStartAndEndDateTime[3];
+          data.StartTime = utcStartAndEndDateTime[4];
+          data.EndTime = utcStartAndEndDateTime[5];
+      
+          console.log(JSON.stringify(data))
+      
+          this.month = + (moment(data.StartDate).format('MM'));
+          this.year = + (moment(data.StartDate).format('YYYY'));
+      
+          console.log(this.month + " < Update > " + this.year)
+      
+          this._oncallScheduleService.updateSchedule(data).subscribe(
+            Response => {
+              //getSchedules
+              console.log("Update Schedule Succes!!");
+              this.isSeclectedGroup = false;
+              this.getSchedules(this.groupIDSelected, this.month, this.year)
+      
+            },
+            error => {
+              console.log("Can't Update Schedule" + error);
+            });      
 
-    console.log(JSON.stringify(data))
-
-    this.month = + (moment(data.StartDate).format('MM'));
-    this.year = + (moment(data.StartDate).format('YYYY'));
-
-    console.log(this.month + " < Update > " + this.year)
-
-    this._oncallScheduleService.updateSchedule(data).subscribe(
-      Response => {
-        //getSchedules
-        console.log("Update Schedule Succes!!");
-        this.isSeclectedGroup = false;
-        this.getSchedules(this.groupIDSelected, this.month, this.year)
-
-      },
-      error => {
-        console.log("Can't Update Schedule" + error);
-      });
-
+    }else{
+      this.validateModal.show();
+    }
+   
   }
 
   removeSchedule() {
