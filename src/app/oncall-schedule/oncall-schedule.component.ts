@@ -387,14 +387,14 @@ export class OncallScheduleComponent implements OnInit {
     this.analystSelected = this.analystList[0];
 
     //mock
-    // let tempData2 = new AnalystModel();
-    // tempData2.groupId = 1;
-    // tempData2.name = "Test Analyst";
-    // tempData2.userId = 1;
-    // tempData2.groupUserID = 1;
-    // tempData2.lanId = 'AAAA';
+    let tempData2 = new AnalystModel();
+    tempData2.groupId = 1;
+    tempData2.name = "Test Analyst";
+    tempData2.userId = 1;
+    tempData2.groupUserID = 1;
+    tempData2.lanId = 'AAAA';
 
-    // this.analystList.push(tempData2)
+    this.analystList.push(tempData2)
     //mock
 
     this.getMemberList(teamSelected.groupID);
