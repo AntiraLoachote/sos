@@ -77,6 +77,7 @@
 .user-name {
     color: #4ECDC4;
     margin-top: 2.5vw;
+    text-transform: uppercase;
 }
 
 
@@ -438,4 +439,28 @@ screen and (min-height: 974px) {
 
 .del-dialog {
     margin-top: 155px;
+}
+
+
+:host /deep/ .ui-select-choices.dropdown-menu {
+    display: block;
+}
+
+:host /deep/  .ui-select-match .btn-default {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 0;
+    color: #495057;
+}
+
+:host /deep/  .ui-select-match .pull-right {
+    float: right;
+}
+
+:host /deep/  .ui-select-match {
+    cursor: pointer;
+}
+
+:host /deep/ .ui-select-choices .dropdown-item {
+    text-transform: uppercase;
 }
