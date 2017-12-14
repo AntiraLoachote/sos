@@ -99,6 +99,7 @@
                         <ng-select  [items]="AnalystSelector"
                                 (data)="refreshValue($event)"
                                 placeholder="Choose Analyst"
+                                [active]="Analyst"
                                 *ngIf="isLoadAnalystSelector">
                         </ng-select>
 

@@ -87,6 +87,7 @@ export class OncallScheduleComponent implements OnInit {
 
   isLoadAnalystSelector: boolean = false;
   AnalystSelector: Array<SelectorModel> = [];
+  Analyst: any[] = null;
 
   constructor(
     private _teamService: TeamService,
@@ -326,8 +327,25 @@ export class OncallScheduleComponent implements OnInit {
          } 
         }
 
-        this.AddIsSuccess = false;
-      
+    //select Analyst Filter
+    this.analystList.forEach(i => {
+      if(i.groupUserID == this.DataEvent.groupUserID){
+        this.selectAnalyst(i);
+        this.analystSelected = i;
+        console.log('analystSelected : ' + JSON.stringify(this.analystSelected))
+
+        this.AnalystSelector.forEach(j => {
+            if(j.id == this.DataEvent.groupUserID){
+              this.Analyst = [j];
+            }
+        });
+
+      }
+    
+    });
+
+    this.AddIsSuccess = false;
+
   }
 
   clearInputData(){
@@ -350,6 +368,7 @@ export class OncallScheduleComponent implements OnInit {
 
     this.AnalystSelector = [];
     this.isLoadAnalystSelector = false;
+    this.Analyst = null;
 
   };
 
@@ -896,19 +915,26 @@ export class OncallScheduleComponent implements OnInit {
     this.AnalystSelector = [];
     this.analystList.forEach(i => {
       
+      if(i.groupId != 0){
         let data = new SelectorModel();
         data.id = i.groupUserID;
         data.text = i.name;
 
         this.AnalystSelector.push(data);
-      
+      }
     });
+
+    // console.log('this.AnalystSelector[0]' + JSON.stringify(this.AnalystSelector[0]));
+    //init data
+    // this.Analyst = [this.AnalystSelector[0]];
 
     this.isLoadAnalystSelector = true;
 
     // reset
     this.isLoadAnalystSelector = false;
     setTimeout(() => {this.isLoadAnalystSelector = true;})
+
+
 
     // console.log('analystList' + JSON.stringify(this.analystList));
 
