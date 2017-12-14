@@ -559,11 +559,13 @@ export class OncallScheduleComponent implements OnInit {
         this.AnalystSelector = [];
         this.analystList.forEach(i => {
           
+          if(i.groupId != 0){
             let data = new SelectorModel();
             data.id = i.groupUserID;
             data.text = i.name;
     
             this.AnalystSelector.push(data);
+          }
           
         });
     
