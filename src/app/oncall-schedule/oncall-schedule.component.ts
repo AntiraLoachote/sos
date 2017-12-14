@@ -119,9 +119,9 @@ export class OncallScheduleComponent implements OnInit {
     this.TimeTo = new Date(this.d.getFullYear(), this.d.getMonth(), this.d.getDate(), 0, 0, 59);
 
     //GET Team List
-    this.getTeams();
+    // this.getTeams();
 
-    //this.mockTeam();
+    this.mockTeam();
 
   }
 
@@ -365,12 +365,12 @@ export class OncallScheduleComponent implements OnInit {
     this.clearInputData();
 
     this.isSeclectedGroup = false;
-    this.getSchedules(this.groupIDSelected, this.month, this.year);
-    this.getMemberList(teamSelected.groupID);
+    // this.getSchedules(this.groupIDSelected, this.month, this.year);
+    // this.getMemberList(teamSelected.groupID);
 
     //mock up
-    // this.mockMemberList(teamSelected.groupID);
-    // this.mockGetSchedules(teamSelected.groupID, this.month, this.year);
+    this.mockMemberList(teamSelected.groupID);
+    this.mockGetSchedules(teamSelected.groupID, this.month, this.year);
 
     //mock
     // let tempData2 = new AnalystModel();
