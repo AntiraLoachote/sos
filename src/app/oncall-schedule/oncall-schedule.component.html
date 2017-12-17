@@ -1,9 +1,11 @@
 <div class="col sub-header">
     <nav class="navbar ">
-        <i *ngIf="scheduleIdSelected != 0" class="fa fa-chevron-left" style="    position: absolute;
-        color: white;
-        left: 2.2%; cursor: pointer" (click)="backToSelectTeam()" aria-hidden="true"></i>
-        <h5 class="text">{{showTextHeadr}}</h5>
+        <h5 class="text">
+            <span>
+                <i *ngIf="scheduleIdSelected != 0" class="fa fa-chevron-left" style="color: white;   margin-right:10px; cursor: pointer" (click)="backToSelectTeam()" aria-hidden="true"></i>
+            </span>
+            {{showTextHeadr}}
+        </h5>
     </nav>
 
     <div class="row no-gutters" style="margin-top: 4vh;">
