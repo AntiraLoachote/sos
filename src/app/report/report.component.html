@@ -134,3 +134,20 @@
         </div>
     </div>
 </div>
+
+<div bsModal #validateModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title pull-left">DateTime is Invalid</h4>
+                </div>
+                <div class="modal-body">
+                    <p style="font-weight: 500; margin-bottom: 20px;  margin-top: 5px;">Please fill DateTime again.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-cancel" (click)="validateModal.hide()">Close</button>
+                </div>
+            </div>
+        </div>
+    
+    </div>
