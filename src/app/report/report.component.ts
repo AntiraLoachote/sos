@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import * as moment from 'moment';
 import { Observable } from 'rxjs/Observable';
 import { forkJoin } from "rxjs/observable/forkJoin";
@@ -6,6 +6,7 @@ import { ReportService } from 'app/report/report.service';
 import { TeamsModel } from 'app/models/team/team-list.model';
 import { TeamService } from 'app/team/team.service';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
+import { ModalDirective } from "ngx-bootstrap";
 
 @Component({
     selector: 'app-report',
@@ -13,6 +14,9 @@ import { Angular2Csv } from 'angular2-csv/Angular2-csv';
     styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
+
+    @ViewChild('validateModal') public validateModal: ModalDirective;
+
     teamList: any;
     AllTicketsData: any;
     groupIDs: any[] = [];
@@ -523,6 +527,8 @@ export class ReportComponent implements OnInit {
 
                 // console.log(this.defaultStartSQLFormat + ':' + this.defaultEndSQLFormat);
                 this.getTicketsInPeriod();
+            }else{
+                this.validateModal.show();
             }
 
 
