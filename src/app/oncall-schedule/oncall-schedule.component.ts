@@ -607,6 +607,7 @@ export class OncallScheduleComponent implements OnInit {
      this.year = this.d.getFullYear();
 
      this.isSeclectedGroup = false;
+     this.getSchedules(this.groupIDSelected,this.month, this.year);
   }
   prevMonth(){
     this.clearInputData();
