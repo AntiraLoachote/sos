@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, EventEmitter, Output, NgZone } from '@angular/core';
 import { ActivatedRoute, Params, Router } from "@angular/router";
 import { MemberService } from './../member.service'
 import { OnCallUserModel } from "app/models/member/member.model";
@@ -47,7 +47,8 @@ export class MemberDetailComponent implements OnInit {
     public activatedRoute: ActivatedRoute,
     private _memberService: MemberService,
     private modalService: BsModalService,
-    private router: Router
+    private router: Router,
+    private ngZone: NgZone
   ) { }
 
 
@@ -285,8 +286,8 @@ export class MemberDetailComponent implements OnInit {
         this._memberService.UserList = userList;
         this._memberService.MemberList = result.GroupUsers;
         console.log('call again')
-        this.router.navigateByUrl('/member/detail/' + GroupId);
-
+        this.ngZone.run(() => this.router.navigateByUrl('/member/detail/' + GroupId));
+        
         // window.location.href = "/member/detail/" + this.GroupId;
       }
     );
