@@ -243,6 +243,9 @@ export class MemberComponent implements OnInit {
 
     });
 
+    
+    this._memberService.UserList = this.userList;
+
     this.Members = mockMember.GroupUsers;
     this._memberService.MemberList = this.Members;
 
