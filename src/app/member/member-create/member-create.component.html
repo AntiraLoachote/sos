@@ -14,16 +14,16 @@
         <div class="row">
           <div class="col">
             <div class="display-group">
-              <label class="mt-0">Domain</label>
+              <label class="mt-0">Domain <span style="color: red;">*</span></label>
               <!-- <p class="color-info">AP</p> -->
-              <input type="text" class="form-control input-underline" [(ngModel)]="userDomain">
+              <input type="text" class="form-control input-underline" [(ngModel)]="userDomain" required>
             </div>
           </div>
           <div class="col">
             <div class="display-group">
-              <label class="mt-0">LAN ID</label>
+              <label class="mt-0">LAN ID <span style="color: red;">*</span></label>
               <!-- <p class="color-info">KKHUMTH</p> -->
-              <input type="text" class="form-control input-underline" [(ngModel)]="userLanId">
+              <input type="text" class="form-control input-underline" [(ngModel)]="userLanId" required>
             </div>
           </div>
         </div>
@@ -99,7 +99,7 @@
       </div>
 
     </div>
-    <div class="col-1" style="background-color: #559CCA;">
+    <div class="col-1" style="background-color: #47bdcd;" id ="BarColor">
 
     </div>
   </div>

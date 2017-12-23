@@ -43,6 +43,12 @@ import { OncallScheduleService } from 'app/oncall-schedule/oncall-schedule.servi
 import { TimepickerModule } from 'ngx-bootstrap';
 import { ModalModule }from 'ngx-bootstrap';
 import { SelectModule } from 'ng2-select';
+import swal from 'sweetalert';
+
+
+import {enableProdMode} from '@angular/core';
+enableProdMode() 
+
 
 @NgModule({
   declarations: [

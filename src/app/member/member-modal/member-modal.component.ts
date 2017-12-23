@@ -55,6 +55,11 @@ export class MemberModalComponent implements OnInit {
       },
       err => {
         console.log("Can't Remove User")
+         swal({
+          title: "Cannot remove user",
+          text: "Please try again!",
+          icon: "error",
+        });
       }
     );
   }

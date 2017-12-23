@@ -59,7 +59,7 @@ body .team-member ::-webkit-scrollbar-thumb {
 }
 
 .list-group-item.active {
-    background-color: #559CCA;
+    background-color: #47bdcd;;
     border: 0;
 }
 
