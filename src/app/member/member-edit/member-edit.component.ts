@@ -195,6 +195,11 @@ export class MemberEditComponent implements OnInit {
       },
       err => {
         alert("Can't Post Update User")
+         swal({
+          title: "Cannot post Update User",
+          text: "Please try again!",
+          icon: "error",
+        });
       }
     );
 

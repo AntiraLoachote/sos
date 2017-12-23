@@ -80,7 +80,7 @@ export class TeamComponent implements OnInit {
 
       },
       err => {
-        console.log("Can't get Teams")
+        console.log("Can't get Teams,err")
       }
     );
   }

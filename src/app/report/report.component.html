@@ -1,8 +1,8 @@
 <div class="col sub-header">
-    <nav class="navbar ">
-        <h5 class="text">Report - Weekly oncall report</h5>
-    </nav>
-    <!--<li class="nav-item dropdown" id="dropdown">
+	<nav class="navbar ">
+		<h5 class="text">Report - Weekly oncall report</h5>
+	</nav>
+	<!--<li class="nav-item dropdown" id="dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown">
         </a>
         <div class="dropdown-menu">
@@ -13,50 +13,50 @@
 </div>
 <div class="content-all col-12">
 
-    <div class="row">
-        <div class="col-3 col-xs-12">
+	<div class="row">
+		<div class="col-3 col-xs-12">
 
-            <div class="form-inline text-label">
-                <div class="form-group">
-                    <label for="example-date-input" style="display: inline-block; width: 81px;">
+			<div class="form-inline text-label">
+				<div class="form-group">
+					<label for="example-date-input" style="display: inline-block; width: 81px;">
             <b style="font-size:1rem;">Date from:</b>
           </label>
 
-                    <input type="text" class="form-control" placeholder="DD/MM/YYYY" bsDatepicker [(ngModel)]="FilterDateFrom" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-blue',showWeekNumbers: false}" (bsValueChange)="FilterDateFrom = $event ; selectedStartDate()"
-                        style="display: inline-block; margin-left: 20px;" />
+					<input type="text" class="form-control" placeholder="DD/MM/YYYY" bsDatepicker [(ngModel)]="FilterDateFrom" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-blue',showWeekNumbers: false}"
+						(bsValueChange)="FilterDateFrom = $event ; selectedStartDate()" style="display: inline-block; margin-left: 20px;" />
 
-                </div>
-            </div>
+				</div>
+			</div>
 
-            <div class="form-inline text-label">
-                <div class="form-group">
+			<div class="form-inline text-label">
+				<div class="form-group">
 
-                    <label for="example-date-input" style="display: inline-block; width: 81px;">
+					<label for="example-date-input" style="display: inline-block; width: 81px;">
             <b style="font-size:1rem;">Date to:</b>
           </label>
 
-                    <input type="text" class="form-control" placeholder="DD/MM/YYYY" bsDatepicker [(ngModel)]="FilterDateTo" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-blue',showWeekNumbers: false}" (bsValueChange)="FilterDateTo = $event ; selectedStartDate()"
-                        style="display: inline-block; margin-left: 20px;" />
+					<input type="text" class="form-control" placeholder="DD/MM/YYYY" bsDatepicker [(ngModel)]="FilterDateTo" [bsConfig]="{dateInputFormat: 'DD/MM/YYYY',containerClass:'theme-blue',showWeekNumbers: false}"
+						(bsValueChange)="FilterDateTo = $event ; selectedStartDate()" style="display: inline-block; margin-left: 20px;" />
 
-                </div>
-            </div>
+				</div>
+			</div>
 
-            <div class="form-inline text-label">
-                <div class="form-group">
-                    <label for="example-date-input" style="display: inline-block; ">
+			<div class="form-inline text-label">
+				<div class="form-group">
+					<label for="example-date-input" style="display: inline-block; ">
             <b style="font-size:1rem;">Choose Group:</b>
           </label>
 
-                </div>
-            </div>
+				</div>
+			</div>
 
 
-            <div class="row">
-                <div class="card">
-                    <div class="card-block">
-                        <div class="col-checkbox">
-                            <div class="checkteam" *ngFor="let item of teamList; let inx = index">
-                                <label class=" custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ">
+			<div class="row">
+				<div class="card">
+					<div class="card-block">
+						<div class="col-checkbox">
+							<div class="checkteam" *ngFor="let item of teamList; let inx = index">
+								<label class=" custom-control custom-checkbox mb-2 mr-sm-2 mb-sm-0 ">
 
                   <input type="checkbox" class="custom-control-input" [(ngModel)]="item.checked" 
                   [checked]="item.checked" (change)="item.checked=!item.checked; changeGroupSelected(inx,!item.checked)">
@@ -66,88 +66,88 @@
                     {{item.name}}
                   </span>
                 </label>
-                            </div>
+							</div>
 
-                        </div>
-                        <div class="col-12" style=" text-align: center;">
-                            <button type="button" class="btn btn-primary btn-submit" (click)="prepareGroupSelected()">GO</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+						</div>
+						<div class="col-12" style=" text-align: center;">
+							<button type="button" class="btn btn-primary btn-submit" (click)="prepareGroupSelected()">GO</button>
+						</div>
+					</div>
+				</div>
+			</div>
 
 
-        </div>
-        <div class="col col-xs-12 ">
-            <!-- Graph -->
+		</div>
+		<div class="col col-xs-12 ">
+			<!-- Graph -->
 
-            <div class="col-11 ">
-                <chart [options]="options " class="box-chart "></chart>
-            </div>
+			<div class="col-11 ">
+				<chart [options]="options " class="box-chart "></chart>
+			</div>
 
-        </div>
-    </div>
+		</div>
+	</div>
+	<a class="anchor" (click)="scollTo('#tableDetail')">
+		<img src="./assets/img/down.png" style="width: 2.5vw; cursor: pointer; ">
+	</a>
 
-    <a class="anchor" href="/report#tableDetail">
-        <img src="./assets/img/down.png" style="width: 2.5vw; ">
-    </a>
+	<div class="row " id="tableDetail">
 
-    <div class="row " id="tableDetail">
-
-        <div class="col-11 table-detail ">
-            <button type="button " class="btn btn-success btn-export " (click)="exportDataToExcel()">
+		<div class="col-11 table-detail ">
+			<button type="button " class="btn btn-success btn-export " (click)="exportDataToExcel()">
         <img src="./assets/img/icon-excel.JPG " style="width: 24px; "> EXPORT
       </button>
-            <table class="fixed_headers ">
-                <thead>
-                    <tr>
-                        <th>Incident number</th>
-                        <th>User</th>
-                        <th>Oncall</th>
-                        <th>Products</th>
-                        <th>Group</th>
-                        <th>Date Submitted</th>
-                        <th>Response time</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of AllTicketsData ">
-                        <td [ngClass]="{ 'text-green': item.TimeUsed < 300000, 'text-red' : item.TimeUsed < 1800000 } " style="color:
+			<table class="fixed_headers ">
+				<thead>
+					<tr>
+						<th>Incident number</th>
+						<th>User</th>
+						<th>Oncall</th>
+						<th>Products</th>
+						<th>Group</th>
+						<th>Date Submitted</th>
+						<th>Response time</th>
+						<th>Description</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr *ngFor="let item of AllTicketsData ">
+						<td [ngClass]="{ 'text-green': item.TimeUsed < 300000, 'text-red' : item.TimeUsed < 1800000 } " style="color:
                 #F6DC71; ">{{item.IncidentNumber}}</td>
-                        <td>{{item.SubmittedName }} </td>
-                        <td>{{item.OncallFName}} </td>
-                        <td>{{item.ProductName}}</td>
-                        <td>{{item.GroupName }}</td>
-                        <td>{{item.SubmittedAt}}</td>
-                        <td>
-                            <span *ngIf="item.ResponseTime !='Infinity' ">{{item.ResponseTime}}</span>
-                            <p *ngIf="item.ResponseTime=='Infinity' ">&#8734;</p>
-                        </td>
-                        <td>
-                            <p class="p-des ">{{item.Description }}</p>
-                        </td>
-                    </tr>
+						<td>{{item.SubmittedName }} </td>
+						<td>{{item.OncallFName}} </td>
+						<td>{{item.ProductName}}</td>
+						<td>{{item.GroupName }}</td>
+						<td>{{item.SubmittedAt}}</td>
+						<td>
+							<span *ngIf="item.ResponseTime !='Infinity' ">{{item.ResponseTime}}</span>
+							<p *ngIf="item.ResponseTime=='Infinity' ">&#8734;</p>
+						</td>
+						<td>
+							<p class="p-des ">{{item.Description }}</p>
+						</td>
+					</tr>
 
-                </tbody>
-            </table>
-        </div>
-    </div>
+				</tbody>
+			</table>
+		</div>
+	</div>
 </div>
 
-<div bsModal #validateModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title pull-left">DateTime is Invalid</h4>
-                </div>
-                <div class="modal-body">
-                    <p style="font-weight: 500; margin-bottom: 20px;  margin-top: 5px;">Please fill DateTime again.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger btn-cancel" (click)="validateModal.hide()">Close</button>
-                </div>
-            </div>
-        </div>
-    
-    </div>
+<div bsModal #validateModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+	aria-hidden="true">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title pull-left">DateTime is Invalid</h4>
+			</div>
+			<div class="modal-body">
+				<p style="font-weight: 500; margin-bottom: 20px;  margin-top: 5px;">Please fill DateTime again.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger btn-cancel" (click)="validateModal.hide()">Close</button>
+			</div>
+		</div>
+	</div>
+
+</div>

@@ -7,6 +7,7 @@ import { TeamsModel } from 'app/models/team/team-list.model';
 import { TeamService } from 'app/team/team.service';
 import { Angular2Csv } from 'angular2-csv/Angular2-csv';
 import { ModalDirective } from "ngx-bootstrap";
+const scrollToElement = require('scroll-to-element');
 
 @Component({
     selector: 'app-report',
@@ -72,6 +73,13 @@ export class ReportComponent implements OnInit {
         this.mockTeams();
 
     }
+    scollTo(e) {
+    scrollToElement(e, {
+      offset: -10,
+      ease: 'outBack',
+      duration: 500
+    })
+  }
 
     mockTeams() {
         //mock test
@@ -530,7 +538,12 @@ export class ReportComponent implements OnInit {
                 // console.log(this.defaultStartSQLFormat + ':' + this.defaultEndSQLFormat);
                 this.getTicketsInPeriod();
             }else{
-                this.validateModal.show();
+                // swal({
+                //     title: "Date/Time is invalid",
+                //     text: "Please fill Date/Time again!",
+                //     icon: "error",
+                // });
+               this.validateModal.show();
             }
 
 

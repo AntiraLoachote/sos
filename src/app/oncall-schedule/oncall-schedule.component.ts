@@ -675,6 +675,11 @@ export class OncallScheduleComponent implements OnInit {
         },
         error => {
           console.log("Can't addSchedule" + error);
+           swal({
+          title: "Cannot add new schedule",
+          text: "Please try again!",
+          icon: "error",
+        });
         });
     } else {
       this.validateModal.show();
@@ -791,6 +796,11 @@ export class OncallScheduleComponent implements OnInit {
         },
         error => {
           console.log("Can't Update Schedule" + error);
+           swal({
+          title: "Cannot update schedule",
+          text: "Please try again!",
+          icon: "error",
+        });
         });
 
     } else {
@@ -824,6 +834,11 @@ export class OncallScheduleComponent implements OnInit {
       },
       error => {
         console.log("Can't Delete Schedule" + error);
+         swal({
+          title: "Cannot delete schedule",
+          text: "Please try again!",
+          icon: "error",
+        });
       });
 
   }

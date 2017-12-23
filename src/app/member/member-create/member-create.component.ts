@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation , TemplateRef  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, TemplateRef } from '@angular/core';
 import { OnCallUserModel } from "app/models/member/member.model";
 import { MemberService } from "app/member/member.service";
 import { Router } from "@angular/router";
@@ -42,45 +42,45 @@ export class MemberCreateComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  clearData(){
+  clearData() {
     this.userDomain = "";
     this.userLanId = "";
     this.userAlternativeMail = "";
     this.userSharedMail = "";
     this.IsGroupAdministrator = false;
-    this.IsWorkHourReceiver  = false;
-    this.IsEscalationReceiver  = false;
-    this.IsAcknowledgeResultReceiver  = false;
+    this.IsWorkHourReceiver = false;
+    this.IsEscalationReceiver = false;
+    this.IsAcknowledgeResultReceiver = false;
   }
 
-  addUserOnGroup(){
-    
+  addUserOnGroup() {
+
     let data = new OnCallUserModel();
-    data.Domain =     this.userDomain;
-    data.Username =   this.userLanId;
+    data.Domain = this.userDomain;
+    data.Username = this.userLanId;
     data.PersonalEmail = this.userAlternativeMail;
-    data.SharedEmail =     this.userSharedMail;
+    data.SharedEmail = this.userSharedMail;
     data.IsGroupAdministrator = this.IsGroupAdministrator;
     data.IsWorkHourReceiver = this.IsWorkHourReceiver;
     data.IsEscalationReceiver = this.IsEscalationReceiver;
     data.IsAcknowledgeResultReceiver = this.IsAcknowledgeResultReceiver;
-    
-    if(this.userDomain == ''  ){
+
+    if (this.userDomain == '') {
       //  alert("กรุณากรอก Domain");
-         return;
-    }else if(this.userLanId == ''){
-        // alert("กรุณากรอก LanId");
-        return;
+      return;
+    } else if (this.userLanId == '') {
+      // alert("กรุณากรอก LanId");
+      return;
     }
     console.log("Create User!!");
     console.log(JSON.stringify(data));
-    
-    if(this._memberService.GroupId == undefined){
+
+    if (this._memberService.GroupId == undefined) {
       alert("กรุณาเลือก Team ก่อน");
-    }else{
+    } else {
       let groupId = this._memberService.GroupId;
 
-      this._memberService.postAddUser(data,groupId).subscribe(
+      this._memberService.postAddUser(data, groupId).subscribe(
         Response => {
           this.textStatus = Response;
           // alert(this.textStatus);
@@ -89,7 +89,12 @@ export class MemberCreateComponent implements OnInit {
           this.getMemberList(this.groupId);
         },
         err => {
-          alert("Can't Add User" + err);
+          // alert("Can't Add User" + err);
+          swal({
+            title: "Cannot add user",
+            text: "Please try again!",
+            icon: "error",
+          });
         }
       );
 
@@ -98,11 +103,11 @@ export class MemberCreateComponent implements OnInit {
 
   }
 
-  back(){
+  back() {
     this._memberService.SelectedIndexMember = 0;
   }
 
-     getMemberList(GroupId: number) {
+  getMemberList(GroupId: number) {
     this._memberService.getMembers(GroupId).subscribe(
       Response => {
 
