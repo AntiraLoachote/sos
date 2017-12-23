@@ -698,6 +698,8 @@ export class OncallScheduleComponent implements OnInit {
     var mTo = this.DateTo.getMonth();
     var dTo = this.DateTo.getDate();
 
+    var sameDate = false;
+
     var isValidateDate = false;
     if (yFrom < yTo) {
       isValidateDate = true;
@@ -707,25 +709,37 @@ export class OncallScheduleComponent implements OnInit {
       isValidateDate = true;
     } else if (yFrom == yTo && mFrom == mTo && dFrom == dTo) {
       isValidateDate = true;
+      sameDate = true;
     } else {
       isValidateDate = false;
     }
 
     var timeFromHour = this.TimeFrom.getHours();
     var timeFromMinute = this.TimeFrom.getMinutes();
+    var timeFromSec = this.TimeFrom.getSeconds();
 
     ///// end data time 
     var timeToHour = this.TimeTo.getHours();
     var timeToMinute = this.TimeTo.getMinutes();
+    var timeToSec = this.TimeTo.getSeconds();
 
     var isValidateTime = false;
 
     if (timeFromHour < timeToHour) {
       isValidateTime = true;
-    } else if (timeFromHour == timeToHour && timeFromMinute <= timeToMinute) {
+    } else if (timeFromHour == timeToHour && timeFromMinute < timeToMinute) {
       isValidateTime = true;
-    } else {
-      isValidateTime = false;
+    } 
+    else if (timeFromHour == timeToHour && timeFromMinute == timeToMinute && timeFromSec < timeToSec) {
+      isValidateTime = true;
+    } 
+    else {
+      if(!sameDate){
+        isValidateTime = true;
+      }else{
+        isValidateTime = false;
+      }
+
     }
 
 
