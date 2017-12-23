@@ -90,7 +90,8 @@
                     <textarea class="form-control" rows="4" id="comment" id="example-text-description" [(ngModel)]="description"></textarea>
 
                     <div style="text-align: center;">
-                        <button type="button" class="btn btn-primary" style="margin-top:2vw;" id="button-submit" (click)="postTickets()">
+                        <button type="button" class="btn btn-primary" style="margin-top:2vw;" id="button-submit" (click)="postTickets()"
+                        [disabled]="teamSelected.id == 0 || description == undefined || description == ''">
 								<h2 style="font-size:1.4vw;   margin-bottom: 0;">SUBMIT</h2>
 						</button>
                     </div>
