@@ -131,7 +131,7 @@
 }
 
 .sub-header {
-    margin-top: 0;
+    margin-top: 44px;
     padding: 0;
 }
 
@@ -221,7 +221,7 @@
 @media screen and (min-width: 1920px),
 screen and (min-height: 974px) {
     .sub-header {
-        margin-top: 0;
+        margin-top: 44px;
     }
 }
 
@@ -355,7 +355,7 @@ screen and (min-height: 918px) {
 @media screen and (min-width: 1920px),
 screen and (min-height: 974px) {
     .sub-header {
-        margin-top: 0;
+        margin-top: 44px;
     }
     .sub-header .navbar {
         margin-bottom: 30px;
