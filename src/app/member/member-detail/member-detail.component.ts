@@ -212,7 +212,7 @@ export class MemberDetailComponent implements OnInit {
 
   removeUser() {
 
-    const newLocal: string | Partial<any> = {
+    const newLocal: any = {
       title: "Delete user",
       text: "Are you sure you want to delete this user?",
       icon: "warning",
@@ -237,7 +237,7 @@ export class MemberDetailComponent implements OnInit {
             //alert(this.textRemoveStatus);
             console.log("Remove User Data success! " + Response)
     
-            this.bsModalRef.hide()
+            // this.bsModalRef.hide()
             //get member list
             this.getMemberListAgain(this._memberService.GroupId || 1);
     
@@ -286,7 +286,7 @@ export class MemberDetailComponent implements OnInit {
         this._memberService.UserList = userList;
         this._memberService.MemberList = result.GroupUsers;
         console.log('call again')
-        this.ngZone.run(() => this.router.navigateByUrl('/member/detail/' + GroupId));
+        this.ngZone.run(() => this.router.navigateByUrl('/member/detail/' + GroupId + '/' + this._memberService.UserList[0].userId));
         
         // window.location.href = "/member/detail/" + this.GroupId;
       }
