@@ -52,7 +52,7 @@
                     <div class="form-group row no-gutters">
                         <label for="example-text-input" class="col-4 col-form-label label-topic">Time from:</label>
                         <div class="col-7">
-                            <timepicker [(ngModel)]="TimeFrom" (ngModelChange)="TimeTo = TimeFrom" [readonlyInput]="groupIDSelected == 0" [showSeconds]="false" [showSpinners]="false" [showMeridian]="false"></timepicker>
+                            <timepicker [(ngModel)]="TimeFrom" (ngModelChange)="TimeTo = TimeFrom" [readonlyInput]="groupIDSelected == 0" [showSeconds]="true" [showSpinners]="false" [showMeridian]="false"></timepicker>
                         </div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                     <div class="form-group row no-gutters">
                         <label for="example-text-input" class="col-2 col-form-label label-topic">To</label>
                         <div class="col-10">
-                            <timepicker [(ngModel)]="TimeTo" [min]="TimeFrom" [readonlyInput]="groupIDSelected == 0" [showSeconds]="false" [showSpinners]="false" [showMeridian]="false"></timepicker>
+                            <timepicker [(ngModel)]="TimeTo" [min]="TimeFrom" [readonlyInput]="groupIDSelected == 0" [showSeconds]="true" [showSpinners]="false" [showMeridian]="false"></timepicker>
                         </div>
                     </div>
                 </div>
