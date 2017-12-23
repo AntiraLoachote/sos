@@ -9,19 +9,19 @@
 				</svg>
 			</h6>
 		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
+		<!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
 		 aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
-		</button>
-		
-		<div class="collapse navbar-collapse" >
+		</button> -->
+
+		<div class="collapse navbar-collapse">
 			<ul class="navbar-nav ml-auto">
 				<li class="nav-item">
 
 					<a class="nav-link js-scroll-trigger" href="#about" routerLink="/home">Home</a>
 				</li>
 				<li class="nav-item dropdown">
-					<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+					<a class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
 					 aria-expanded="false">
 						Oncall-Options
 					</a>
@@ -45,32 +45,52 @@
 	</div>
 </nav>
 
-<div class="collapse navbar-collapse" id="navbarResponsive">
-		<ul class="navbar-nav ml-auto">
-			<li class="nav-item">
 
-				<a class="nav-link js-scroll-trigger" href="#about" routerLink="/home"
-				>Home</a>
-			</li>
-			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
-				 aria-expanded="false">
-					Oncall-Options
+
+<section class="navbar-mobile" id="navbarResponsive">
+	<div class="navigation">
+		<div class="nav-container">
+			<div class="brand">
+				<a class="btn btn-bd-yellow" style="color: #4ECDC4">
+					<h6 style="padding-top: 0.3rem;">Server Status
+						<svg height="13" width="13">
+							<circle cx="7.5" cy="7.5" r="4" stroke="palegreen" stroke-width="3" fill="palegreen" />
+						</svg>
+					</h6>
 				</a>
-				<div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-					<a class="dropdown-item" href="#1team-members" id="option" routerLink="/Oncall-shedule">Oncall Schedule</a>
-					<a class="dropdown-item" href="#" id="option" routerLink="/report">Report</a>
-					<a class="dropdown-item" href="#" id="option" routerLink="/team-member">Team Members</a>
-
+			</div>
+			<nav>
+				<div class="nav-mobile">
+					<a id="nav-toggle" href="#!">
+						<span></span>
+					</a>
 				</div>
-			</li>
-			<li class="nav-item">
-			</li>
-			<li class="nav-item">
-				<a class="nav-link js-scroll-trigger" href="#contact" routerLink="/protocol">Protocol</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link js-scroll-trigger" href="#" data-toggle="modal" data-target="#myModal">Contact us</a>
-			</li>
-		</ul>
+				<ul class="nav-list">
+					<li>
+						<a href="#!" id="nav-toggle-link-1" routerLink="/home">Home</a>
+					</li>
+					<li>
+						<a href="#!">Oncall-Options</a>
+						<ul class="nav-dropdown">
+							<li>
+								<a href="#!" id="nav-toggle-link-2" routerLink="/Oncall-shedule">Oncall Schedule</a>
+							</li>
+							<li>
+								<a href="#!" id="nav-toggle-link-3" routerLink="/report">Report</a>
+							</li>
+							<li>
+								<a href="#!" id="nav-toggle-link-4" routerLink="/team-member">Team Members</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#!" id="nav-toggle-link-5" routerLink="/protocol">Protocol</a>
+					</li>
+					<li>
+						<a href="#!" id="nav-toggle-link-6" data-toggle="modal" data-target="#myModal">Contact us</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
 	</div>
+</section>
