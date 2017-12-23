@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation, EventEmitter, Output } from '@angular/core';
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Params, Router } from "@angular/router";
 import { MemberService } from './../member.service'
 import { OnCallUserModel } from "app/models/member/member.model";
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -46,7 +46,8 @@ export class MemberDetailComponent implements OnInit {
   constructor(
     public activatedRoute: ActivatedRoute,
     private _memberService: MemberService,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private router: Router
   ) { }
 
 
@@ -209,11 +210,87 @@ export class MemberDetailComponent implements OnInit {
   }
 
   removeUser() {
+
+    const newLocal: string | Partial<any> = {
+      title: "Delete user",
+      text: "Are you sure you want to delete this user?",
+      icon: "warning",
+      dangerMode: true,
+      buttons: true,
+    };
+
+    swal(newLocal).then((willDelete) => {
+      if (willDelete) {
+
+        let data = new OnCallUserModel();
+        data.Domain = this.getDomain();
+        data.Username = this.getLanId();
+    
+        console.log("data remove!!");
+        console.log(JSON.stringify(data));
+
+
+        this._memberService.postRemoveUser(data).subscribe(
+          Response => {
+            this.textRemoveStatus = Response;
+            //alert(this.textRemoveStatus);
+            console.log("Remove User Data success! " + Response)
+    
+            this.bsModalRef.hide()
+            //get member list
+            this.getMemberListAgain(this._memberService.GroupId || 1);
+    
+    
+          },
+          err => {
+            
+            console.log("Can't Remove User")
+             swal({
+              title: "Cannot remove user",
+              text: "Please try again!",
+              icon: "error",
+            });
+          }
+        );
+      } else {
+
+      }
+    });
+
     //show modal component
-    this.bsModalRef = this.modalService.show(MemberModalComponent, this.configModal);
-    this.bsModalRef.content.Domain = this.getDomain();
-    this.bsModalRef.content.Username = this.getLanId();
-    this.bsModalRef.content.GroupId = this._memberService.GroupId || 1;
+    // this.bsModalRef = this.modalService.show(MemberModalComponent, this.configModal);
+    // this.bsModalRef.content.Domain = this.getDomain();
+    // this.bsModalRef.content.Username = this.getLanId();
+    // this.bsModalRef.content.GroupId = this._memberService.GroupId || 1;
+  }
+
+  getMemberListAgain(GroupId: number) {
+    this._memberService.getMembers(GroupId).subscribe(
+      Response => {
+
+        let result = Response;
+
+        let userList = [];
+        result.GroupUsers.forEach(i => {
+
+          let data = new UserModel();
+          data.groupId = i.GroupID;
+          data.userId = i.UserID;
+          data.name = i.User.FirstName + ' ' + i.User.LastName;
+
+          userList.push(data);
+
+        });
+
+        this._memberService.UserList = userList;
+        this._memberService.MemberList = result.GroupUsers;
+        console.log('call again')
+        this.router.navigateByUrl('/member/detail/' + GroupId);
+
+        // window.location.href = "/member/detail/" + this.GroupId;
+      }
+    );
+
   }
 
 

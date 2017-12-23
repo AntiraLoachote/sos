@@ -606,8 +606,8 @@ export class OncallScheduleComponent implements OnInit {
      this.month = this.d.getMonth() + 1;
      this.year = this.d.getFullYear();
 
-     this.isSeclectedGroup = false;
-     this.getSchedules(this.groupIDSelected,this.month, this.year);
+    this.isSeclectedGroup = false;
+    this.getSchedules(this.groupIDSelected, this.month, this.year);
   }
   prevMonth(){
     this.clearInputData();
@@ -686,11 +686,11 @@ export class OncallScheduleComponent implements OnInit {
         },
         error => {
           console.log("Can't addSchedule" + error);
-           swal({
-          title: "Cannot add new schedule",
-          text: "Please try again!",
-          icon: "error",
-        });
+          swal({
+            title: "Cannot add new schedule",
+            text: "Please try again!",
+            icon: "error",
+          });
         });
     } else {
       this.validateModal.show();
@@ -740,14 +740,14 @@ export class OncallScheduleComponent implements OnInit {
       isValidateTime = true;
     } else if (timeFromHour == timeToHour && timeFromMinute < timeToMinute) {
       isValidateTime = true;
-    } 
+    }
     else if (timeFromHour == timeToHour && timeFromMinute == timeToMinute && timeFromSec < timeToSec) {
       isValidateTime = true;
-    } 
+    }
     else {
-      if(!sameDate){
+      if (!sameDate) {
         isValidateTime = true;
-      }else{
+      } else {
         isValidateTime = false;
       }
 
@@ -821,11 +821,11 @@ export class OncallScheduleComponent implements OnInit {
         },
         error => {
           console.log("Can't Update Schedule" + error);
-           swal({
-          title: "Cannot update schedule",
-          text: "Please try again!",
-          icon: "error",
-        });
+          swal({
+            title: "Cannot update schedule",
+            text: "Please try again!",
+            icon: "error",
+          });
         });
 
     } else {
@@ -859,7 +859,7 @@ export class OncallScheduleComponent implements OnInit {
       },
       error => {
         console.log("Can't Delete Schedule" + error);
-         swal({
+        swal({
           title: "Cannot delete schedule",
           text: "Please try again!",
           icon: "error",
@@ -869,7 +869,23 @@ export class OncallScheduleComponent implements OnInit {
   }
 
   public showChildModal(): void {
-    this.childModal.show();
+    // this.childModal.show();
+
+    const newLocal: string | Partial<any> = {
+      title: "Delete schedule",
+      text: "Are you sure you want to delete this schedule?",
+      icon: "warning",
+      dangerMode: true,
+      buttons: true,
+    };
+
+    swal(newLocal).then((willDelete) => {
+      if (willDelete) {
+        this.removeSchedule();
+      } else {
+
+      }
+    });
   }
 
   public hideChildModal(): void {
