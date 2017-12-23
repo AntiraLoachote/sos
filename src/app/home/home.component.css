@@ -103,6 +103,12 @@ input::-webkit-input-placeholder {
     padding: 11px 30px;
 }
 
+#button-submit:disabled{
+    cursor: default;
+    background: #ddd;
+    border-color: #ddd;
+}
+
 a.anchor {
     padding-top: 100px;
 }
