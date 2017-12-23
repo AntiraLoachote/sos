@@ -769,14 +769,16 @@ export class OncallScheduleComponent implements OnInit {
     ///// start  data time 
     var timeFromHour = this.TimeFrom.getHours();
     var timeFromMinute = this.TimeFrom.getMinutes();
-    let startDateTime = moment(this.DateFrom).set({ hour: timeFromHour, minute: timeFromMinute }).format('YYYY-MM-DD HH:mm:ss');
+    var timeFromSec = this.TimeFrom.getSeconds();
+    let startDateTime = moment(this.DateFrom).set({ hour: timeFromHour, minute: timeFromMinute , second: timeFromSec}).format('YYYY-MM-DD HH:mm:ss');
 
     var utcStartDateTime = moment(startDateTime).utc();
 
     ///// end data time 
     var timeToHour = this.TimeTo.getHours();
     var timeToMinute = this.TimeTo.getMinutes();
-    let endDateTime = moment(this.DateTo).set({ hour: timeToHour, minute: timeToMinute , second: 59 }).format('YYYY-MM-DD HH:mm:ss');
+    var timeToSec = this.TimeTo.getSeconds();
+    let endDateTime = moment(this.DateTo).set({ hour: timeToHour, minute: timeToMinute, second: timeToSec }).format('YYYY-MM-DD HH:mm:ss');
 
     var utcEndDateTime = moment(endDateTime).utc();
 
