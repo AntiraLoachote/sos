@@ -380,8 +380,8 @@ screen and (min-height: 918px) {
     }
     .anchor {
         position: absolute;
-        right: 38px;
-        top: 38%;
+        right: 30px;
+        top: 32%;
     }
     .table-detail {
         margin-bottom: 55px;
