@@ -184,6 +184,41 @@ export class MemberEditComponent implements OnInit {
     data.IsEscalationReceiver = this.memberData.IsEscalationReceiver;
     data.IsAcknowledgeResultReceiver = this.memberData.IsAcknowledgeResultReceiver;
 
+    if(this.sharedMail != ""){
+      console.log("userSharedMail MailFormat !!" +  this.checkMailformat(this.sharedMail));
+      if(this.checkMailformat(this.sharedMail)){
+        //true
+
+      }else{
+        //false
+          swal({
+            title: "Incorrect Shared mailbox Format",
+            text: "Please fill again!",
+            icon: "error",
+          });
+        
+          return;
+      }
+    }
+
+    if(this.alternativeMail != ""){
+      console.log("alternativeMail MailFormat !!" +  this.checkMailformat(this.alternativeMail));
+      if(this.checkMailformat(this.alternativeMail)){
+        //true
+        
+      }else{
+        //false
+        swal({
+          title: "Incorrect Alternative email Format",
+          text: "Please fill again!",
+          icon: "error",
+        });
+
+        return;
+        
+      }
+    }
+
     console.log("Value Update!!");
     console.log(JSON.stringify(data));
 
@@ -194,7 +229,7 @@ export class MemberEditComponent implements OnInit {
         this.reGetMemberList(this.groupId)
       },
       err => {
-        alert("Can't Post Update User")
+
          swal({
           title: "Cannot post Update User",
           text: "Please try again!",
@@ -203,6 +238,17 @@ export class MemberEditComponent implements OnInit {
       }
     );
 
+
+  }
+
+  checkMailformat(value: string) : boolean {
+    var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    
+    if(EMAIL_REGEXP.test(value)){
+      return true;
+    }else{
+      return false;
+    }
 
   }
 

@@ -53,6 +53,17 @@ export class MemberCreateComponent implements OnInit {
     this.IsAcknowledgeResultReceiver = false;
   }
 
+  checkMailformat(value: string) : boolean {
+    var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
+    
+    if(EMAIL_REGEXP.test(value)){
+      return true;
+    }else{
+      return false;
+    }
+
+  }
+
   addUserOnGroup() {
 
     let data = new OnCallUserModel();
@@ -72,6 +83,44 @@ export class MemberCreateComponent implements OnInit {
       // alert("กรุณากรอก LanId");
       return;
     }
+
+
+    if(this.userSharedMail != ""){
+      console.log("userSharedMail MailFormat !!" +  this.checkMailformat(this.userSharedMail));
+      if(this.checkMailformat(this.userSharedMail)){
+        //true
+
+      }else{
+        //false
+          swal({
+            title: "Incorrect Shared mailbox Format",
+            text: "Please fill again!",
+            icon: "error",
+          });
+        
+          return;
+      }
+    }
+
+    if(this.userAlternativeMail != ""){
+      console.log("userAlternativeMail MailFormat !!" +  this.checkMailformat(this.userAlternativeMail));
+      if(this.checkMailformat(this.userAlternativeMail)){
+        //true
+        
+      }else{
+        //false
+        swal({
+          title: "Incorrect Alternative email Format",
+          text: "Please fill again!",
+          icon: "error",
+        });
+
+        return;
+        
+      }
+    }
+
+   
     console.log("Create User!!");
     console.log(JSON.stringify(data));
 
